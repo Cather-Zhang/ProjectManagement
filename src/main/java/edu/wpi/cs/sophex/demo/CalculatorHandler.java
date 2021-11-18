@@ -34,7 +34,6 @@ public class CalculatorHandler implements RequestHandler<AddRequest,AddResponse>
 
 	//new changes
 	// second change
-	//fuabfo
 	@Override
 	public AddResponse handleRequest(AddRequest req, Context context) {
 		logger = context.getLogger();
