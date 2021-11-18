@@ -32,8 +32,6 @@ public class CalculatorHandler implements RequestHandler<AddRequest,AddResponse>
 	public static final String REAL_BUCKET = "constants";
 	public static final String TEST_BUCKET = "testconstants";
 
-	//new changes
-	// second change
 	@Override
 	public AddResponse handleRequest(AddRequest req, Context context) {
 		logger = context.getLogger();
