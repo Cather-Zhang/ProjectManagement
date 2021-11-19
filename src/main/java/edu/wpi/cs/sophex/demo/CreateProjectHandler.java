@@ -3,10 +3,9 @@ package edu.wpi.cs.sophex.demo;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import com.amazonaws.services.s3.AmazonS3;
-
 import edu.wpi.cs.sophex.demo.http.CreateProjectRequest;
 import edu.wpi.cs.sophex.demo.http.CreateProjectResponse;
+import edu.wpi.cs.sophex.demo.model.Project;
 
 
 
@@ -21,16 +20,12 @@ import edu.wpi.cs.sophex.demo.http.CreateProjectResponse;
  * Note: I have stopped using com.fasterxml.jackson.databind.JsonNode and instead use two different
  * JSon packages. SimpleJson is just that -- Simple!. GSon is a google package that is quite useful
  * 
- * @author sophex
+ * @author Cather
  */
 public class CreateProjectHandler implements RequestHandler<CreateProjectRequest,CreateProjectResponse> {
 
 	LambdaLogger logger;
 	
-	// Note: this works, but it would be better to move this to environment/configuration mechanisms
-	// which you don't have to do for this project.
-	public static final String REAL_BUCKET = "constants";
-	public static final String TEST_BUCKET = "testconstants";
 
 	@Override
 	public CreateProjectResponse handleRequest(CreateProjectRequest req, Context context) {
@@ -40,21 +35,14 @@ public class CreateProjectHandler implements RequestHandler<CreateProjectRequest
 
 		boolean fail = false;
 		String failMessage = "";
-		double val1 = 0.0;
+		Project p = null;
 		try {
-			val1 = Double.parseDouble(req.getArg1());
+			 p = new Project(req.getArg1());
 		} catch (NumberFormatException e) {
 				failMessage = req.getArg1() + " is an invalid constant.";
 				fail = true;
 		}
 
-		double val2 = 0.0;
-		try {
-			val2 = Double.parseDouble(req.getArg2());
-		} catch (NumberFormatException e) {		
-				failMessage = req.getArg2() + " is an invalid constant.";
-				fail = true;
-		}
 
 		// compute proper response and return. Note that the status code is internal to the HTTP response
 		// and has to be processed specifically by the client code.
@@ -62,7 +50,7 @@ public class CreateProjectHandler implements RequestHandler<CreateProjectRequest
 		if (fail) {
 			response = new CreateProjectResponse(400, failMessage);
 		} else {
-			response = new CreateProjectResponse(val1 + val2, 200);  // success
+			response = new CreateProjectResponse(p.getname(), 200);  // success
 		}
 
 		return response; 
