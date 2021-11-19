@@ -1,7 +1,7 @@
 package edu.wpi.cs.sophex.demo.http;
 
 /** To work with AWS must not have final attributes, must have no-arg constructor, and all get/set methods. */
-public class AddRequest {
+public class CreateProjectRequest {
 	String arg1;
 	String arg2;
 
@@ -15,11 +15,11 @@ public class AddRequest {
 		return "Add(" + arg1 + "," + arg2 + ")";
 	}
 	
-	public AddRequest (String arg1, String arg2) {
+	public CreateProjectRequest (String arg1, String arg2) {
 		this.arg1 = arg1;
 		this.arg2 = arg2;
 	}
 	
-	public AddRequest() {
+	public CreateProjectRequest() {
 	}
 }

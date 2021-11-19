@@ -5,8 +5,8 @@ import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.s3.AmazonS3;
 
-import edu.wpi.cs.sophex.demo.http.AddRequest;
-import edu.wpi.cs.sophex.demo.http.AddResponse;
+import edu.wpi.cs.sophex.demo.http.CreateProjectRequest;
+import edu.wpi.cs.sophex.demo.http.CreateProjectResponse;
 
 
 
@@ -23,7 +23,7 @@ import edu.wpi.cs.sophex.demo.http.AddResponse;
  * 
  * @author sophex
  */
-public class CreateProjectHandler implements RequestHandler<AddRequest,AddResponse> {
+public class CreateProjectHandler implements RequestHandler<CreateProjectRequest,CreateProjectResponse> {
 
 	LambdaLogger logger;
 	
@@ -33,7 +33,7 @@ public class CreateProjectHandler implements RequestHandler<AddRequest,AddRespon
 	public static final String TEST_BUCKET = "testconstants";
 
 	@Override
-	public AddResponse handleRequest(AddRequest req, Context context) {
+	public CreateProjectResponse handleRequest(CreateProjectRequest req, Context context) {
 		logger = context.getLogger();
 		logger.log("Loading Java Lambda handler of RequestHandler");
 		logger.log(req.toString());
@@ -58,11 +58,11 @@ public class CreateProjectHandler implements RequestHandler<AddRequest,AddRespon
 
 		// compute proper response and return. Note that the status code is internal to the HTTP response
 		// and has to be processed specifically by the client code.
-		AddResponse response;
+		CreateProjectResponse response;
 		if (fail) {
-			response = new AddResponse(400, failMessage);
+			response = new CreateProjectResponse(400, failMessage);
 		} else {
-			response = new AddResponse(val1 + val2, 200);  // success
+			response = new CreateProjectResponse(val1 + val2, 200);  // success
 		}
 
 		return response; 

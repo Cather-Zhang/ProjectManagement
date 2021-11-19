@@ -3,18 +3,18 @@ package edu.wpi.cs.sophex.demo.http;
 /**
  * Arbitrary decision to make this a String and not a native double.
  */
-public class AddResponse {
+public class CreateProjectResponse {
 	public String result;
 	public int statusCode;
 	public String error;
 	
-	public AddResponse (double value, int statusCode) {
+	public CreateProjectResponse (double value, int statusCode) {
 		this.result = "" + value; // doesn't matter since error
 		this.statusCode = statusCode;
 		this.error = "";
 	}
 	
-	public AddResponse (int statusCode, String errorMessage) {
+	public CreateProjectResponse (int statusCode, String errorMessage) {
 		this.result = ""; // doesn't matter since error
 		this.statusCode = statusCode;
 		this.error = errorMessage;
