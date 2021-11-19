@@ -23,7 +23,7 @@ import edu.wpi.cs.sophex.demo.http.AddResponse;
  * 
  * @author sophex
  */
-public class CalculatorHandler implements RequestHandler<AddRequest,AddResponse> {
+public class CreateProjectHandler implements RequestHandler<AddRequest,AddResponse> {
 
 	LambdaLogger logger;
 	
