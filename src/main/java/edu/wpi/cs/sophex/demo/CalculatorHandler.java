@@ -9,7 +9,7 @@ import edu.wpi.cs.sophex.demo.http.AddRequest;
 import edu.wpi.cs.sophex.demo.http.AddResponse;
 
 
-//brianna is on the project now
+
 /**
  * Final version of calculator.
  * 
