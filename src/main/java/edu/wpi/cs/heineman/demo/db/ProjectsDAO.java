@@ -20,27 +20,30 @@ public class ProjectsDAO {
     }
     
     
-    public Project getProjectAdmin(String name) throws Exception {
+	public List<Project> getProjectsAdmin(String name) throws Exception {
         
         try {
             Project project = null;
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName + " WHERE name=?;");
+            List<Project> projects = null;
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName+";");
             ps.setString(1,  name);
             ResultSet resultSet = ps.executeQuery();
             
             while (resultSet.next()) {
                 project = generateProject(resultSet);
+                projects.add(project);
             }
             resultSet.close();
             ps.close();
             
-            return project;
+            return projects;
 
         } catch (Exception e) {
         	e.printStackTrace();
             throw new Exception("Failed in getting project: " + e.getMessage());
         }
     }
+	
     public Project getProjectUser(String name) throws Exception {
         
         try {
