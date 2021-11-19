@@ -21,7 +21,7 @@ import edu.wpi.cs.sophex.demo.http.AddResponse;
  * Note: I have stopped using com.fasterxml.jackson.databind.JsonNode and instead use two different
  * JSon packages. SimpleJson is just that -- Simple!. GSon is a google package that is quite useful
  * 
- * @author heineman
+ * @author sophex
  */
 public class CalculatorHandler implements RequestHandler<AddRequest,AddResponse> {
 
