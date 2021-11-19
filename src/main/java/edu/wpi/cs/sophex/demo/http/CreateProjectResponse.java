@@ -10,13 +10,22 @@ public class CreateProjectResponse {
 	public int statusCode;
 	public String error;
 	
-	public CreateProjectResponse (String newProjectName, int statusCode) {
-		this.projectName = newProjectName; // doesn't matter since error
-		this.statusCode = statusCode;
+	/**
+	 * success, status = 200
+	 * @param newProjectName
+	 */
+	public CreateProjectResponse (String newProjectName) {
+		this.projectName = newProjectName; 
+		this.statusCode = 200;
 		this.error = "";
 	}
 	
-	public CreateProjectResponse (int statusCode, String errorMessage) {
+	/**
+	 * fail
+	 * @param statusCode
+	 * @param errorMessage
+	 */
+	public CreateProjectResponse (String errorMessage, int statusCode) {
 		this.projectName = null; // doesn't matter since error
 		this.statusCode = statusCode;
 		this.error = errorMessage;

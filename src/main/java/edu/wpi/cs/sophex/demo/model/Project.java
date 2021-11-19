@@ -8,26 +8,19 @@ public class Project {
 	List<Task> tasks;
 	boolean isArchived = false;
 	double progress = 0;
-	final boolean system;      // when TRUE this is actually stored in S3 bucket
+	
 	
 	public Project (String name) {
 		this.name = name;
-		this.system = false;
-	}
-	
-	public Project (String name, boolean system) {
-		this.name = name;
-		this.system = system;
-	}
+
+	}	
 	
 	public Project (String name, boolean isArchived, double progress) {
 		this.name = name;
 		this.isArchived = isArchived;
 		this.progress = progress;
-		this.system = false;
 	}
 	
-	public boolean getSystem() { return system; }
 	public String getname() {return name;}
 	public List<Teammate> getTeammates() {return teammates;}
 	public List<Task> getTasks() {return tasks;}
@@ -63,8 +56,6 @@ public class Project {
 
 	//TODO 
 	public String toString() {
-		String sysString = "";
-		if (system) { sysString = " (system)"; }
-		return "[" + name+ " = " + sysString + "]";
+		return "";
 	}
 }

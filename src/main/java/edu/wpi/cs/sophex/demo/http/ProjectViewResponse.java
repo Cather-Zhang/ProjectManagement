@@ -2,7 +2,7 @@ package edu.wpi.cs.sophex.demo.http;
 
 import java.util.List;
 
-import edu.wpi.cs.heineman.demo.db.ProjectsDAO;
+import edu.wpi.cs.sophex.demo.db.ProjectsDAO;
 import edu.wpi.cs.sophex.demo.model.Project;
 import edu.wpi.cs.sophex.demo.model.Task;
 import edu.wpi.cs.sophex.demo.model.Teammate;

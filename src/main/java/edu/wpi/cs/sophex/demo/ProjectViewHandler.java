@@ -3,7 +3,7 @@ package edu.wpi.cs.sophex.demo;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 
-import edu.wpi.cs.heineman.demo.db.ProjectsDAO;
+import edu.wpi.cs.sophex.demo.db.ProjectsDAO;
 import edu.wpi.cs.sophex.demo.http.CreateProjectRequest;
 import edu.wpi.cs.sophex.demo.http.CreateProjectResponse;
 import edu.wpi.cs.sophex.demo.model.Project;
@@ -22,9 +22,9 @@ LambdaLogger logger;
 
 		CreateProjectResponse response;
 		if (fail) {
-			response = new CreateProjectResponse(400, failMessage);
+			response = new CreateProjectResponse(failMessage, 400); //fail
 		} else {
-			response = new CreateProjectResponse(projectName, 200);  // success
+			response = new CreateProjectResponse(projectName);  // success
 		}
 
 		return response; 

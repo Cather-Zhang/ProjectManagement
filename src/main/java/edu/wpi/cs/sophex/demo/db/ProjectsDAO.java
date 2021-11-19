@@ -1,4 +1,4 @@
-package edu.wpi.cs.heineman.demo.db;
+package edu.wpi.cs.sophex.demo.db;
 
 import java.sql.*;
 import java.util.ArrayList;
