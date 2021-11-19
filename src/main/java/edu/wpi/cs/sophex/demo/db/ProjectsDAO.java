@@ -24,7 +24,7 @@ public class ProjectsDAO {
         
         try {
             Project project = null;
-            List<Project> projects = null;
+            List<Project> projects = new ArrayList<> ();
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName+";");
             ps.setString(1,  name);
             ResultSet resultSet = ps.executeQuery();
