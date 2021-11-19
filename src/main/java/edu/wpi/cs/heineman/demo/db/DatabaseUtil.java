@@ -28,6 +28,7 @@ public class DatabaseUtil {
 	public final static String testingName = "tmp";       // used for testing (also default created)
 	
 	// pooled across all usages.
+	// A A A A A A  A A A A A 
 	static Connection conn;
  
 	/**
