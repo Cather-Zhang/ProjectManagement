@@ -20,11 +20,19 @@ public class Project {
 		this.system = system;
 	}
 	
+	public Project (String name, boolean isArchived, double progress) {
+		this.name = name;
+		this.isArchived = isArchived;
+		this.progress = progress;
+		this.system = false;
+	}
+	
 	public boolean getSystem() { return system; }
 	public String getname() {return name;}
 	public List<Teammate> getTeammates() {return teammates;}
 	public List<Task> getTasks() {return tasks;}
 	public boolean getIsArchived() {return isArchived;}
+	public Double getProgress() {return progress;}
 	
 	public void addTeammate(String name) {
 		Teammate t = new Teammate(name);
