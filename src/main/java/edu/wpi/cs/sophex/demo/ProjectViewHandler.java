@@ -12,7 +12,7 @@ public class ProjectViewHandler {
 LambdaLogger logger;
 	
 
-	public CreateProjectResponse handleResponse(String projectName) throws Exception {
+	public ProjectViewResponse handleResponse(String projectName) throws Exception {
 		boolean fail = false;
 		String failMessage = "";
 		if(loadProjectUserFromRDS(projectName) == null) {
@@ -20,11 +20,11 @@ LambdaLogger logger;
 			fail = true;
 		}
 
-		CreateProjectResponse response;
+		ProjectViewResponse response;
 		if (fail) {
-			response = new CreateProjectResponse(failMessage, 400); //fail
+			response = new ProjectViewResponse(failMessage, 400); //fail
 		} else {
-			response = new CreateProjectResponse(projectName);  // success
+			response = new ProjectViewResponse(projectName);  // success
 		}
 
 		return response; 

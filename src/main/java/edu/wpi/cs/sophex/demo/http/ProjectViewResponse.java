@@ -8,39 +8,30 @@ import edu.wpi.cs.sophex.demo.model.Task;
 import edu.wpi.cs.sophex.demo.model.Teammate;
 
 public class ProjectViewResponse {
-		public List<Task> tasks;
-		public List<Teammate> teammates;
 		public int statusCode;
 		public String error;
+		public String projectName;
 		
-		public ProjectViewResponse (String projectName, int statusCode) throws Exception {
-			Project p = loadProjectUserFromRDS(projectName); //need to find project with this name
-			teammates = p.getTeammates();
-			tasks = p.getTasks();
-			this.statusCode = statusCode;
+		public ProjectViewResponse (String projectName) {
+			this.statusCode = 200;
 			this.error = "";
+			this.projectName = projectName;
 		}
 		
 		public ProjectViewResponse (int statusCode, String errorMessage) {
-			this.teammates = null;
-			this.tasks = null;
 			this.statusCode = statusCode;
 			this.error = errorMessage;
 		}
 		
+		//todo
 		public String toString() {
 			if (statusCode / 100 == 2) {  // too cute?
-				return "";
+				return projectName + " view success!";
 			} else {
 				return "ErrorResult(" + statusCode + ", err=" + error + ")";
 			}
 		}
 		
-		public Project loadProjectUserFromRDS(String projectName) throws Exception {
-			ProjectsDAO dao = new ProjectsDAO();
-			Project p = dao.getProjectUser(projectName);
-			return p;
-		}
 	
 
 }
