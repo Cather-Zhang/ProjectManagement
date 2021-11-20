@@ -70,15 +70,4 @@ public class CreateProjectHandlerTest extends LambdaTest {
         	Assert.fail("Invalid:" + ioe.getMessage());
         }
     }
-    
-    // overwrites into it
-    @Test
-    public void testCreateSystemConstant() {
-    	// create constant
-    	String name = "12344";
-        CreateProjectRequest csr = new CreateProjectRequest("to-delete-again" + name);
-        
-        CreateProjectResponse resp = new CreateProjectHandler().handleRequest(csr, createContext("create"));
-        Assert.assertEquals(200, resp.statusCode);
-    }
 }
