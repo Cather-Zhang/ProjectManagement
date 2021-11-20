@@ -1,4 +1,4 @@
-package edu.wpi.cs.cather.demo;
+package edu.wpi.cs.sophex.demo;
 
 import com.amazonaws.services.lambda.runtime.ClientContext;
 import com.amazonaws.services.lambda.runtime.CognitoIdentity;

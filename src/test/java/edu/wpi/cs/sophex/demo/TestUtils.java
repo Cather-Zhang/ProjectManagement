@@ -1,4 +1,4 @@
-package edu.wpi.cs.cather.demo;
+package edu.wpi.cs.sophex.demo;
 
 import java.io.IOException;
 import java.io.InputStream;
