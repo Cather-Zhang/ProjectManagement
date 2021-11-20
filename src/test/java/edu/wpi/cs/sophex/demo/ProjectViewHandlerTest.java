@@ -34,9 +34,12 @@ public class ProjectViewHandlerTest extends LambdaTest {
     	
     	CreateProjectRequest ccr = new CreateProjectRequest(var);
         String incoming = new Gson().toJson(ccr);  
+        CreateProjectHandler handler = new CreateProjectHandler();
+        CreateProjectRequest req = new Gson().fromJson(incoming, CreateProjectRequest.class);
+        CreateProjectResponse resp = handler.handleRequest(req, createContext("create"));
         
         try {
-        	testSuccessInput(incoming);
+        	testSuccessInput(var);
         } catch (IOException ioe) {
         	Assert.fail("Invalid:" + ioe.getMessage());
         }
