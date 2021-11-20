@@ -38,8 +38,8 @@ public class CreateProjectHandlerTest extends LambdaTest {
     	int rndNum = (int)(990*(Math.random()));
     	String var = "throwAway" + rndNum;
     	
-    	CreateProjectRequest ccr = new CreateProjectRequest(var);
-        String SAMPLE_INPUT_STRING = new Gson().toJson(ccr);  
+    	CreateProjectRequest cpr = new CreateProjectRequest(var);
+        String SAMPLE_INPUT_STRING = new Gson().toJson(cpr);  
         
         try {
         	testSuccessInput(SAMPLE_INPUT_STRING);
@@ -54,8 +54,8 @@ public class CreateProjectHandlerTest extends LambdaTest {
     	int rndNum = (int)(990*(Math.random()));
     	String var = "throwAway" + rndNum;
     	
-    	CreateProjectRequest ccr = new CreateProjectRequest(var);
-        String SAMPLE_INPUT_STRING = new Gson().toJson(ccr);  
+    	CreateProjectRequest cpr = new CreateProjectRequest(var);
+        String SAMPLE_INPUT_STRING = new Gson().toJson(cpr);  
         
         try {
         	testSuccessInput(SAMPLE_INPUT_STRING);
@@ -64,8 +64,8 @@ public class CreateProjectHandlerTest extends LambdaTest {
         }
         String var2 = var;
     	
-    	CreateProjectRequest ccr2 = new CreateProjectRequest(var2);
-        String SAMPLE_INPUT_STRING2 = new Gson().toJson(ccr2);  
+    	CreateProjectRequest cpr2 = new CreateProjectRequest(var2);
+        String SAMPLE_INPUT_STRING2 = new Gson().toJson(cpr2);  
         try {
         	testFailInput(SAMPLE_INPUT_STRING2, 422);
         } catch (IOException ioe) {

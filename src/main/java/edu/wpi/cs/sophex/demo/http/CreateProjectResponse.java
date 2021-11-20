@@ -1,7 +1,5 @@
 package edu.wpi.cs.sophex.demo.http;
 
-import edu.wpi.cs.sophex.demo.model.Project;
-
 /**
  * Arbitrary decision to make this a String and not a native double.
  */

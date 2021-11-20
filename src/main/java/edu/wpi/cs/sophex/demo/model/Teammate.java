@@ -10,5 +10,12 @@ public class Teammate {
 	public Teammate(String name) {
 		this.name = name;
 	}
+	
+	public String getName() {return this.name;}
+	
+	public List<Task> getTasks() {return this.tasks;}
+	
+	public void addTask(Task t) {this.tasks.add(t);}
+	public void removeTask(Task t) {this.tasks.remove(t);}
 
 }
