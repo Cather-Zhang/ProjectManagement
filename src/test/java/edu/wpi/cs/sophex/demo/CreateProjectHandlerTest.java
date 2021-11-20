@@ -35,7 +35,8 @@ public class CreateProjectHandlerTest extends LambdaTest {
     // NOTE: this proliferates large number of constants! Be mindful
     @Test
     public void testShouldBeOk() {
-    	String var = "Calc 4";
+    	int rndNum = (int)(990*(Math.random()));
+    	String var = "throwAway" + rndNum;
     	
     	CreateProjectRequest ccr = new CreateProjectRequest(var);
         String SAMPLE_INPUT_STRING = new Gson().toJson(ccr);  
@@ -50,7 +51,8 @@ public class CreateProjectHandlerTest extends LambdaTest {
     
     @Test
     public void testDuplicateInput() {
-    	String var = "Calc 4";
+    	int rndNum = (int)(990*(Math.random()));
+    	String var = "throwAway" + rndNum;
     	
     	CreateProjectRequest ccr = new CreateProjectRequest(var);
         String SAMPLE_INPUT_STRING = new Gson().toJson(ccr);  
@@ -60,12 +62,12 @@ public class CreateProjectHandlerTest extends LambdaTest {
         } catch (IOException ioe) {
         	Assert.fail("Invalid:" + ioe.getMessage());
         }
-        String var2 = "Calc 4";
+        String var2 = var;
     	
     	CreateProjectRequest ccr2 = new CreateProjectRequest(var2);
         String SAMPLE_INPUT_STRING2 = new Gson().toJson(ccr2);  
         try {
-        	testFailInput(SAMPLE_INPUT_STRING2, 400);
+        	testFailInput(SAMPLE_INPUT_STRING2, 422);
         } catch (IOException ioe) {
         	Assert.fail("Invalid:" + ioe.getMessage());
         }

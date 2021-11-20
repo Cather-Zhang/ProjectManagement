@@ -109,7 +109,7 @@ public class ProjectsDAO {
             	return false;
         	}
 
-        	ps = conn.prepareStatement("INSERT INTO " + tblName + " (name,isArchived,progress) values(?,?,?);");
+        	ps = conn.prepareStatement("INSERT INTO " + tblName + " (name,is_archived,progress) values(?,?,?);");
         	ps.setString(1,  project.getname());
         	ps.setBoolean(2,  project.getIsArchived());
         	ps.setDouble(3, project.getProgress());
