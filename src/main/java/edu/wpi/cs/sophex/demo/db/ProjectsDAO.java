@@ -20,15 +20,14 @@ public class ProjectsDAO {
     }
     
     
-	public List<Project> getProjectsAdmin(String name) throws Exception {
+	public List<Project> getProjectsAdmin() throws Exception {
         
         try {
             Project project = null;
             List<Project> projects = new ArrayList<> ();
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName+";");
-            ps.setString(1,  name);
             ResultSet resultSet = ps.executeQuery();
-            
+
             while (resultSet.next()) {
                 project = generateProject(resultSet);
                 projects.add(project);
