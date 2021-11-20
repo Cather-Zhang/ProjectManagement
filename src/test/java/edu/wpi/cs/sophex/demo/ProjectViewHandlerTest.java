@@ -20,12 +20,12 @@ public class ProjectViewHandlerTest extends LambdaTest {
         Assert.assertEquals(200, resp.statusCode);
     }
 	
-    /*void testFailInput(String incoming, int failureCode) throws Exception {
+    void testFailInput(String incoming, int failureCode) throws Exception {
     	ProjectViewHandler handler = new ProjectViewHandler();
         ProjectViewResponse resp = handler.handleResponse(incoming);
         
         Assert.assertEquals(failureCode, resp.statusCode);
-    }*/
+    }
     
     @Test
     public void testShouldBeOk() throws Exception {
@@ -44,4 +44,25 @@ public class ProjectViewHandlerTest extends LambdaTest {
         	Assert.fail("Invalid:" + ioe.getMessage());
         }
     }
+    
+    @Test
+    public void testCalc4InList() throws Exception {
+    	String var = "Calc 4";
+        try {
+        	testSuccessInput(var);
+        } catch (IOException ioe) {
+        	Assert.fail("Invalid:" + ioe.getMessage());
+        }
+    }
+    
+    @Test
+    public void testNotInList() throws Exception{
+    	String var = "salkj;oeihtpwaoie";
+    	try {
+    		testFailInput(var, 400);
+    	} catch (IOException ioe) {
+    		Assert.fail("Invalid:" + ioe.getMessage());
+    	}
+    }
+    
 }
