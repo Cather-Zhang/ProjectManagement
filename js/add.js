@@ -18,7 +18,7 @@ function processAddResponse(result) {
     }
 }
 
-function handleClick() {
+function addClick() {
     var form = document.addForm;
     var arg1 = form.arg1.value;
     var arg2 = form.arg2.value;
