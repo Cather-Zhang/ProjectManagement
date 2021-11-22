@@ -1,4 +1,4 @@
-package edu.wpi.cs.sophex.demo;
+package sophex;
 
 public class RemoveTeammateHandler {
 
