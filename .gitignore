@@ -1,6 +1,7 @@
 target/
 .settings/*
 # Compiled class file
+*.classpath
 *.class
 
 # Log file
