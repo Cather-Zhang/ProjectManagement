@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.junit.Assert;
 import org.junit.Test;
 
+import sophex.handler.admin.ListAllProjectsHandler;
 import sophex.http.admin.ListAllProjectsResponse;
 import sophex.model.Project;
 

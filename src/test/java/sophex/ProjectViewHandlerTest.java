@@ -7,6 +7,8 @@ import org.junit.Test;
 
 import com.google.gson.Gson;
 
+import sophex.handler.project.CreateProjectHandler;
+import sophex.handler.project.ProjectViewHandler;
 import sophex.http.project.CreateProjectRequest;
 import sophex.http.project.CreateProjectResponse;
 import sophex.http.project.ProjectViewResponse;
