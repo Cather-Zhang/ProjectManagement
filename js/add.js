@@ -1,4 +1,44 @@
-var add_url = "https://szqq4z8t5b.execute-api.us-east-1.amazonaws.com/beta/calculator";
+var api_url = "https://szqq4z8t5b.execute-api.us-east-1.amazonaws.com/beta";
+
+function createProject() {
+    var projectName = document.getElementById("createProjectField").value;
+    var js = 
+    "{" + JSON.stringify(projectName) + "}";
+    console.log("JS:" + js);
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", api_url + "/project", true);
+    xhr.send(js);
+
+    xhr.onloadend = function () {
+        console.log(xhr);
+        console.log(xhr.request);
+        
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            console.log ("XHR:" + xhr.responseText);
+            processCreateProjectResponse(xhr.responseText);
+        } else {
+            processCreateProjectResponse("N/A");
+        }
+    };
+}
+
+function processCreateProjectResponse(result) {
+    // Can grab any DIV or SPAN HTML element and can then manipulate its
+    // contents dynamically via javascript
+    console.log("result:" + result);
+    var js = JSON.parse(result);
+
+    var computation = js["result"];
+    var status      = js["statusCode"];
+    
+    if (status == 200) {
+        // Update computation result
+        document.testP.value = computation
+    } else {
+        var msg = js["error"];
+        document.testP.value = "error:" + msg
+    }
+}
 
 function processAddResponse(result) {
     // Can grab any DIV or SPAN HTML element and can then manipulate its
