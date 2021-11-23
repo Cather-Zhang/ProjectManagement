@@ -1,11 +1,7 @@
 package sophex.http.project;
 
-import java.util.List;
-
-import sophex.db.ProjectsDAO;
 import sophex.model.Project;
-import sophex.model.Task;
-import sophex.model.Teammate;
+;
 
 public class ProjectViewResponse {
 		public int statusCode;
@@ -25,7 +21,7 @@ public class ProjectViewResponse {
 		
 		public String toString() {
 			if (statusCode / 100 == 2) {  // too cute?
-				return projectName + " view success!";
+				return p.getname() + " view success!";
 			} else {
 				return "ErrorResult(" + statusCode + ", err=" + error + ")";
 			}
