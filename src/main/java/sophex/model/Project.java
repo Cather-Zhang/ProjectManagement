@@ -41,8 +41,12 @@ public class Project {
 		//TODO
 	}
 	
+	public void addTask(Task t) {
+		tasks.add(t);
+	}
+	
 	/**
-	 * Equality of Constants determined by name alone.
+	 * Equality of Projects determined by name alone.
 	 */
 	public boolean equals (Object o) {
 		if (o == null) { return false; }
