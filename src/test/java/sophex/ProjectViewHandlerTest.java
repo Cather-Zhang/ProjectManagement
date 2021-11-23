@@ -11,21 +11,24 @@ import sophex.handler.project.CreateProjectHandler;
 import sophex.handler.project.ProjectViewHandler;
 import sophex.http.project.CreateProjectRequest;
 import sophex.http.project.CreateProjectResponse;
+import sophex.http.project.ProjectViewRequest;
 import sophex.http.project.ProjectViewResponse;
 
 public class ProjectViewHandlerTest extends LambdaTest {
 
-    void testSuccessInput(String incoming) throws Exception {
+    void testSuccessInput(String incoming) throws IOException {
     	ProjectViewHandler handler = new ProjectViewHandler();  
-        ProjectViewResponse resp = handler.handleResponse(incoming);
-        
+    	ProjectViewRequest req = new Gson().fromJson(incoming, ProjectViewRequest.class);
+    	ProjectViewResponse resp = handler.handleRequest(req, createContext("list"));
+
         Assert.assertEquals(200, resp.statusCode);
     }
 	
-    void testFailInput(String incoming, int failureCode) throws Exception {
+    void testFailInput(String incoming, int failureCode) throws IOException {
     	ProjectViewHandler handler = new ProjectViewHandler();
-        ProjectViewResponse resp = handler.handleResponse(incoming);
-        
+    	ProjectViewRequest req = new Gson().fromJson(incoming, ProjectViewRequest.class);
+    	ProjectViewResponse resp = handler.handleRequest(req, createContext("list"));
+    
         Assert.assertEquals(failureCode, resp.statusCode);
     }
     
@@ -40,8 +43,11 @@ public class ProjectViewHandlerTest extends LambdaTest {
         CreateProjectRequest req = new Gson().fromJson(incoming, CreateProjectRequest.class);
         CreateProjectResponse resp = handler.handleRequest(req, createContext("create"));
         
+        ProjectViewRequest pvr = new ProjectViewRequest(var);
+        String incomingView = new Gson().toJson(pvr);  
+      
         try {
-        	testSuccessInput(var);
+        	testSuccessInput(incomingView);
         } catch (IOException ioe) {
         	Assert.fail("Invalid:" + ioe.getMessage());
         }
@@ -50,8 +56,10 @@ public class ProjectViewHandlerTest extends LambdaTest {
     @Test
     public void testCalc4InList() throws Exception {
     	String var = "Calc 4";
+    	ProjectViewRequest pvr = new ProjectViewRequest(var);
+        String incomingView = new Gson().toJson(pvr);  
         try {
-        	testSuccessInput(var);
+        	testSuccessInput(incomingView);
         } catch (IOException ioe) {
         	Assert.fail("Invalid:" + ioe.getMessage());
         }
@@ -60,8 +68,10 @@ public class ProjectViewHandlerTest extends LambdaTest {
     @Test
     public void testNotInList() throws Exception{
     	String var = "salkj;oeihtpwaoie";
+    	ProjectViewRequest pvr = new ProjectViewRequest(var);
+        String incomingView = new Gson().toJson(pvr); 
     	try {
-    		testFailInput(var, 400);
+    		testFailInput(incomingView, 400);
     	} catch (IOException ioe) {
     		Assert.fail("Invalid:" + ioe.getMessage());
     	}

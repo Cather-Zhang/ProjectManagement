@@ -25,8 +25,8 @@ public class ListAllProjectsHandler implements RequestHandler<Object, ListAllPro
 	 * 
 	 * @throws Exception 
 	 */
-	List<Project> getConstants() throws Exception {
-		logger.log("in getConstants");
+	List<Project> getProjects() throws Exception {
+		logger.log("in getProjects");
 		ProjectsDAO dao = new ProjectsDAO();
 		
 		return dao.getProjectsAdmin();
@@ -35,13 +35,13 @@ public class ListAllProjectsHandler implements RequestHandler<Object, ListAllPro
 	@Override
 	public ListAllProjectsResponse handleRequest(Object input, Context context)  {
 		logger = context.getLogger();
-		logger.log("Loading Java Lambda handler to list all constants");
+		logger.log("Loading Java Lambda handler to list all projects");
 
 		ListAllProjectsResponse response;
 		try {
 			// get all user defined constants AND system-defined constants.
 			// Note that user defined constants override system-defined constants.
-			List<Project> list = getConstants();
+			List<Project> list = getProjects();
 
 			response = new ListAllProjectsResponse(list, 200);
 		} catch (Exception e) {

@@ -23,7 +23,6 @@ public class ProjectViewResponse {
 			this.error = errorMessage;
 		}
 		
-		//todo
 		public String toString() {
 			if (statusCode / 100 == 2) {  // too cute?
 				return projectName + " view success!";

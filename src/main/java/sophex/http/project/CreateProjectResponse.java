@@ -32,7 +32,10 @@ public class CreateProjectResponse {
 	public String toString() {
 		if (statusCode / 100 == 2) {  // too cute?
 			return "Project(" + projectName + ")";
-		} else {
+		} else if (statusCode == 422) {
+			return ("Project " + projectName + " already exists");
+		}
+		{
 			return "ErrorResult(" + statusCode + ", err=" + error + ")";
 		}
 	}

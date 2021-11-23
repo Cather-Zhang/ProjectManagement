@@ -57,7 +57,7 @@ public class CreateProjectHandler implements RequestHandler<CreateProjectRequest
 			if (createProject(req.getArg1())) {
 				response = new CreateProjectResponse(req.getArg1());
 			} else {
-				response = new CreateProjectResponse(req.getArg1(), 422);
+				response = new CreateProjectResponse(("Project " + req.getArg1() + " already exists"), 422);
 			}
 		} catch (Exception e) {
 			response = new CreateProjectResponse("Unable to create project: " + req.getArg1() + "(" + e.getMessage() + ")", 400);
