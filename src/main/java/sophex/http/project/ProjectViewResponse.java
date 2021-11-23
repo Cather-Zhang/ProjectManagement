@@ -10,12 +10,12 @@ import sophex.model.Teammate;
 public class ProjectViewResponse {
 		public int statusCode;
 		public String error;
-		public String projectName;
+		public Project p;
 		
-		public ProjectViewResponse (String projectName) {
+		public ProjectViewResponse (Project p) {
 			this.statusCode = 200;
 			this.error = "";
-			this.projectName = projectName;
+			this.p = p;
 		}
 		
 		public ProjectViewResponse (int statusCode, String errorMessage) {
