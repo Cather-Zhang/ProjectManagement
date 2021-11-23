@@ -25,7 +25,7 @@ LambdaLogger logger;
 			if (fail) {
 				response = new ProjectViewResponse(400, failMessage); //fail
 			} else {
-				response = new ProjectViewResponse(req.getArg1());  // success
+				response = new ProjectViewResponse(loadProjectUserFromRDS(req.getArg1()));  // success
 			}
 		} catch (Exception e) {
 			response = new ProjectViewResponse(400, "Unable to view project: " + req.getArg1() + "(" + e.getMessage() + ")");
