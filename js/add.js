@@ -3,7 +3,9 @@ var api_url = "https://szqq4z8t5b.execute-api.us-east-1.amazonaws.com/beta";
 function createProject() {
     var projectName = document.getElementById("createProjectField").value;
     var js = 
-    "{" + JSON.stringify(projectName) + "}";
+    {
+        name:JSON.stringify(projectName)
+    };
     console.log("JS:" + js);
     var xhr = new XMLHttpRequest();
     xhr.open("POST", api_url + "/project", true);
