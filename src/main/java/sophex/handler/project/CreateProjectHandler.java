@@ -54,15 +54,15 @@ public class CreateProjectHandler implements RequestHandler<CreateProjectRequest
 		CreateProjectResponse response;
 		
 		try {
-			if (createProject(req.getArg1())) {
+			if (createProject(req.getName())) {
 				ProjectsDAO dao = new ProjectsDAO();
-				Project p = dao.getProjectUser(req.getArg1());
+				Project p = dao.getProjectUser(req.getName());
 				response = new CreateProjectResponse(p);
 			} else {
-				response = new CreateProjectResponse(("Project " + req.getArg1() + " already exists"), 422);
+				response = new CreateProjectResponse(("Project " + req.getName() + " already exists"), 422);
 			}
 		} catch (Exception e) {
-			response = new CreateProjectResponse("Unable to create project: " + req.getArg1() + "(" + e.getMessage() + ")", 400);
+			response = new CreateProjectResponse("Unable to create project: " + req.getName() + "(" + e.getMessage() + ")", 400);
 		}
 
 		return response; 

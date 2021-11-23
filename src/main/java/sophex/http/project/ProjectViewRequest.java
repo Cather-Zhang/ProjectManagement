@@ -3,8 +3,8 @@ package sophex.http.project;
 public class ProjectViewRequest {
 	String name;
 
-	public String getArg1() { return name; }
-	public void setArg1(String name) { this.name = name; }
+	public String getName() { return name; }
+	public void setName(String name) { this.name = name; }
 	
 
 	public String toString() {

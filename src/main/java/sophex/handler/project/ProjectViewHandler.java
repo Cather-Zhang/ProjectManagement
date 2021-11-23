@@ -18,17 +18,17 @@ LambdaLogger logger;
 		String failMessage = "";
 		ProjectViewResponse response;
 		try {
-			if(loadProjectUserFromRDS(req.getArg1()) == null) {
-				failMessage = req.getArg1() + " does not exist.";
+			if(loadProjectUserFromRDS(req.getName()) == null) {
+				failMessage = req.getName() + " does not exist.";
 				fail = true;
 			}		
 			if (fail) {
 				response = new ProjectViewResponse(400, failMessage); //fail
 			} else {
-				response = new ProjectViewResponse(loadProjectUserFromRDS(req.getArg1()));  // success
+				response = new ProjectViewResponse(loadProjectUserFromRDS(req.getName()));  // success
 			}
 		} catch (Exception e) {
-			response = new ProjectViewResponse(400, "Unable to view project: " + req.getArg1() + "(" + e.getMessage() + ")");
+			response = new ProjectViewResponse(400, "Unable to view project: " + req.getName() + "(" + e.getMessage() + ")");
 		}
 		return response; 
 	}
