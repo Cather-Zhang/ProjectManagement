@@ -31,6 +31,18 @@ function loadName(name) {
     }
     document.getElementById("nameHeader").innerHTML = project.name;
 }
+
+function createParent(){
+
+}
+
+/**
+ * creates a child task, meaning has decomp button and
+ */
+function createChild(){
+
+}
+
 /*
 function loadTasks(){
     var section = <section class="container" style="padding: 0;padding-left: 0rem;">
