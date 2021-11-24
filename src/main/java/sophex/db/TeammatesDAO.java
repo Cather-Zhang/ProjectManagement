@@ -49,16 +49,24 @@ public class TeammatesDAO {
         }
     }
 	
-    public Project getProjectUser(String name) throws Exception {
+	/**
+	 * 
+	 * @param projectName 
+	 * @param teammateName
+	 * @return the teammate looking for of a project
+	 * @throws Exception
+	 */
+    public Teammate getTeammate(String projectName, String teammateName) throws Exception {
         
         try {
-            Project project = null;
+            Teammate t = null;
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName + " WHERE name=?;");
-            ps.setString(1,  name);
+            ps.setString(2,  teammateName);
+            ps.setString(3,  projectName);
             ResultSet resultSet = ps.executeQuery();
             
             while (resultSet.next()) {
-                project = generateProject(resultSet);
+                t = generateTeammate(resultSet);
             }
             resultSet.close();
             ps.close();
@@ -100,37 +108,37 @@ public class TeammatesDAO {
         }
     }
     
-    public boolean addProject(Project project) throws Exception {
+    public boolean addTeammate(Teammate t) throws Exception {
         
 		try {
         	PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName + " WHERE name = ?;");
-        	ps.setString(1, project.getname());
+        	ps.setString(1, t.getname());
         	ResultSet resultSet = ps.executeQuery();
         
         	// already present?
         	while (resultSet.next()) {
-            	Project p = generateProject(resultSet);
+        		Teammate teammate = generateTeammate(resultSet);
             	resultSet.close();
             	return false;
         	}
 
         	ps = conn.prepareStatement("INSERT INTO " + tblName + " (name,is_archived,progress) values(?,?,?);");
-        	ps.setString(1,  project.getname());
-        	ps.setBoolean(2,  project.getIsArchived());
-        	ps.setDouble(3, project.getProgress());
+        	ps.setString(1,  teammate.getname());
+        	ps.setBoolean(2,  teammate.getIsArchived());
+        	ps.setDouble(3, teammate.getProgress());
         	ps.execute();
         	return true;
 
     	} catch (Exception e) {
-        	throw new Exception("Failed to insert project: " + e.getMessage());
+        	throw new Exception("Failed to add teammate: " + e.getMessage());
     	}
     }
 	
-	private Project generateTeammate(ResultSet resultSet) throws Exception {
+	private Teammate generateTeammate(ResultSet resultSet) throws Exception {
 		String name  = resultSet.getString("name");
 		//TODO GRAB TASK IDS FROM TABLE AND ADD TO LIST
 		
-		return new Teammate (name,);
+		return new Teammate (name);
 	}
 
 	
