@@ -1,9 +1,9 @@
 package sophex.http.task;
 
 public class MarkTaskRequest {
-	String projectName;
-	String taskID;
-	boolean flag;
+	public String projectName;
+	public String taskID;
+	public boolean flag;
 	
 	public String getProjectName() {return this.projectName;}
 	public void setProjectName(String name) {this.projectName = name;}

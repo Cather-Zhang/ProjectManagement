@@ -1,9 +1,9 @@
 package sophex.http.task;
 
 public class DecomposeTaskRequest {
-	String projectName;
-	String taskID;
-	String[] taskNames;
+	public String projectName;
+	public String taskID;
+	public String[] taskNames;
 	
 	public String getProjectName() {return this.projectName;}
 	public void setProjectName(String name) {this.projectName = name;}
