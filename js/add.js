@@ -2,14 +2,12 @@ var api_url = "https://28q0071kya.execute-api.us-east-2.amazonaws.com/beta";
 
 function createProject() {
     var projectName = document.getElementById("createProjectField").value;
-    var js = 
-    {
-        name:JSON.stringify(projectName)
-    };
+    console.log("Project Name: " + projectName)
+    var js = "{\"name\":\"" + projectName + "\"}";
     console.log("JS:" + js);
     var xhr = new XMLHttpRequest();
     xhr.open("POST", api_url + "/project", true);
-    xhr.send(js);
+    xhr.send(JSON.stringify({"name":"\""+projectName+"\""}));
 
     xhr.onloadend = function () {
         console.log(xhr);
@@ -34,10 +32,10 @@ function processCreateProjectResponse(result) {
     var status      = js["statusCode"];
     
     if (status == 200) {      
-        window.location.href = "/html/project/?name=" + computation.project.name;
+        //window.location.href = "/html/project/?name=" + computation.project.name;
     } else {
         var msg = js["error"];
-        window.location.href = "/html/404/";
+        //window.location.href = "/html/404/";
     }
 }
 
