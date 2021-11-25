@@ -39,7 +39,7 @@ function testLoad(){
  */
 function createProjectView(){
     var rowDiv = document.createElement("div");
-    rowDiv.className = "row col-md-2";
+    rowDiv.className = "row mb-3";
     var nameDiv = document.createElement('div');
     nameDiv.className = "col-md-2";
     var nameP = document.createElement('p');
