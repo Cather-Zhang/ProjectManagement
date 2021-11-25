@@ -1,9 +1,9 @@
 package sophex.http.task;
 
 public class AssignTeammateRequest {
-	String projectName;
-	String taskID;
-	String teammateName;
+	public String projectName;
+	public String taskID;
+	public String teammateName;
 	
 	public String getProjectName() {return this.projectName;}
 	public void setProjectName(String name) {this.projectName = name;}
