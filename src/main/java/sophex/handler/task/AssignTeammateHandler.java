@@ -31,25 +31,7 @@ public class AssignTeammateHandler implements RequestHandler<AssignTeammateReque
 	
 	@Override
 	public AssignTeammateResponse handleRequest(AssignTeammateRequest req, Context context) {
-		logger = context.getLogger();
-		logger.log("Loading Java Lambda handler of RequestHandler");
-		logger.log(req.toString());
-		
-		AssignTeammateResponse response;
-		
-		try {
-			if (addTeammate(req.getName())) {
-				ProjectsDAO dao = new ProjectsDAO();
-				Project p = dao.getTeammate(req.getName());
-				response = new AssignTeammateResponse(p);
-			} else {
-				response = new AssignTeammateResponse(("Project " + req.getName() + " already exists"), 422);
-			}
-		} catch (Exception e) {
-			response = new AssignTeammateResponse("Unable to create project: " + req.getName() + "(" + e.getMessage() + ")", 400);
-		}
-
-		return response; 
+		return null;
 	}
 
 }

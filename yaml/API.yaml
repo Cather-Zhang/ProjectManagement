@@ -1,0 +1,856 @@
+swagger: '2.0'
+info:
+  description: Project management system API
+  version: 1.0.0
+  title: Project Management
+  # put the contact info for your development or API team
+
+    
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+paths:
+  /project:
+    post:
+      summary: create project
+      operationId: "createProject"
+      description: 
+        create a project with a unique name
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: projectName
+        description: name of the new project 
+        required: true
+        schema:
+          $ref: '#/definitions/CreateProjectRequest'
+     
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: '#/definitions/CreateProjectResponse'
+        "400":
+          description: "400 response"
+          schema:
+            $ref: '#/definitions/GeneralErrorResponse'
+
+  /project/{projectName}:
+    get:
+      summary: view projectView
+      operationId: "viewProject"
+      description: 
+        view the project view
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: projectName
+        type: "string"
+        description: name of the new project 
+        required: true
+
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: '#/definitions/DisplayProjectViewResponse'
+        "400":
+          description: "400 response"
+          schema:
+            $ref: '#/definitions/GeneralErrorResponse'
+  
+  /project/{projectName}/teammates:
+    get:
+      summary: view teamView
+      operationId: "getTeammates"
+      description: "get teammates with their associated tasks for team view"
+      produces:
+      - "application/json"
+      parameters:
+        - in: "path"
+          name: "projectName"
+          type: "string"
+          required: true
+          description: "Project name"
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/DisplayTeamViewResponse"
+        "400":
+          description: "400 response"
+          schema:
+            $ref: '#/definitions/GeneralErrorResponse'
+  
+  /project/{projectName}/addTeammate:
+    post:
+      summary: add teammate
+      tags:
+      - default
+      operationId: "addTeammate"
+      description: "add a teammate to a project"
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+        - in: "path"
+          name: "projectName"
+          type: "string"
+          required: true
+          description: "Project ID"
+        - in: "body"
+          name: "teammate"
+          description: "Name of teammate to be added"
+          required: true
+          schema:
+            $ref: "#/definitions/AddTeammateRequest"
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/AddTeammateResponse"
+        "400":
+          description: "400 response"
+          schema:
+            $ref: '#/definitions/GeneralErrorResponse'
+  
+  /project/{projectName}/removeTeammate:
+    post:
+      summary: remove teammate
+      operationId: "removeTeammate"
+      description: "remove a teammate from a project"
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+        - in: "path"
+          name: "projectName"
+          type: "string"
+          required: true
+          description: "Project name"
+        - in: "body"
+          name: "teammate"
+          description: "Name of teammate to be deleted"
+          required: true
+          schema:
+            $ref: '#/definitions/RemoveTeammateRequest'
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/RemoveTeammateResponse"
+        "400":
+          description: "400 response"
+          schema:
+            $ref: '#/definitions/GeneralErrorResponse'
+            
+
+  #task
+  /project/{projectName}/task/add:
+    post:
+      summary: add task
+      operationId: "addTask"
+      description: "add a task to its subtasks if the list is not empty"
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+        - in: "path"
+          name: "projectName"
+          type: "string"
+          required: true
+          description: "Project project name"
+        - in: "body"
+          name: "DeleteProjectRequest"
+          required: true
+          schema:
+            $ref: '#/definitions/AddTaskRequest'
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: '#/definitions/AddTaskResponse'
+        "400":
+          description: "400 response"
+          schema:
+            $ref: '#/definitions/GeneralErrorResponse'
+  
+  /project/{projectName}/task/{taskId}/assign:
+    post:
+      summary: assignTeammateToTask
+      operationId: "assignTeammateToTask"
+      description: "add a teammate to a task"
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+        - in: "path"
+          name: "projectName"
+          type: "string"
+          required: true
+          description: "project name"
+        - in: "path"
+          name: "taskId"
+          type: "string"
+          required: true
+          description: the Task ID
+        - in: "body"
+          name: "assignTeammateToTaskRequest"
+          required: true
+          schema:
+            $ref: '#/definitions/AssignTeammateToTaskRequest'
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: '#/definitions/AssignTeammateToTaskResponse'
+        "400":
+          description: "400 response"
+          schema:
+            $ref: '#/definitions/GeneralErrorResponse'
+  
+  /project/{projectName}/task/{taskId}/unassign:
+    post:
+      summary: unassign teammate from task
+      operationId: "unassignTeammateFromTask"
+      description: "unassign a teammate from a task"
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+        - in: "path"
+          name: "projectName"
+          type: "string"
+          required: true
+          description: "Project name"
+        - in: "path"
+          name: "taskId"
+          type: "string"
+          required: true
+          description: The unique ID for the task
+        - in: "body"
+          name: "UnassignTeammateFromTaskRequest"
+          required: true
+          schema:
+            $ref: '#/definitions/UnassignTeammateFromTaskRequest'
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: '#/definitions/UnassignTeammateFromTaskResponse'
+        "400":
+          description: "400 response"
+          schema:
+            $ref: '#/definitions/GeneralErrorResponse'
+            
+  /project/{projectName}/task/{taskId}/decomposeTask:
+    post:
+      summary: decompose task
+      operationId: "decomposeTask"
+      description: "decompose a task"
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+        - in: "path"
+          name: "projectName"
+          type: "string"
+          required: true
+          description: "Project name"
+        - in: "path"
+          name: "taskId"
+          type: "string"
+          required: true
+          description: "Task ID"
+        - in: "body"
+          name: "DecomposeTaskRequest"
+          required: true
+          schema:
+            $ref: '#/definitions/DecomposeTaskRequest'
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: '#/definitions/DecomposeTaskResponse'
+        "400":
+          description: "400 response"
+          schema:
+            $ref: '#/definitions/GeneralErrorResponse'
+            
+  /project/{projectName}/task/{taskId}/markTask:
+    post:
+      summary: mark task 
+      operationId: "markTask"
+      description: "mark a task as complete or incomplete"
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+        - in: "path"
+          name: "projectName"
+          type: "string"
+          required: true
+          description: "Project name"
+        - in: "path"
+          name: "taskId"
+          type: "string"
+          required: true
+          description: "Task ID"
+        - in: "body"
+          name: "MarkTaskRequest"
+          required: true
+          schema:
+            $ref: '#/definitions/MarkTaskRequest'
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: '#/definitions/MarkTaskResponse'
+        "400":
+          description: "400 response"
+          schema:
+            $ref: '#/definitions/GeneralErrorResponse'
+            
+
+  /project/{projectName}/task/{taskId}/rename:
+    post:
+      summary: rename task
+      operationId: "renameTask"
+      description: "rename a task"
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+        - in: "path"
+          name: "projectName"
+          type: "string"
+          required: true
+          description: "Project name"
+        - in: "path"
+          name: "taskId"
+          type: "string"
+          required: true
+          description: "Task ID"
+        - in: "body"
+          name: "RenameTaskRequest"
+          required: true
+          schema:
+            $ref: '#/definitions/RenameTaskRequest'
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: '#/definitions/RenameTaskResponse'
+        "400":
+          description: "400 response"
+          schema:
+            $ref: '#/definitions/GeneralErrorResponse'
+  
+  
+  #admin level
+  /admin:
+    get:
+      summary: view all projects
+      operationId: "adminView"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ShowAllProjectsResponse"
+        "400":
+          description: "400 response"
+          schema:
+            $ref: '#/definitions/GeneralErrorResponse'
+  
+  /admin/archive:
+    post:
+      summary: archive project
+      operationId: "archiveProject"
+      description: "archive a project"
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: "body"
+        name: "ArchiveProjectRequest"
+        required: true
+        schema:
+          $ref: '#/definitions/ArchiveProjectRequest'
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: '#/definitions/ArchiveProjectResponse'
+        "400":
+          description: "400 response"
+          schema:
+            $ref: '#/definitions/GeneralErrorResponse'
+        
+  /admin/delete:
+    post:
+      summary: delete project
+      operationId: "deleteProject"
+      description: "delete a project"
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: "body"
+        name: "DeleteProjectRequest"
+        required: true
+        schema:
+          $ref: '#/definitions/DeleteProjectRequest'
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: '#/definitions/DeleteProjectResponse'
+        "400":
+          description: "400 response"
+          schema:
+            $ref: '#/definitions/GeneralErrorResponse'
+            
+            
+            
+definitions:
+
+  #Projects, requests and responses
+  Project:
+    type: "object"
+    required: 
+    - "name"
+    - "teammates"
+    - "tasks"
+    - "archived"
+    - "progress"
+    properties:
+      name:
+        type: "string"
+      teammates:
+        type: "array"
+        items: {
+          "$ref": "#/definitions/Teammate"
+        }
+      tasks:
+        type: "array"
+        items: {
+          "$ref": "#/definitions/Task"
+        }
+      archived:
+        type: "boolean"
+      progress:
+        type: "number"
+
+  ListOfProject:      
+    type: "object"
+    required:
+    - "projects"
+    properties:
+      projects:
+        type: "array"
+        items: {
+          $ref: "#/definitions/Project"
+        }
+ 
+ 
+  ShowAllProjectsResponse:
+    type: "object"
+    required:
+    - "error"
+    - "statusCode"
+    - "projects"
+    properties: 
+      error: 
+        type: "string"
+      statusCode:
+        type: "integer"
+      projects:
+        type: "object"
+        $ref: "#/definitions/ListOfProject"
+
+
+  DisplayProjectViewResponse:
+    type: "object"
+    required:
+    - "error"
+    - "statusCode"
+    - "project"
+    properties:
+      statusCode:
+        type: "integer"
+      error:
+        type: "string" 
+      project:
+        type: "object"
+        $ref: "#/definitions/Project"
+
+  DisplayTeamViewResponse:
+    type: "object"
+    required:
+    - "error"
+    - "statusCode"
+    - "teammates"
+    properties:
+      error:
+        type: "string"
+      statusCode:
+        type: "integer"
+      teammates:
+        type: "object"
+        "$ref": "#/definitions/ListOfTeammate"
+    
+  AddTeammateRequest:
+    type: "object"
+    required:
+    - "name"
+    properties:
+      name:
+        type: "string"
+
+  AddTeammateResponse:
+    type: "object"
+    required:
+    - "error"
+    - "statusCode"
+    - "project"
+    properties:
+      statusCode:
+        type: "integer"
+      error:
+        type: "string" 
+      project:
+        type: "object"
+        $ref: "#/definitions/Project"
+        
+  RemoveTeammateRequest:
+    type: "object"
+    required:
+    - "name"
+    properties:
+      name:
+        type: "string"
+  
+  
+  RemoveTeammateResponse:
+    type: "object"
+    required:
+    - "error"
+    - "statusCode"
+    - "project"
+    properties:
+      statusCode:
+        type: "integer"
+      error:
+        type: "string" 
+      project:
+        type: "object"
+        $ref: "#/definitions/Project"
+
+        
+  CreateProjectRequest:
+    type: "object"
+    required:
+    - "name"
+    properties:
+      name:
+        type: "string"
+        
+        
+  CreateProjectResponse:
+    type: "object"
+    required:
+    - "error"
+    - "statusCode"
+    - "project"
+    properties:
+      project:
+        type: "object"
+        $ref: "#/definitions/Project"
+      statusCode:
+        type: "integer"
+      error:
+        type: "string"
+
+
+  ArchiveProjectRequest:
+    type: "object"
+    required:
+    - "name"
+    properties:
+      name:
+        type: "string"
+        
+  ArchiveProjectResponse:
+    type: "object"
+    required:
+    - "error"
+    - "statusCode"
+    - "projects"
+    properties:
+      statusCode:
+        type: "integer"
+      error:
+        type: "string" 
+      projects:
+        type: "object"
+        $ref: "#/definitions/ListOfProject"
+
+
+  DeleteProjectRequest:
+    type: "object"
+    required:
+    - "name"
+    properties:
+      name:
+        type: "string"
+
+  DeleteProjectResponse:
+    type: "object"
+    required:
+    - "error"
+    - "statusCode"
+    - "projects"
+    properties:
+      statusCode:
+        type: "integer"
+      error:
+        type: "string" 
+      projects:
+        type: "object"
+        $ref: "#/definitions/ListOfProject"
+ 
+  #Task requests, responses
+  Task:
+    type: "object"
+    required: 
+    - "taskId"
+    - "name"
+    - "subtasks"
+    - "assignees"
+    - "parentTaskID"
+    - "isCompleted"
+    properties:
+      taskId:
+        type: "string"
+      name:
+        type: "string"
+      subtasks:
+        type: "array"
+        items: {
+          "$ref": "#/definitions/Task"
+        }
+      assignees:
+        type: "array"
+        items: {
+          type: "string"
+        }
+      parentTaskID:
+        type: "string"
+      isCompleted:
+        type: "boolean"
+
+
+  DecomposeTaskRequest:
+    type: "object"
+    required:
+    - "names"
+    properties:
+      names:
+        type: "array"
+        items: {
+          type: "string"
+        }
+
+  DecomposeTaskResponse:
+    type: "object"
+    required:
+    - "error"
+    - "statusCode"
+    - "project"
+    properties:
+      statusCode:
+        type: "integer"
+      error:
+        type: "string"
+      project:
+        type: "object"
+        $ref: "#/definitions/Project"
+
+  RenameTaskRequest:
+    type: "object"
+    required:
+    - "name"
+    properties:
+        name:
+          type: "string"
+
+  RenameTaskResponse:
+    type: "object"
+    required:
+    - "error"
+    - "statusCode"
+    - "project"
+    properties:
+      statusCode:
+        type: "integer"
+      error:
+        type: "string"
+      project:
+        type: "object"
+        $ref: "#/definitions/Project"
+        
+  AssignTeammateToTaskRequest:
+    type: "object"
+    required:
+    - "name"
+    properties:
+      name: 
+        type: "string"
+
+
+  AssignTeammateToTaskResponse:
+    type: "object"
+    required:
+    - "error"
+    - "statusCode"
+    - "project"
+    properties:
+      statusCode:
+        type: "integer"
+      error:
+        type: "string"
+      project:
+        type: "object"
+        $ref: "#/definitions/Project"
+
+
+  UnassignTeammateFromTaskRequest:
+    type: "object"
+    required:
+    - "name"
+    properties:
+      name:
+        type: "string"
+
+  UnassignTeammateFromTaskResponse:
+    type: "object"
+    required:
+    - "error"
+    - "statusCode"
+    - "project"
+    properties:
+      statusCode:
+        type: "integer"
+      error:
+        type: "string"
+      project:
+        type: "object"
+        $ref: "#/definitions/Project"
+        
+  MarkTaskRequest:
+    type: "object"
+    required:
+    - "isComplete"
+    properties:
+      isComplete:
+        type: "boolean"
+
+  MarkTaskResponse:
+    type: "object"
+    required:
+    - "error"
+    - "statusCode"
+    - "project"
+    properties:
+      statusCode:
+        type: "integer"
+      error:
+        type: "string"        
+      project:
+        type: "object"
+        $ref: "#/definitions/Project"
+        
+  AddTaskRequest:
+    type: "object"
+    required:
+    - "identifier"
+    - "name"
+    properties:
+      identifier:
+        type: "string"
+      name:
+        type: "string"
+    
+  AddTaskResponse:
+    type: "object"
+    required:
+    - "error"
+    - "statusCode"
+    - "project"
+    properties:
+      statusCode:
+        type: "integer"
+      error:
+        type: "string"
+      project:
+        type: "object"
+        $ref: "#/definitions/Project"
+          
+  #Teammate        
+  Teammate:
+    type: "object"
+    required:
+    - "name"
+    - "tasks"
+    properties:
+      name:
+        type: "string"
+      tasks:
+        type: "array"
+        items: {
+          type: "string"
+        }
+ 
+ 
+  ListOfTeammate:      
+    type: "object"
+    required:
+    - "teammates"
+    properties:
+      teammates:
+        type: "array"
+        items: {
+          $ref: "#/definitions/Teammate"
+        }
+ 
+  GeneralErrorResponse:
+    type: "object"
+    required:
+    - "message"
+    properties:
+      message:
+        type: "string"
+
+
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /CS3733SophEx/TestAPI/1.0.0
+schemes:
+ - https
