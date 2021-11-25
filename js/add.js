@@ -1,4 +1,4 @@
-var api_url = "https://szqq4z8t5b.execute-api.us-east-1.amazonaws.com/beta";
+var api_url = "https://28q0071kya.execute-api.us-east-2.amazonaws.com/beta";
 
 function createProject() {
     var projectName = document.getElementById("createProjectField").value;
@@ -33,12 +33,11 @@ function processCreateProjectResponse(result) {
     var computation = js["result"];
     var status      = js["statusCode"];
     
-    if (status == 200) {
-        // Update computation result
-        document.testP.value = computation
+    if (status == 200) {      
+        window.location.href = "/html/project/?name=" + computation.project.name;
     } else {
         var msg = js["error"];
-        document.testP.value = "error:" + msg
+        window.location.href = "/html/404/";
     }
 }
 

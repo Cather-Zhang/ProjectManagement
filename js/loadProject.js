@@ -15,10 +15,13 @@ function exists(proposed){
 
 function loadName(name) {
     //TODO: search DB to find associated project name
-    if(!exists(name)){
-        window.location.href = "/html/404/";
-    }
     project.name = name;
+    //testLoad();
+    document.getElementById("nameHeader").innerHTML = project.name;
+    createProjectView();
+}
+
+function testLoad(){
     project.tasks = [{name:"1"}, {name:"2"}, {name:"3"}];
     var listDiv = document.getElementById('list-puntate');
     var ul = document.createElement('ul');
@@ -29,18 +32,22 @@ function loadName(name) {
         console.log(project.tasks[i]);
         ul.appendChild(li);                                 
     }
-    document.getElementById("nameHeader").innerHTML = project.name;
-}
-
-function createParent(){
-
 }
 
 /**
  * creates a child task, meaning has decomp button and
  */
-function createChild(){
-
+function createProjectView(){
+    var rowDiv = document.createElement("div");
+    rowDiv.className = "row col-md-2";
+    var nameDiv = document.createElement('div');
+    nameDiv.className = "col-md-2";
+    var nameP = document.createElement('p');
+    nameP.innerHTML = "1. " + project.tasks[0];
+    nameDiv.appendChild(nameP); 
+    rowDiv.appendChild(nameDiv);
+    var tasksDiv = document.getElementById("tasks");
+    tasksDiv.appendChild(rowDiv);
 }
 
 /*
