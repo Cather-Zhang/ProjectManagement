@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sophex.model.Project;
+import sophex.model.Task;
+import sophex.model.Teammate;
 /**
  * 
  * @author Austin
@@ -67,7 +69,7 @@ public class ProjectsDAO {
             	ResultSet resultSetTeammate = ps2.executeQuery();
             	
             	while(resultSetTeammate.next()) {
-            		project.addTeammate(resultSet.getString(name));
+            		project.addTeammate(resultSet.getString("name"));
             	}
             	
             } catch (Exception e) {
@@ -78,11 +80,39 @@ public class ProjectsDAO {
             try {
             	PreparedStatement ps3 = conn.prepareStatement("SELECT * FROM task WHERE p_name=?;");
             	ps3.setNString(1, name);
-            	ResultSet resultSetTeammate = ps3.executeQuery();
+            	ResultSet resultSetTask = ps3.executeQuery();
             	
-            	while(resultSetTeammate.next()) {
-            		//TODO Handle grabbing the tasks
-            		//project.addTask(resultSet.getString(name));
+            	while(resultSetTask.next()) {
+            		Task task = new Task(resultSetTask.getString("prefix"), resultSetTask.getString("name"));
+            		int taskID = resultSetTask.getInt("task_id");
+            		
+            		try {
+            			PreparedStatement ps4 = conn.prepareStatement("SELECT * FROM tasks_teammates WHERE task_id=?;");
+            			ps4.setInt(1,taskID);
+            			ResultSet resultSetTaskTeammate = ps4.executeQuery();
+            		
+            			while(resultSetTaskTeammate.next()) {
+            				try { 
+            					PreparedStatement ps5 = conn.prepareStatement("SELECT * FROM teammate WHERE id=?;");
+            					ps5.setInt(1, resultSetTaskTeammate.getInt("teammate_id"));
+            					ResultSet resultSetTeammate = ps5.executeQuery();
+            					try {
+            						Teammate onTask = new Teammate(resultSetTeammate.getNString("name"));      
+            						task.assignTo(onTask);
+            					} catch (Exception e) {
+            						e.printStackTrace();
+            						throw new Exception("There are no teammates assigned to this task: " + e.getLocalizedMessage());
+            					}
+            				} catch (Exception e) {
+            	            	e.printStackTrace();
+            	            	throw new Exception("Failed in getting teammates from Tasks: " + e.getMessage());
+            	            }
+            			}
+            			project.addTask(task);
+            		} catch (Exception e) {
+                    	e.printStackTrace();
+                    	throw new Exception("Failed in getting teammate/task relationships: " + e.getMessage());
+                    }
             	}
             	
             } catch (Exception e) {
