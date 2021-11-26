@@ -1,20 +1,23 @@
 package sophex.http.project;
 
 public class AddTeammateRequest {
-	public String name;
+	public String teammateName;
+	public String projectName;
 
-	public String getName() { return name; }
-	public void setName(String name) { this.name = name; }
+	public String getTeammateName() { return teammateName; }
+	public void setTeammateName(String teammateName) { this.teammateName = teammateName; }
+	public String getProjectName() {return projectName;}
+	public void setProjectName(String projectName) {this.projectName = projectName;}
 	
 
 	public String toString() {
-		return "Add (" + name + ")";
+		return "Add (" + teammateName + ") to (" + projectName + ")";
 	}
 	
-	public AddTeammateRequest (String name) {
-		this.name = name;
+	public AddTeammateRequest (String teammateName, String projectName) {
+		this.teammateName = teammateName;
+		this.projectName = projectName;
 	}
 	
-	public AddTeammateRequest() {
-	}
+	public AddTeammateRequest() {}
 }
