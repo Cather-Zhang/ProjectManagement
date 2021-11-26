@@ -8,10 +8,10 @@ public class ProjectViewResponse {
 		public String error;
 		public Project project;
 		
-		public ProjectViewResponse (Project p) {
+		public ProjectViewResponse (Project project) {
 			this.statusCode = 200;
 			this.error = "";
-			this.project = p;
+			this.project = project;
 		}
 		
 		public ProjectViewResponse (int statusCode, String errorMessage) {
