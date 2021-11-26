@@ -7,6 +7,8 @@ import sophex.db.ProjectsDAO;
 import sophex.http.admin.DeleteProjectRequest;
 import sophex.http.admin.DeleteProjectResponse;
 import sophex.model.Project;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DeleteProjectHandler implements RequestHandler<DeleteProjectRequest, DeleteProjectResponse>{
 
@@ -23,7 +25,7 @@ public class DeleteProjectHandler implements RequestHandler<DeleteProjectRequest
 			if (fail) {
 				response = new DeleteProjectResponse(failMessage,400); //fail
 			} else {
-					response = new DeleteProjectResponse(loadProjectUserFromRDS(req.getProjectName()));  // success
+					response = new DeleteProjectResponse(loadProjectUserFromRDS(req.getProjectName()), loadAllProjectsFromRDS());  // success
 				}
 			} catch (Exception e) {
 				response = new DeleteProjectResponse("Unable to delete project: " + req.getProjectName() + "(" + e.getMessage() + ")",400);
@@ -35,5 +37,10 @@ public class DeleteProjectHandler implements RequestHandler<DeleteProjectRequest
 			ProjectsDAO dao = new ProjectsDAO();
 			Project p = dao.getProjectUser(projectName);
 			return p;
+		}
+		public List<Project> loadAllProjectsFromRDS() throws Exception{
+			ProjectsDAO dao = new ProjectsDAO();
+			List<Project> list = dao.getProjectsAdmin();
+			return list;
 		}
 	}

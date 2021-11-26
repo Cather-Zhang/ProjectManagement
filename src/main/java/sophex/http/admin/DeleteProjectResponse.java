@@ -1,20 +1,27 @@
 package sophex.http.admin;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import sophex.model.Project;
 
 public class DeleteProjectResponse {
 	public Project project;
 	public int statusCode;
 	public String error;
+	public List<Project> list;
 		
 	/**
 	 * success, status = 200
 	 * @param project
 	 */
-	public DeleteProjectResponse (Project project) {
+	//Need some way for this to be removed from the database; returning name for now
+	public DeleteProjectResponse (Project project, List<Project> list) {
 		this.project = project; 
+		this.list = list;
 		this.statusCode = 200;
 		this.error = "";
+		list.remove(project);
 	}
 	
 	/**
