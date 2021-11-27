@@ -17,14 +17,15 @@ public class AddTeammateHandler implements RequestHandler<AddTeammateRequest, Ad
 		String failMessage = "";
 		AddTeammateResponse response;
 		try {
-			if(loadProjectUserFromRDS(req.getProjectName()) == null) {
+			Project project = loadProjectUserFromRDS(req.getProjectName());
+			if(project == null) {
 				failMessage = req.getProjectName() + " does not exist.";
 				fail = true;
 			}		
 			if (fail) {
 				response = new AddTeammateResponse(failMessage,400); //fail
 			} else {
-					response = new AddTeammateResponse(loadProjectUserFromRDS(req.getProjectName()), req.getTeammateName());  // success
+					response = new AddTeammateResponse(project, req.getTeammateName());  // success
 				}
 			} catch (Exception e) {
 				response = new AddTeammateResponse("Unable to add teammate: " + req.getProjectName() + "(" + e.getMessage() + ")",400);

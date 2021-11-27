@@ -18,14 +18,15 @@ public class DeleteProjectHandler implements RequestHandler<DeleteProjectRequest
 		String failMessage = "";
 		DeleteProjectResponse response;
 		try {
-			if(loadProjectUserFromRDS(req.getProjectName()) == null) {
+			Project project = loadProjectUserFromRDS(req.getProjectName());
+			if(project == null) {
 				failMessage = req.getProjectName() + " does not exist.";
 				fail = true;
 			}		
 			if (fail) {
 				response = new DeleteProjectResponse(failMessage,400); //fail
 			} else {
-					response = new DeleteProjectResponse(loadProjectUserFromRDS(req.getProjectName()), loadAllProjectsFromRDS());  // success
+					response = new DeleteProjectResponse(project, loadAllProjectsFromRDS());  // success
 				}
 			} catch (Exception e) {
 				response = new DeleteProjectResponse("Unable to delete project: " + req.getProjectName() + "(" + e.getMessage() + ")",400);

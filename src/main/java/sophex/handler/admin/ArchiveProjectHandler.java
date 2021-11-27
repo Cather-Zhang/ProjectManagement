@@ -16,14 +16,15 @@ public class ArchiveProjectHandler implements RequestHandler<ArchiveProjectReque
 		String failMessage = "";
 		ArchiveProjectResponse response;
 		try {
-			if(loadProjectUserFromRDS(req.getProjectName()) == null) {
+			Project project = loadProjectUserFromRDS(req.getProjectName());
+			if(project == null) {
 				failMessage = req.getProjectName() + " does not exist.";
 				fail = true;
 			}		
 			if (fail) {
 				response = new ArchiveProjectResponse(failMessage,400); //fail
 			} else {
-					response = new ArchiveProjectResponse(loadProjectUserFromRDS(req.getProjectName()));  // success
+					response = new ArchiveProjectResponse(project);  // success
 				}
 			} catch (Exception e) {
 				response = new ArchiveProjectResponse("Unable to view project: " + req.getProjectName() + "(" + e.getMessage() + ")",400);

@@ -16,14 +16,15 @@ public class RemoveTeammateHandler implements RequestHandler<RemoveTeammateReque
 				String failMessage = "";
 				RemoveTeammateResponse response;
 				try {
-					if(loadProjectUserFromRDS(input.getProjectName()) == null) {
+					Project project = loadProjectUserFromRDS(input.getProjectName());
+					if(project == null) {
 						failMessage = input.getProjectName() + " does not exist.";
 						fail = true;
 					}		
 					if (fail) {
 						response = new RemoveTeammateResponse(failMessage,400); //fail
 					} else {
-							response = new RemoveTeammateResponse(loadProjectUserFromRDS(input.getProjectName()), req.getTeammateName());  // success
+							response = new RemoveTeammateResponse(project, input.getTeammateName());  // success
 						}
 					} catch (Exception e) {
 						response = new RemoveTeammateResponse("Unable to remove teammate: " + input.getProjectName() + "(" + e.getMessage() + ")",400);
