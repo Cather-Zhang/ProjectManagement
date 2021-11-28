@@ -7,7 +7,7 @@ function createProject() {
     console.log("JS:" + js);
     var xhr = new XMLHttpRequest();
     xhr.open("POST", api_url + "/project", true);
-    xhr.send(JSON.stringify({"name":"\""+projectName+"\""}));
+    xhr.send(JSON.stringify({"name" : projectName}));
 
     xhr.onloadend = function () {
         console.log(xhr);

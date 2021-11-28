@@ -1,24 +1,24 @@
-var names = ["yes", "no", "test"]
-var project = {name:"",teammates:[null],tasks:[null],archived:false,progress:0};
+var api_url = "https://28q0071kya.execute-api.us-east-2.amazonaws.com/beta";
+var project;
 
 function loadProject(name){
-    loadName(name);
-}
+    console.log("Requested project: " + name);
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", api_url + "/project/" + name, true);
+    xhr.send();
 
-function exists(proposed){
-    for (let index = 0; index < names.length; index++) {
-        if(names[index] === proposed)
-            return true;
-    }
-    return false;
-}
-
-function loadName(name) {
-    //TODO: search DB to find associated project name
-    project.name = name;
-    //testLoad();
-    document.getElementById("nameHeader").innerHTML = project.name;
-    createProjectView();
+    xhr.onloadend = function () {        
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            console.log ("Response: " + xhr.response);
+            var js = JSON.parse(xhr.responseText);
+            project = js["p"];
+            console.log("Found project: " + JSON.stringify(project));
+            document.getElementById("nameHeader").innerHTML = project.name;
+            createProjectView();
+        } else {
+            console.log("invalid project");
+        }
+    };
 }
 
 function testLoad(){
