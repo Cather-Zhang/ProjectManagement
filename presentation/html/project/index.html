@@ -14,7 +14,7 @@
 <div class="container" style="padding: 3rem;">
     <div class="row justify-content-md-center">
       <div class="col-md-auto">
-        <h1 id="nameHeader">Place Holder</h1>
+        <h1 id="nameHeader"></h1>
       </div>
     </div>
 </div>
@@ -33,7 +33,28 @@
     </div>  
 </section>
 -->
-<div id="tasks" class="container" style="padding: 0;"></div>
+<div class="container">
+    <div class="row mb-3" >
+        <div id="tasks" class="col-md-10" style="border:black; border-width:2px; border-style:solid;">
+            <div class="row mb-3">
+                <div class="col-md-2">
+                    <p>
+                        1. Demo Task
+                    </p>
+                </div>
+                <div class="col-md-auto">
+                    <button type="button" onclick="handleClick()" class="btn btn-outline-primary">Decompose</button>
+                    <button type="button" onclick="handleClick()" class="btn btn-outline-primary">Rename</button>
+                </div>
+            </div>
+        </div>
+        <div id="team" class="col-md-2" style="border:black; border-width:2px; border-style:solid;">
+            <p class="center">Teammates</p>
+            <p>none found</p>
+        </div>
+    </div>
+</div>
+
 <script>
     window.onload = function(){
         loadProject(new URL(window.location).searchParams.get("name"));

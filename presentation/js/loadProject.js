@@ -14,7 +14,8 @@ function loadProject(name){
             project = js["p"];
             console.log("Found project: " + JSON.stringify(project));
             document.getElementById("nameHeader").innerHTML = project.name;
-            createProjectView();
+            loadTasks();
+            loadTeam();
         } else {
             console.log("invalid project");
         }
@@ -37,7 +38,18 @@ function testLoad(){
 /**
  * creates a child task, meaning has decomp button and
  */
-function createProjectView(){
+function loadTasks(){
+    var p = {name:project.name, tasks:[]}
+    p.tasks = ["1", "2", "3"];
+    var tasks = [];
+    if(project.tasks == undefined) {
+        console.log("Tasks not found");
+        var noTasks = document.createElement("p");
+        noTasks.innerHTML = "Tasks not found";
+        var tasksDiv = document.getElementById("tasks");
+        tasksDiv.appendChild(noTasks);
+        return;
+    }
     var rowDiv = document.createElement("div");
     rowDiv.className = "row mb-3";
     var nameDiv = document.createElement('div');
@@ -48,6 +60,10 @@ function createProjectView(){
     rowDiv.appendChild(nameDiv);
     var tasksDiv = document.getElementById("tasks");
     tasksDiv.appendChild(rowDiv);
+}
+
+function loadTeam() {
+    
 }
 
 /*
