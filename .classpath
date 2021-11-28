@@ -48,15 +48,6 @@
 			<attribute name="m2e-apt" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Cather Zhang/.m2/repository/com/google/code/gson/gson/2.8.8/gson-2.8.8.jar" sourcepath="C:/Users/Cather Zhang/.m2/repository/com/google/code/gson/gson/2.8.8/gson-2.8.8-sources.jar">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="maven.groupId" value="com.google.code.gson"/>
-			<attribute name="maven.artifactId" value="gson"/>
-			<attribute name="maven.version" value="2.8.8"/>
-			<attribute name="maven.scope" value="compile"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

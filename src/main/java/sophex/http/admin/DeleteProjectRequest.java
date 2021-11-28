@@ -8,7 +8,7 @@ public class DeleteProjectRequest {
 	
 
 	public String toString() {
-		return "Add (" + projectName + ")";
+		return "Delete (" + projectName + ")";
 	}
 	
 	public DeleteProjectRequest (String projectName) {

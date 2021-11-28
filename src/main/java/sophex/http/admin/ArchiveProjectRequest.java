@@ -8,7 +8,7 @@ public class ArchiveProjectRequest {
 	
 
 	public String toString() {
-		return "Add (" + projectName + ")";
+		return "Archive (" + projectName + ")";
 	}
 	
 	public ArchiveProjectRequest (String projectName) {
