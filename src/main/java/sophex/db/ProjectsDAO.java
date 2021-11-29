@@ -57,9 +57,8 @@ public class ProjectsDAO {
             ps.setString(1,  name);
             ResultSet resultSet = ps.executeQuery();
             
-            while (resultSet.next()) {
-                project = generateProject(resultSet);
-            }
+
+            project = generateProject(resultSet);
             resultSet.close();
             ps.close();
             
@@ -138,9 +137,12 @@ public class ProjectsDAO {
         	// already present?
         	while (resultSet.next()) {
             	Project p = generateProject(resultSet);
-            	resultSet.close();
-            	return false;
+            	if(p.getname().equals(project.getname())) {
+            		resultSet.close();
+            		return false;
+            	}
         	}
+        	resultSet.close();
 
         	ps = conn.prepareStatement("INSERT INTO " + tblName + " (name,is_archived,progress) values(?,?,?);");
         	ps.setString(1,  project.getname());
@@ -151,6 +153,18 @@ public class ProjectsDAO {
 
     	} catch (Exception e) {
         	throw new Exception("Failed to insert project: " + e.getMessage());
+    	}
+    }
+    
+    public boolean deleteProject(Project project) throws Exception {
+    	try {
+        	PreparedStatement ps = conn.prepareStatement("DELETE * FROM " + tblName + " WHERE name = ?;");
+        	ps.setString(1, project.getname());
+        	ps.execute();
+        	return true;
+
+    	} catch (Exception e) {
+        	throw new Exception("Failed to delete project project: " + e.getMessage());
     	}
     }
 	
