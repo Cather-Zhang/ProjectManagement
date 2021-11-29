@@ -127,17 +127,17 @@ public class ProjectsDAO {
         }
     }
     
-    public boolean addProject(Project project) throws Exception {
+    public boolean addProject(String project) throws Exception {
         
 		try {
         	PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName + " WHERE name = ?;");
-        	ps.setString(1, project.getname());
+        	ps.setString(1, project);
         	ResultSet resultSet = ps.executeQuery();
         
         	// already present?
         	while (resultSet.next()) {
             	Project p = generateProject(resultSet);
-            	if(p.getname().equals(project.getname())) {
+            	if(p.getname().equals(project)) {
             		resultSet.close();
             		return false;
             	}
@@ -145,9 +145,9 @@ public class ProjectsDAO {
         	resultSet.close();
 
         	ps = conn.prepareStatement("INSERT INTO " + tblName + " (name,is_archived,progress) values(?,?,?);");
-        	ps.setString(1,  project.getname());
-        	ps.setBoolean(2,  project.getIsArchived());
-        	ps.setDouble(3, project.getProgress());
+        	ps.setString(1,  project);
+        	ps.setBoolean(2,  false);
+        	ps.setDouble(3, 0);
         	ps.execute();
         	return true;
 
@@ -156,10 +156,10 @@ public class ProjectsDAO {
     	}
     }
     
-    public boolean deleteProject(Project project) throws Exception {
+    public boolean deleteProject(String project) throws Exception {
     	try {
         	PreparedStatement ps = conn.prepareStatement("DELETE * FROM " + tblName + " WHERE name = ?;");
-        	ps.setString(1, project.getname());
+        	ps.setString(1, project);
         	ps.execute();
         	return true;
 
