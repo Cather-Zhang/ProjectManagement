@@ -15,7 +15,6 @@ public class RemoveTeammateResponse {
 		this.project = project; 
 		this.statusCode = 200;
 		this.error = "";
-		project.removeTeammate(name);
 	}
 	
 	/**

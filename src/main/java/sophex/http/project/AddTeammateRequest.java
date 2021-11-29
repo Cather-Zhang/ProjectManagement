@@ -5,9 +5,7 @@ public class AddTeammateRequest {
 	public String projectName;
 
 	public String getTeammateName() { return teammateName; }
-	public void setTeammateName(String teammateName) { this.teammateName = teammateName; }
 	public String getProjectName() {return projectName;}
-	public void setProjectName(String projectName) {this.projectName = projectName;}
 	
 
 	public String toString() {

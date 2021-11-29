@@ -15,11 +15,11 @@ import sophex.http.admin.DeleteProjectResponse;
 public class DeleteProjectHandlerTest extends LambdaTest {
 
     void testSuccessInput(String incoming) throws IOException {
-    	DeleteProjectHandler handler = new DeleteProjectHandler();  
+    	DeleteProjectHandler handler = new DeleteProjectHandler();
     	DeleteProjectRequest req = new Gson().fromJson(incoming, DeleteProjectRequest.class);
     	DeleteProjectResponse resp = handler.handleRequest(req, createContext("list"));
-
-        Assert.assertEquals(200, resp.statusCode);
+    	
+    	Assert.assertEquals(200, resp.statusCode);
     }
 	
 
@@ -30,17 +30,17 @@ public class DeleteProjectHandlerTest extends LambdaTest {
     
         Assert.assertEquals(failureCode, resp.statusCode);
     }
-   
+    
     @Test
-    public void deleteKnownProject() throws Exception {
+    public void delete() throws Exception{
     	String var = "Calc 4";
     	DeleteProjectRequest apr = new DeleteProjectRequest(var);
-        String toDelete = new Gson().toJson(apr);  
-        try {
-        	testSuccessInput(toDelete);
-        } catch (IOException ioe) {
-        	Assert.fail("Invalid:" + ioe.getMessage());
-        }
+    	String toDelete = new Gson().toJson(apr);
+    	try {
+    		testSuccessInput(toDelete);
+    	}catch(IOException ioe) {
+    		Assert.fail("Invalid: " + ioe.getMessage());
+    	}
     }
    
     @Test

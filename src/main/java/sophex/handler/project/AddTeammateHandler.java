@@ -4,6 +4,7 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 import sophex.db.ProjectsDAO;
+import sophex.db.TeammatesDAO;
 import sophex.http.admin.ArchiveProjectResponse;
 import sophex.http.project.AddTeammateRequest;
 import sophex.http.project.AddTeammateResponse;
@@ -13,15 +14,13 @@ public class AddTeammateHandler implements RequestHandler<AddTeammateRequest, Ad
 
 	@Override
 	public AddTeammateResponse handleRequest(AddTeammateRequest req, Context context) {
-		boolean fail = false;
 		String failMessage = "";
 		AddTeammateResponse response;
 		try {
-			Project project = loadProjectUserFromRDS(req.getProjectName());
-			if(project == null) {
-				failMessage = req.getProjectName() + " does not exist.";
-				fail = true;
-			}		
+			TeammatesDAO tdao = new TeammatesDAO();
+			ProjectsDAO pdao = new ProjectsDAO();
+			boolean fail = tdao.addTeammate(req.getTeammateName(), req.getProjectName());	
+			Project project = pdao.getProjectUser(req.getProjectName());
 			if (fail) {
 				response = new AddTeammateResponse(failMessage,400); //fail
 			} else {
@@ -31,12 +30,5 @@ public class AddTeammateHandler implements RequestHandler<AddTeammateRequest, Ad
 				response = new AddTeammateResponse("Unable to add teammate: " + req.getProjectName() + "(" + e.getMessage() + ")",400);
 			}
 			return response; 
-		}
-			
-		public Project loadProjectUserFromRDS(String projectName) throws Exception {
-			ProjectsDAO dao = new ProjectsDAO();
-			Project p = dao.getProjectUser(projectName);
-			return p;
-		}
 	}
 

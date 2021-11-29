@@ -1,27 +1,21 @@
 package sophex.http.admin;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import sophex.model.Project;
 
 public class DeleteProjectResponse {
 	public Project project;
 	public int statusCode;
 	public String error;
-	public List<Project> list;
 		
 	/**
 	 * success, status = 200
 	 * @param project
 	 */
 	//Need some way for this to be removed from the database; returning name for now
-	public DeleteProjectResponse (Project project, List<Project> list) {
+	public DeleteProjectResponse (Project project) {
 		this.project = project; 
-		this.list = list;
 		this.statusCode = 200;
 		this.error = "";
-		list.remove(project);
 	}
 	
 	/**
@@ -37,9 +31,9 @@ public class DeleteProjectResponse {
 	
 	public String toString() {
 		if (statusCode / 100 == 2) { 
-			return "Project(" + project + ")";
+			return "Project(" + project.getname() + ") was successfully deleted";
 		} else if (statusCode == 400) {   //SOME ERROR CODE
-			return ("Project " + project.getname() + " does not exist");
+			return ("Project " + project.getname() + " could not be deleted");
 		}
 		{
 			return "ErrorResult(" + statusCode + ", err=" + error + ")";

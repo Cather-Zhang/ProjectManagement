@@ -6,6 +6,7 @@ public class AddTeammateResponse {
 	public Project project;
 	public int statusCode;
 	public String error;
+	public String newTeammateName;
 		
 	/**
 	 * success, status = 200
@@ -15,7 +16,7 @@ public class AddTeammateResponse {
 		this.project = project; 
 		this.statusCode = 200;
 		this.error = "";
-		project.addTeammate(name);
+		newTeammateName = name;
 	}
 	
 	/**
@@ -31,9 +32,9 @@ public class AddTeammateResponse {
 	
 	public String toString() {
 		if (statusCode / 100 == 2) { 
-			return "Project(" + project + ")";
+			return "Teammate(" + newTeammateName + ") has been added to Project(" + project.getname() + ")";
 		} else if (statusCode == 400) {   //SOME ERROR CODE
-			return ("Project " + project.getname() + " does not exist");
+			return ("Teammate(" + newTeammateName + ") could not be added to Project(" + project.getname() + ")");
 		}
 		{
 			return "ErrorResult(" + statusCode + ", err=" + error + ")";
