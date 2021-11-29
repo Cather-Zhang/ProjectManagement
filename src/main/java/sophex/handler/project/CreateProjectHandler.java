@@ -32,15 +32,7 @@ public class CreateProjectHandler implements RequestHandler<CreateProjectRequest
 	public boolean createProject(String name) throws Exception { 
 		if (logger != null) { logger.log("in createProject"); }
 		ProjectsDAO dao = new ProjectsDAO();
-		
-		// check if present
-		Project exist = dao.getProjectUser(name);
-		Project project = new Project (name);
-		if (exist == null) {
-			return dao.addProject(name);
-		} else {
-			return false;
-		}
+		return dao.addProject(name);
 	}
 	
 	@Override
