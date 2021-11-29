@@ -79,7 +79,7 @@ public class TeammatesDAO {
     	}
     }
     
-    public boolean deleteTeammate(String teammateName, String projectName) throws Exception {
+    public boolean removeTeammate(String teammateName, String projectName) throws Exception {
     	try {
         	PreparedStatement ps = conn.prepareStatement("DELETE * FROM teammate WHERE name = "+ teammateName + " AND project_name = " + projectName + ";");
         	ps.execute();
