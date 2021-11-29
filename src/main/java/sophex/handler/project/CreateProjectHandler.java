@@ -37,7 +37,7 @@ public class CreateProjectHandler implements RequestHandler<CreateProjectRequest
 		Project exist = dao.getProjectUser(name);
 		Project project = new Project (name);
 		if (exist == null) {
-			return dao.addProject(project);
+			return dao.addProject(name);
 		} else {
 			return false;
 		}
