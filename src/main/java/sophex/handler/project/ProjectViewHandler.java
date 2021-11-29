@@ -26,7 +26,7 @@ LambdaLogger logger;
 			if (fail) {
 				response = new ProjectViewResponse(400, failMessage); //fail
 			} else {
-				response = new ProjectViewResponse(project);  // success
+				response = new ProjectViewResponse();  // success
 			}
 		} catch (Exception e) {
 			response = new ProjectViewResponse(400, "Unable to view project: " + req.getName() + "(" + e.getMessage() + ")");

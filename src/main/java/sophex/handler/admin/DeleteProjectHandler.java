@@ -23,7 +23,7 @@ public class DeleteProjectHandler implements RequestHandler<DeleteProjectRequest
 			if (fail) {
 				response = new DeleteProjectResponse(failMessage,400); //fail
 			} else {
-					response = new DeleteProjectResponse(project);  // success
+					response = new DeleteProjectResponse();  // success
 				}
 			} catch (Exception e) {
 				response = new DeleteProjectResponse("Unable to delete project: " + req.getProjectName() + "(" + e.getMessage() + ")",400);

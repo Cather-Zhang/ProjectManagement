@@ -24,7 +24,7 @@ public class AddTeammateHandler implements RequestHandler<AddTeammateRequest, Ad
 			if (fail) {
 				response = new AddTeammateResponse(failMessage,400); //fail
 			} else {
-					response = new AddTeammateResponse(project, req.getTeammateName());  // success
+					response = new AddTeammateResponse();  // success
 				}
 			} catch (Exception e) {
 				response = new AddTeammateResponse("Unable to add teammate: " + req.getProjectName() + "(" + e.getMessage() + ")",400);

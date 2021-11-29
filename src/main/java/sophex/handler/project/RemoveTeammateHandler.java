@@ -25,7 +25,7 @@ public class RemoveTeammateHandler implements RequestHandler<RemoveTeammateReque
 				if (fail) {
 					response = new RemoveTeammateResponse(failMessage,400); //fail
 				} else {
-						response = new RemoveTeammateResponse(project, req.getTeammateName());  // success
+						response = new RemoveTeammateResponse();  // success
 					}
 				} catch (Exception e) {
 					response = new RemoveTeammateResponse("Unable to add teammate: " + req.getProjectName() + "(" + e.getMessage() + ")",400);
