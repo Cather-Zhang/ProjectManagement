@@ -1,7 +1,5 @@
 package sophex.http.task;
 
-import sophex.model.Project;
-
 public class MarkTaskResponse {
 	public int statusCode;
 	public String error;

@@ -1,7 +1,5 @@
 package sophex.http.task;
 
-import sophex.model.Project;
-
 public class RenameTaskResponse {
 	int statusCode;
 	String error;

@@ -1,7 +1,5 @@
 package sophex.http.project;
 
-import sophex.model.Project;
-
 /**
  * Arbitrary decision to make this a String and not a native double.
  */

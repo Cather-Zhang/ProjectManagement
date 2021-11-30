@@ -1,6 +1,4 @@
 package sophex.http.project;
-
-import sophex.model.Project;
 ;
 
 public class ProjectViewResponse {
