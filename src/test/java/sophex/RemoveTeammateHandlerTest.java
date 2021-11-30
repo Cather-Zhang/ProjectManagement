@@ -12,7 +12,7 @@ import sophex.http.project.AddTeammateRequest;
 import sophex.http.project.AddTeammateResponse;
 
 
-public class AddTeammateHandlerTest extends LambdaTest {
+public class RemoveTeammateHandlerTest extends LambdaTest {
 
     void testSuccessInput(String incoming) throws IOException {
     	AddTeammateHandler handler = new AddTeammateHandler();  

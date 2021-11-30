@@ -3,12 +3,9 @@ package sophex.handler.project;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
-import sophex.db.ProjectsDAO;
 import sophex.db.TeammatesDAO;
-import sophex.http.admin.ArchiveProjectResponse;
 import sophex.http.project.AddTeammateRequest;
 import sophex.http.project.AddTeammateResponse;
-import sophex.model.Project;
 
 public class AddTeammateHandler implements RequestHandler<AddTeammateRequest, AddTeammateResponse>{
 
@@ -18,8 +15,8 @@ public class AddTeammateHandler implements RequestHandler<AddTeammateRequest, Ad
 		AddTeammateResponse response;
 		try {
 			TeammatesDAO tdao = new TeammatesDAO();
-			boolean fail = tdao.addTeammate(req.getTeammateName(), req.getProjectName());	
-			if (fail) {
+			boolean success = tdao.addTeammate(req.getTeammateName(), req.getProjectName());	
+			if (!success) {
 				response = new AddTeammateResponse(failMessage,400); //fail
 			} else {
 					response = new AddTeammateResponse();  // success

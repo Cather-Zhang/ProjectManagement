@@ -17,7 +17,7 @@ public class DeleteProjectHandlerTest extends LambdaTest {
     void testSuccessInput(String incoming) throws IOException {
     	DeleteProjectHandler handler = new DeleteProjectHandler();
     	DeleteProjectRequest req = new Gson().fromJson(incoming, DeleteProjectRequest.class);
-    	DeleteProjectResponse resp = handler.handleRequest(req, createContext("list"));
+    	DeleteProjectResponse resp = handler.handleRequest(req, createContext("create"));
     	
     	Assert.assertEquals(200, resp.statusCode);
     }
@@ -26,7 +26,7 @@ public class DeleteProjectHandlerTest extends LambdaTest {
     void testFailInput(String incoming, int failureCode) throws IOException {
     	DeleteProjectHandler handler = new DeleteProjectHandler();
     	DeleteProjectRequest req = new Gson().fromJson(incoming, DeleteProjectRequest.class);
-    	DeleteProjectResponse resp = handler.handleRequest(req, createContext("list"));
+    	DeleteProjectResponse resp = handler.handleRequest(req, createContext("create"));
     
         Assert.assertEquals(failureCode, resp.statusCode);
     }
