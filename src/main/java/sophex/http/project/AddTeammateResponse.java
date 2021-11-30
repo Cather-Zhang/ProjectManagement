@@ -3,7 +3,6 @@ package sophex.http.project;
 import sophex.model.Project;
 
 public class AddTeammateResponse {
-	public Project project;
 	public int statusCode;
 	public String error;
 		
@@ -11,11 +10,9 @@ public class AddTeammateResponse {
 	 * success, status = 200
 	 * @param project
 	 */
-	public AddTeammateResponse (Project project, String name) {
-		this.project = project; 
+	public AddTeammateResponse () {
 		this.statusCode = 200;
 		this.error = "";
-		project.addTeammate(name);
 	}
 	
 	/**
@@ -29,14 +26,14 @@ public class AddTeammateResponse {
 		this.error = errorMessage;
 	}
 	
-	public String toString() {
+	/*public String toString() {
 		if (statusCode / 100 == 2) { 
-			return "Project(" + project + ")";
+			return "Teammate(" + newTeammateName + ") has been added to Project(" + project.getname() + ")";
 		} else if (statusCode == 400) {   //SOME ERROR CODE
-			return ("Project " + project.getname() + " does not exist");
+			return ("Teammate(" + newTeammateName + ") could not be added to Project(" + project.getname() + ")");
 		}
 		{
 			return "ErrorResult(" + statusCode + ", err=" + error + ")";
 		}
-	}
+	}*/
 }

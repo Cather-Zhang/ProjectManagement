@@ -41,13 +41,62 @@ public class TeammatesDAO {
             resultSet.close();
             ps.close();
             
-            return projects;
+            return teammates;
 
         } catch (Exception e) {
         	e.printStackTrace();
             throw new Exception("Failed in getting project: " + e.getMessage());
         }
     }
+	
+	
+    
+    public boolean addTeammate(String teammateName, String projectName) throws Exception {
+        
+		try {
+        	PreparedStatement ps = conn.prepareStatement("SELECT * FROM teammate WHERE  name= ?;");
+        	ps.setString(1, teammateName);
+        	ResultSet resultSet = ps.executeQuery();
+        
+        	// already present?
+        	while (resultSet.next()) {
+        		Teammate teammate = generateTeammate(resultSet);
+            	if(teammate.getName().equals(teammate)) {
+            		resultSet.close();
+            		return false;
+            	}       	
+        	}
+        	resultSet.close();
+
+        	ps = conn.prepareStatement("INSERT INTO " + tblName + "values(?,?);");
+        	ps.setString(1,  teammateName);
+        	ps.setString(2,  projectName);
+        	ps.execute();
+        	return true;
+
+    	} catch (Exception e) {
+        	throw new Exception("Failed to add teammate: " + e.getMessage());
+    	}
+    }
+    
+    public boolean removeTeammate(String teammateName, String projectName) throws Exception {
+    	try {
+        	PreparedStatement ps = conn.prepareStatement("DELETE * FROM teammate WHERE name = "+ teammateName + " AND project_name = " + projectName + ";");
+        	ps.execute();
+        	return true;
+
+    	} catch (Exception e) {
+        	throw new Exception("Failed to delete project project: " + e.getMessage());
+    	}
+    }
+	
+	private Teammate generateTeammate(ResultSet resultSet) throws Exception {
+		String name  = resultSet.getString("name");
+		//TODO GRAB TASK IDS FROM TABLE AND ADD TO LIST
+		
+		return new Teammate (name);
+	}
+	
 	
 	/**
 	 * 
@@ -107,39 +156,6 @@ public class TeammatesDAO {
             throw new Exception("Failed in getting project: " + e.getMessage());
         }
     }
-    
-    public boolean addTeammate(Teammate t) throws Exception {
-        
-		try {
-        	PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName + " WHERE name = ?;");
-        	ps.setString(1, t.getname());
-        	ResultSet resultSet = ps.executeQuery();
-        
-        	// already present?
-        	while (resultSet.next()) {
-        		Teammate teammate = generateTeammate(resultSet);
-            	resultSet.close();
-            	return false;
-        	}
-
-        	ps = conn.prepareStatement("INSERT INTO " + tblName + " (name,is_archived,progress) values(?,?,?);");
-        	ps.setString(1,  teammate.getname());
-        	ps.setBoolean(2,  teammate.getIsArchived());
-        	ps.setDouble(3, teammate.getProgress());
-        	ps.execute();
-        	return true;
-
-    	} catch (Exception e) {
-        	throw new Exception("Failed to add teammate: " + e.getMessage());
-    	}
-    }
-	
-	private Teammate generateTeammate(ResultSet resultSet) throws Exception {
-		String name  = resultSet.getString("name");
-		//TODO GRAB TASK IDS FROM TABLE AND ADD TO LIST
-		
-		return new Teammate (name);
-	}
 
 	
 	

@@ -24,7 +24,7 @@ public class ArchiveProjectHandler implements RequestHandler<ArchiveProjectReque
 			if (fail) {
 				response = new ArchiveProjectResponse(failMessage,400); //fail
 			} else {
-					response = new ArchiveProjectResponse(project);  // success
+					response = new ArchiveProjectResponse();  // success
 				}
 			} catch (Exception e) {
 				response = new ArchiveProjectResponse("Unable to view project: " + req.getProjectName() + "(" + e.getMessage() + ")",400);

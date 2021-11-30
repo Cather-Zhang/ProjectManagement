@@ -5,14 +5,12 @@ import sophex.model.Project;
 public class AssignTeammateResponse {
 	int statusCode;
 	String error;
-	public Project project;
 	
 	/**
 	 * success, status = 200
 	 * @param newProjectName
 	 */
-	public AssignTeammateResponse (Project p) {
-		this.project = p; 
+	public AssignTeammateResponse () {
 		this.statusCode = 200;
 		this.error = "";
 	}
@@ -27,11 +25,11 @@ public class AssignTeammateResponse {
 		this.error = errorMessage;
 	}
 	
-	public String toString() {
+	/*public String toString() {
 		if (statusCode / 100 == 2) {  // too cute?
 			return "Project(" + project.getname() + ")";
 		} else {
 			return "ErrorResult(" + statusCode + ", err=" + error + ")";
 		}
-	}
+	}*/
 }

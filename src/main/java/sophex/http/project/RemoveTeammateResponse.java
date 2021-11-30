@@ -3,7 +3,6 @@ package sophex.http.project;
 import sophex.model.Project;
 
 public class RemoveTeammateResponse {
-	public Project project;
 	public int statusCode;
 	public String error;
 		
@@ -11,11 +10,9 @@ public class RemoveTeammateResponse {
 	 * success, status = 200
 	 * @param project
 	 */
-	public RemoveTeammateResponse (Project project, String name) {
-		this.project = project; 
+	public RemoveTeammateResponse () {
 		this.statusCode = 200;
 		this.error = "";
-		project.removeTeammate(name);
 	}
 	
 	/**
@@ -24,12 +21,11 @@ public class RemoveTeammateResponse {
 	 * @param errorMessage
 	 */
 	public RemoveTeammateResponse (String errorMessage, int statusCode) {
-		this.project = null; // doesn't matter since error
 		this.statusCode = statusCode;
 		this.error = errorMessage;
 	}
 	
-	public String toString() {
+	/*public String toString() {
 		if (statusCode / 100 == 2) { 
 			return "Project(" + project + ")";
 		} else if (statusCode == 400) {   //SOME ERROR CODE
@@ -38,5 +34,5 @@ public class RemoveTeammateResponse {
 		{
 			return "ErrorResult(" + statusCode + ", err=" + error + ")";
 		}
-	}
+	}*/
 }

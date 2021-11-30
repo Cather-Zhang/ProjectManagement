@@ -57,9 +57,8 @@ public class ProjectsDAO {
             ps.setString(1,  name);
             ResultSet resultSet = ps.executeQuery();
             
-            while (resultSet.next()) {
-                project = generateProject(resultSet);
-            }
+
+            project = generateProject(resultSet);
             resultSet.close();
             ps.close();
             
@@ -128,29 +127,44 @@ public class ProjectsDAO {
         }
     }
     
-    public boolean addProject(Project project) throws Exception {
+    public boolean addProject(String project) throws Exception {
         
 		try {
         	PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName + " WHERE name = ?;");
-        	ps.setString(1, project.getname());
+        	ps.setString(1, project);
         	ResultSet resultSet = ps.executeQuery();
         
         	// already present?
         	while (resultSet.next()) {
             	Project p = generateProject(resultSet);
-            	resultSet.close();
-            	return false;
+            	if(p.getname().equals(project)) {
+            		resultSet.close();
+            		return false;
+            	}
         	}
+        	resultSet.close();
 
         	ps = conn.prepareStatement("INSERT INTO " + tblName + " (name,is_archived,progress) values(?,?,?);");
-        	ps.setString(1,  project.getname());
-        	ps.setBoolean(2,  project.getIsArchived());
-        	ps.setDouble(3, project.getProgress());
+        	ps.setString(1,  project);
+        	ps.setBoolean(2,  false);
+        	ps.setDouble(3, 0);
         	ps.execute();
         	return true;
 
     	} catch (Exception e) {
         	throw new Exception("Failed to insert project: " + e.getMessage());
+    	}
+    }
+    
+    public boolean deleteProject(String project) throws Exception {
+    	try {
+        	PreparedStatement ps = conn.prepareStatement("DELETE * FROM " + tblName + " WHERE name = ?;");
+        	ps.setString(1, project);
+        	ps.execute();
+        	return true;
+
+    	} catch (Exception e) {
+        	throw new Exception("Failed to delete project project: " + e.getMessage());
     	}
     }
 	

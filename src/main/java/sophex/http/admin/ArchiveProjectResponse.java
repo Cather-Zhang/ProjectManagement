@@ -3,7 +3,6 @@ package sophex.http.admin;
 import sophex.model.Project;
 
 public class ArchiveProjectResponse {
-	public Project project;
 	public int statusCode;
 	public String error;
 		
@@ -11,11 +10,9 @@ public class ArchiveProjectResponse {
 	 * success, status = 200
 	 * @param project
 	 */
-	public ArchiveProjectResponse (Project project) {
-		this.project = project; 
+	public ArchiveProjectResponse () {
 		this.statusCode = 200;
 		this.error = "";
-		project.archive();
 	}
 	
 	/**
@@ -24,12 +21,11 @@ public class ArchiveProjectResponse {
 	 * @param errorMessage
 	 */
 	public ArchiveProjectResponse (String errorMessage, int statusCode) {
-		this.project = null; // doesn't matter since error
 		this.statusCode = statusCode;
 		this.error = errorMessage;
 	}
 	
-	public String toString() {
+	/*public String toString() {
 		if (statusCode / 100 == 2) { 
 			return "Project(" + project + ")";
 		} else if (statusCode == 400) {   //SOME ERROR CODE
@@ -38,5 +34,5 @@ public class ArchiveProjectResponse {
 		{
 			return "ErrorResult(" + statusCode + ", err=" + error + ")";
 		}
-	}
+	}*/
 }

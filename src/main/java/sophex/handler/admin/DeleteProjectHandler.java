@@ -14,34 +14,20 @@ public class DeleteProjectHandler implements RequestHandler<DeleteProjectRequest
 
 	@Override
 	public DeleteProjectResponse handleRequest(DeleteProjectRequest req, Context context) {
-		boolean fail = false;
 		String failMessage = "";
 		DeleteProjectResponse response;
 		try {
-			Project project = loadProjectUserFromRDS(req.getProjectName());
-			if(project == null) {
-				failMessage = req.getProjectName() + " does not exist.";
-				fail = true;
-			}		
+			ProjectsDAO dao = new ProjectsDAO();
+			boolean fail = dao.deleteProject(req.getProjectName());
+			Project project = dao.getProjectUser(req.getProjectName());
 			if (fail) {
 				response = new DeleteProjectResponse(failMessage,400); //fail
 			} else {
-					response = new DeleteProjectResponse(project, loadAllProjectsFromRDS());  // success
+					response = new DeleteProjectResponse();  // success
 				}
 			} catch (Exception e) {
 				response = new DeleteProjectResponse("Unable to delete project: " + req.getProjectName() + "(" + e.getMessage() + ")",400);
 			}
 			return response; 
-		}
-			
-		public Project loadProjectUserFromRDS(String projectName) throws Exception {
-			ProjectsDAO dao = new ProjectsDAO();
-			Project p = dao.getProjectUser(projectName);
-			return p;
-		}
-		public List<Project> loadAllProjectsFromRDS() throws Exception{
-			ProjectsDAO dao = new ProjectsDAO();
-			List<Project> list = dao.getProjectsAdmin();
-			return list;
 		}
 	}
