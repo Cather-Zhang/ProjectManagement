@@ -1,7 +1,5 @@
 package sophex.http.admin;
 
-import sophex.model.Project;
-
 public class DeleteProjectResponse {
 	public int statusCode;
 	public String error;

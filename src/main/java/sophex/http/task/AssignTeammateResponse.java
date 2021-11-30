@@ -1,7 +1,5 @@
 package sophex.http.task;
 
-import sophex.model.Project;
-
 public class AssignTeammateResponse {
 	int statusCode;
 	String error;

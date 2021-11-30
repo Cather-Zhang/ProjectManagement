@@ -1,7 +1,5 @@
 package sophex.http.admin;
 
-import sophex.model.Project;
-
 public class ArchiveProjectResponse {
 	public int statusCode;
 	public String error;

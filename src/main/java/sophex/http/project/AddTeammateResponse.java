@@ -1,7 +1,5 @@
 package sophex.http.project;
 
-import sophex.model.Project;
-
 public class AddTeammateResponse {
 	public int statusCode;
 	public String error;
