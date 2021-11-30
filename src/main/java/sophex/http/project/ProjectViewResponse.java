@@ -1,16 +1,22 @@
 package sophex.http.project;
+
+import sophex.model.Project;
+
 ;
 
 public class ProjectViewResponse {
 		public int statusCode;
 		public String error;
+		public Project project;
 		
-		public ProjectViewResponse () {
+		public ProjectViewResponse (Project project) {
+			this.project = project;
 			this.statusCode = 200;
 			this.error = "";
 		}
 		
 		public ProjectViewResponse (int statusCode, String errorMessage) {
+			project = null;
 			this.statusCode = statusCode;
 			this.error = errorMessage;
 		}

@@ -6,14 +6,16 @@ package sophex.http.project;
 public class CreateProjectResponse {
 	public int statusCode;
 	public String error;
+	public String projectName;
 	
 	/**
 	 * success, status = 200
 	 * @param newProjectName
 	 */
-	public CreateProjectResponse () {
+	public CreateProjectResponse (String projectName) {
 		this.statusCode = 200;
 		this.error = "";
+		this.projectName = projectName;
 	}
 	
 	/**
