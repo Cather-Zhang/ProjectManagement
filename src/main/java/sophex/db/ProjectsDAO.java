@@ -158,7 +158,7 @@ public class ProjectsDAO {
     
     public boolean deleteProject(String project) throws Exception {
     	try {
-        	PreparedStatement ps = conn.prepareStatement("DELETE * FROM " + tblName + " WHERE name = ?;");
+        	PreparedStatement ps = conn.prepareStatement("DELETE FROM " + tblName + " WHERE name = ?;");
         	ps.setString(1, project);
         	ps.execute();
         	return true;

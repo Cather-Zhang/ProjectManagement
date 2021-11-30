@@ -23,13 +23,13 @@ public class DeleteProjectHandlerTest extends LambdaTest {
     }
 	
 
-    void testFailInput(String incoming, int failureCode) throws IOException {
+   /* void testFailInput(String incoming, int failureCode) throws IOException {
     	DeleteProjectHandler handler = new DeleteProjectHandler();
     	DeleteProjectRequest req = new Gson().fromJson(incoming, DeleteProjectRequest.class);
     	DeleteProjectResponse resp = handler.handleRequest(req, createContext("create"));
     
         Assert.assertEquals(failureCode, resp.statusCode);
-    }
+    }*/
     
     @Test
     public void delete() throws Exception{
@@ -49,7 +49,7 @@ public class DeleteProjectHandlerTest extends LambdaTest {
     	DeleteProjectRequest apr = new DeleteProjectRequest(var);
         String toDelete = new Gson().toJson(apr); 
     	try {
-    		testFailInput(toDelete, 400);
+    		testSuccessInput(toDelete);
     	} catch (IOException ioe) {
     		Assert.fail("Invalid:" + ioe.getMessage());
     	}

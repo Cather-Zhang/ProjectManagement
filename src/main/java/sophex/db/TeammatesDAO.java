@@ -82,12 +82,14 @@ public class TeammatesDAO {
     
     public boolean removeTeammate(String teammateName, String projectName) throws Exception {
     	try {
-        	PreparedStatement ps = conn.prepareStatement("DELETE * FROM teammate WHERE name = "+ teammateName + " AND project_name = " + projectName + ";");
+        	PreparedStatement ps = conn.prepareStatement("DELETE FROM teammate WHERE name=? AND project_name =?;");
+        	ps.setString(1,  teammateName);
+        	ps.setString(2,  projectName);
         	ps.execute();
         	return true;
 
     	} catch (Exception e) {
-        	throw new Exception("Failed to delete project project: " + e.getMessage());
+        	throw new Exception("Failed to remove teammate: " + e.getMessage());
     	}
     }
 	
