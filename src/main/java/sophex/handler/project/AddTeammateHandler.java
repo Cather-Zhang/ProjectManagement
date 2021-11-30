@@ -18,17 +18,16 @@ public class AddTeammateHandler implements RequestHandler<AddTeammateRequest, Ad
 		AddTeammateResponse response;
 		try {
 			TeammatesDAO tdao = new TeammatesDAO();
-			ProjectsDAO pdao = new ProjectsDAO();
 			boolean fail = tdao.addTeammate(req.getTeammateName(), req.getProjectName());	
-			Project project = pdao.getProjectUser(req.getProjectName());
 			if (fail) {
 				response = new AddTeammateResponse(failMessage,400); //fail
 			} else {
 					response = new AddTeammateResponse();  // success
 				}
 			} catch (Exception e) {
-				response = new AddTeammateResponse("Unable to add teammate: " + req.getProjectName() + "(" + e.getMessage() + ")",400);
+				response = new AddTeammateResponse("Unable to add teammate: " + req.getTeammateName() + "(" + e.getMessage() + ")",400);
 			}
 			return response; 
 	}
+}
 

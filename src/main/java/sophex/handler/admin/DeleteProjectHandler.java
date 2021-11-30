@@ -19,7 +19,6 @@ public class DeleteProjectHandler implements RequestHandler<DeleteProjectRequest
 		try {
 			ProjectsDAO dao = new ProjectsDAO();
 			boolean fail = dao.deleteProject(req.getProjectName());
-			Project project = dao.getProjectUser(req.getProjectName());
 			if (fail) {
 				response = new DeleteProjectResponse(failMessage,400); //fail
 			} else {

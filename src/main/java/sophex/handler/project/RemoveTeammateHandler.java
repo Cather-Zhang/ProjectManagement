@@ -19,17 +19,16 @@ public class RemoveTeammateHandler implements RequestHandler<RemoveTeammateReque
 			RemoveTeammateResponse response;
 			try {
 				TeammatesDAO tdao = new TeammatesDAO();
-				ProjectsDAO pdao = new ProjectsDAO();
 				boolean fail = tdao.removeTeammate(req.getTeammateName(), req.getProjectName());	
-				Project project = pdao.getProjectUser(req.getProjectName());
 				if (fail) {
 					response = new RemoveTeammateResponse(failMessage,400); //fail
 				} else {
 						response = new RemoveTeammateResponse();  // success
 					}
 				} catch (Exception e) {
-					response = new RemoveTeammateResponse("Unable to add teammate: " + req.getProjectName() + "(" + e.getMessage() + ")",400);
+					response = new RemoveTeammateResponse("Unable to remove teammate: " + req.getTeammateName() + "(" + e.getMessage() + ")",400);
 				}
 				return response; 
 		}
+}
 
