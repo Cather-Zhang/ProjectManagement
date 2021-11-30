@@ -54,14 +54,14 @@ public class TeammatesDAO {
     public boolean addTeammate(String teammateName, String projectName) throws Exception {
         
 		try {
-        	PreparedStatement ps = conn.prepareStatement("SELECT * FROM teammate WHERE  name= ?;");
+        	PreparedStatement ps = conn.prepareStatement("SELECT * FROM teammate WHERE  name = "+ teammateName + " AND project_name = " + projectName + ";");
         	ps.setString(1, teammateName);
         	ResultSet resultSet = ps.executeQuery();
         
         	// already present?
         	while (resultSet.next()) {
         		Teammate teammate = generateTeammate(resultSet);
-            	if(teammate.getName().equals(teammate)) {
+            	if(teammate.getName().equals(teammateName)) {
             		resultSet.close();
             		return false;
             	}       	
