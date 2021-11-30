@@ -98,6 +98,7 @@ public class TeammatesDAO {
 	}
 	
 	
+	
 	/**
 	 * 
 	 * @param projectName 
@@ -105,7 +106,7 @@ public class TeammatesDAO {
 	 * @return the teammate looking for of a project
 	 * @throws Exception
 	 */
-    public Teammate getTeammate(String projectName, String teammateName) throws Exception {
+    /*public Teammate getTeammate(String projectName, String teammateName) throws Exception {
         
         try {
             Teammate t = null;
@@ -156,6 +157,7 @@ public class TeammatesDAO {
             throw new Exception("Failed in getting project: " + e.getMessage());
         }
     }
+    */
 
 	
 	
