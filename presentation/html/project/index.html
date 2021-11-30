@@ -34,23 +34,57 @@
 </section>
 -->
 <div class="container">
+    <div class="col-md-2">
+        <button type="button" onclick="handleClick()" class="btn btn-outline-primary">+</button>
+    </div>
     <div class="row mb-3" >
-        <div id="tasks" class="col-md-10" style="border:black; border-width:2px; border-style:solid;">
+        <div id="tasks" class="col-md-9">
             <div class="row mb-3">
-                <div class="col-md-2">
+                <div class="col-md-auto">
                     <p>
-                        1. Demo Task
+                        1. Demo Task 1
+                    </p>
+                </div>
+                <div class="col-md-auto">
+                    <button type="button" onclick="handleClick()" class="btn btn-outline-primary">+</button>
+                    <button type="button" onclick="handleClick()" class="btn btn-outline-primary">Rename</button>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-auto" style="padding-left: 3rem;">
+                    <p>
+                        1. Demo Task 2
                     </p>
                 </div>
                 <div class="col-md-auto">
                     <button type="button" onclick="handleClick()" class="btn btn-outline-primary">Decompose</button>
                     <button type="button" onclick="handleClick()" class="btn btn-outline-primary">Rename</button>
+                    <button type="button" onclick="handleClick()" class="btn btn-outline-primary">Assign</button>
+                    <button type="button" onclick="handleClick()" class="btn btn-outline-primary">Mark</button>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-auto" style="padding-left: 4rem;">
+                    <p>
+                        Prof. Heineman
+                    </p>
+                </div>
+                <div class="col-md-auto">
+                    <button type="button" onclick="handleClick()" class="btn btn-outline-primary">Remove</button>
                 </div>
             </div>
         </div>
-        <div id="team" class="col-md-2" style="border:black; border-width:2px; border-style:solid;">
-            <p class="center">Teammates</p>
-            <p>none found</p>
+        <div id="team" class="col-md-3">
+            <h2 class="center">Teammates</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Prof. Heineman</p>
+                </div>
+                    <div class="col-md-auto">
+                    <button type="button" onclick="handleClick()" class="btn btn-outline-primary">Remove</button>
+                </div>
+            </div>
+            <button type="button" onclick="handleClick()" class="btn btn-outline-primary">Add</button>
         </div>
     </div>
 </div>
