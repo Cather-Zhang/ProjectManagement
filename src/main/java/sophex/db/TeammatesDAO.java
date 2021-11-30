@@ -14,7 +14,7 @@ import sophex.model.Project;
 public class TeammatesDAO {
 	java.sql.Connection conn;
 	
-	final String tblName = "project";   // Exact capitalization
+	final String tblName = "teammate";   // Exact capitalization
 
     public TeammatesDAO() {
     	try  {
@@ -54,8 +54,9 @@ public class TeammatesDAO {
     public boolean addTeammate(String teammateName, String projectName) throws Exception {
         
 		try {
-        	PreparedStatement ps = conn.prepareStatement("SELECT * FROM teammate WHERE  name = "+ teammateName + " AND project_name = " + projectName + ";");
+        	PreparedStatement ps = conn.prepareStatement("SELECT * FROM teammate WHERE name=? AND project_name =?;");
         	ps.setString(1, teammateName);
+        	ps.setString(2, projectName);
         	ResultSet resultSet = ps.executeQuery();
         
         	// already present?
@@ -68,7 +69,7 @@ public class TeammatesDAO {
         	}
         	resultSet.close();
 
-        	ps = conn.prepareStatement("INSERT INTO " + tblName + "values(?,?);");
+        	ps = conn.prepareStatement("INSERT INTO " + tblName + "(name,project_name) values(?,?);");
         	ps.setString(1,  teammateName);
         	ps.setString(2,  projectName);
         	ps.execute();
