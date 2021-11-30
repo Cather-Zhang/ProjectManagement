@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 import sophex.handler.project.AddTeammateHandler;
 import sophex.http.project.AddTeammateRequest;
 import sophex.http.project.AddTeammateResponse;
+import sophex.http.project.CreateProjectRequest;
 
 
 public class AddTeammateHandlerTest extends LambdaTest {
@@ -32,11 +33,14 @@ public class AddTeammateHandlerTest extends LambdaTest {
     
     @Test
     public void addToKnownProject() throws Exception {
+    	int rndNum = (int)(990*(Math.random()));
+    	String str = "throwAway" + rndNum;
+   
     	String var = "TestA";
-    	AddTeammateRequest apr = new AddTeammateRequest("Cather", var);
-        String toArchive = new Gson().toJson(apr);  
+    	AddTeammateRequest apr = new AddTeammateRequest(str, var);
+        String toAdd = new Gson().toJson(apr); 
         try {
-        	testSuccessInput(toArchive);
+        	testSuccessInput(toAdd);
         } catch (IOException ioe) {
         	Assert.fail("Invalid:" + ioe.getMessage());
         }
@@ -46,9 +50,9 @@ public class AddTeammateHandlerTest extends LambdaTest {
     public void addToNonExistent() throws Exception{
     	String var = "salkj;oeihtpwaoie";
     	AddTeammateRequest apr = new AddTeammateRequest("Billie", var);
-        String toArchive = new Gson().toJson(apr); 
+        String toAdd = new Gson().toJson(apr); 
     	try {
-    		testFailInput(toArchive, 400);
+    		testFailInput(toAdd, 400);
     	} catch (IOException ioe) {
     		Assert.fail("Invalid:" + ioe.getMessage());
     	}
