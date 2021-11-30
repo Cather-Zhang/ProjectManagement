@@ -33,7 +33,7 @@ public class AddTeammateHandlerTest extends LambdaTest {
     @Test
     public void addToKnownProject() throws Exception {
     	String var = "TestA";
-    	AddTeammateRequest apr = new AddTeammateRequest("Cather", var);
+    	AddTeammateRequest apr = new AddTeammateRequest("T", var);
         String toArchive = new Gson().toJson(apr);  
         try {
         	testSuccessInput(toArchive);

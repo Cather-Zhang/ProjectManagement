@@ -18,12 +18,12 @@ public class ListAllProjectsTest extends LambdaTest{
 
         ListAllProjectsResponse resp = handler.handleRequest(null, createContext("list"));
         
-        boolean hasCalc4 = false;
+        boolean hasSpaceInvader = false;
         for (Project p : resp.list) {
         	System.out.println("found project " + p.getname());
-        	if (p.getname().equals("Calc 4")) { hasCalc4 = true; }
+        	if (p.getname().equals("SpaceInvader")) { hasSpaceInvader = true; }
         }
-        Assert.assertTrue("Calc 4 project needs to exist in the Projects table (from tutorial) for this test case to work.", hasCalc4);
+        Assert.assertTrue("SpaceInvader project needs to exist in the Projects table (from tutorial) for this test case to work.", hasSpaceInvader);
         Assert.assertEquals(200, resp.statusCode);
     }
 }
