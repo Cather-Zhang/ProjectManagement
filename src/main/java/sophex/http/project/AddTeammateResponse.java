@@ -21,7 +21,6 @@ public class AddTeammateResponse {
 	 * @param errorMessage
 	 */
 	public AddTeammateResponse (String errorMessage, int statusCode) {
-		this.project = null; // doesn't matter since error
 		this.statusCode = statusCode;
 		this.error = errorMessage;
 	}
