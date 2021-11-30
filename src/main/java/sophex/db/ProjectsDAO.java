@@ -57,8 +57,10 @@ public class ProjectsDAO {
             ps.setString(1,  name);
             ResultSet resultSet = ps.executeQuery();
             
-
-            project = generateProject(resultSet);
+        	while(resultSet.next()) {
+        		project = generateProject(resultSet);
+        	}
+            
             resultSet.close();
             ps.close();
             
