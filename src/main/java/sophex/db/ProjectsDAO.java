@@ -28,7 +28,6 @@ public class ProjectsDAO {
     	}
     }
     
-    
 	public List<Project> getProjectsAdmin() throws Exception {
         
         try {
@@ -67,19 +66,12 @@ public class ProjectsDAO {
             ps.close();
             
             try {
-                logger.log("a");
             	PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM teammate WHERE project_name=?;");
-            	logger.log("b");
                 ps2.setNString(1, name);
-                logger.log("c");
             	ResultSet resultSetTeammate = ps2.executeQuery();
-            	logger.log("d");
             	while(resultSetTeammate.next()) {
-                    logger.log("e");
-            		project.addTeammate(resultSet.getString("name"));
-                    logger.log("f");
+            		project.addTeammate(resultSetTeammate.getString("name"));
             	}
-                logger.log("close");
                 resultSetTeammate.close();
                 ps2.close();
             } catch (Exception e) {

@@ -40,5 +40,4 @@ LambdaLogger logger;
 		Project p = dao.getProjectUser(projectName);
 		return p;
 	}
-
 }
