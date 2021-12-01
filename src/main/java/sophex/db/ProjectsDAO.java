@@ -4,6 +4,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.amazonaws.services.lambda.runtime.LambdaLogger;
+
 import sophex.model.Project;
 import sophex.model.Task;
 import sophex.model.Teammate;
@@ -14,6 +16,7 @@ import sophex.model.Teammate;
  */
 public class ProjectsDAO {
 	java.sql.Connection conn;
+    public LambdaLogger logger;
 	
 	final String tblName = "project";   // Exact capitalization
 
@@ -50,7 +53,6 @@ public class ProjectsDAO {
     }
 	
     public Project getProjectUser(String name) throws Exception {
-        
         try {
             Project project = null;
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName + " WHERE name=?;");
@@ -65,13 +67,19 @@ public class ProjectsDAO {
             ps.close();
             
             try {
+                logger.log("a");
             	PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM teammate WHERE project_name=?;");
-            	ps2.setNString(1, name);
+            	logger.log("b");
+                ps2.setNString(1, name);
+                logger.log("c");
             	ResultSet resultSetTeammate = ps2.executeQuery();
-            	
+            	logger.log("d");
             	while(resultSetTeammate.next()) {
+                    logger.log("e");
             		project.addTeammate(resultSet.getString("name"));
+                    logger.log("f");
             	}
+                logger.log("close");
                 resultSetTeammate.close();
                 ps2.close();
             } catch (Exception e) {

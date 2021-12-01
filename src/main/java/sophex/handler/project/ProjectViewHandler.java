@@ -18,7 +18,7 @@ LambdaLogger logger;
 		String failMessage = "";
 		ProjectViewResponse response;
 		try {
-			Project project = loadProjectUserFromRDS(req.getName());
+			Project project = loadProjectUserFromRDS(req.getName(), context);
 			if(project == null) {
 				failMessage = req.getName() + " does not exist.";
 				fail = true;
@@ -34,8 +34,9 @@ LambdaLogger logger;
 		return response; 
 	}
 	
-	public Project loadProjectUserFromRDS(String projectName) throws Exception {
+	public Project loadProjectUserFromRDS(String projectName, Context c) throws Exception {
 		ProjectsDAO dao = new ProjectsDAO();
+        dao.logger = c.getLogger();
 		Project p = dao.getProjectUser(projectName);
 		return p;
 	}
