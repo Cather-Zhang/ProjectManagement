@@ -70,7 +70,7 @@ public class ProjectsDAO {
                 ps2.setNString(1, name);
             	ResultSet resultSetTeammate = ps2.executeQuery();
             	while(resultSetTeammate.next()) {
-            		project.addTeammate(resultSetTeammate.getString(name));
+            		project.addTeammate(resultSetTeammate.getString("name"));
             	}
                 resultSetTeammate.close();
                 ps2.close();
