@@ -17,7 +17,7 @@ function getProjectNames(){
             //console.log(js);
             var projectList = js["list"];
             for (let i = 0; i < projectList.length; i++) {
-                console.log(projectList[i].name);
+                //console.log(projectList[i].name);
                 projectNames[i] = projectList[i].name;
             }
             addElements();
@@ -84,14 +84,6 @@ function buildElement(type, attributes){
         e.setAttribute(att, val);
     }
     return e;
-}
-
-function deleteProject(name){
-    //TODO: calls API to delete project with given name
-}
-
-function archiveProject(name){
-    //TODO: calls API to archive project with given name
 }
 
 /*

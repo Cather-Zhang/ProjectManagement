@@ -72,7 +72,8 @@ public class ProjectsDAO {
             	while(resultSetTeammate.next()) {
             		project.addTeammate(resultSet.getString("name"));
             	}
-            	
+                resultSetTeammate.close();
+                ps2.close();
             } catch (Exception e) {
             	e.printStackTrace();
             	throw new Exception("Failed in getting project teammates: " + e.getMessage());
@@ -104,17 +105,23 @@ public class ProjectsDAO {
             						e.printStackTrace();
             						throw new Exception("There are no teammates assigned to this task: " + e.getLocalizedMessage());
             					}
+                                resultSetTeammate.close();
+                                ps5.close();
             				} catch (Exception e) {
             	            	e.printStackTrace();
             	            	throw new Exception("Failed in getting teammates from Tasks: " + e.getMessage());
             	            }
             			}
             			project.addTask(task);
+                        resultSetTaskTeammate.close();
+                        ps4.close();
             		} catch (Exception e) {
                     	e.printStackTrace();
                     	throw new Exception("Failed in getting teammate/task relationships: " + e.getMessage());
                     }
             	}
+                resultSetTask.close();
+                ps3.close();
             	
             } catch (Exception e) {
             	e.printStackTrace();
