@@ -69,8 +69,12 @@ public class ProjectsDAO {
             	PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM teammate WHERE project_name=?;");
                 ps2.setNString(1, name);
             	ResultSet resultSetTeammate = ps2.executeQuery();
+            	
             	while(resultSetTeammate.next()) {
-            		project.addTeammate(resultSetTeammate.getString("name"));
+            		String s = resultSetTeammate.getString("name");
+            		System.out.println(s);
+            		project.addTeammate(s);
+            		
             	}
                 resultSetTeammate.close();
                 ps2.close();

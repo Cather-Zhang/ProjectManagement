@@ -54,8 +54,8 @@ public class ProjectViewHandlerTest extends LambdaTest {
     }
     
     @Test
-    public void testSpaceInvaderInList() throws Exception {
-    	String var = "SpaceInvader";
+    public void testInList() throws Exception {
+    	String var = "wackyIssuesHaha";
     	ProjectViewRequest pvr = new ProjectViewRequest(var);
         String incomingView = new Gson().toJson(pvr);  
         try {

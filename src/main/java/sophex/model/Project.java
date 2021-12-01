@@ -1,17 +1,19 @@
 package sophex.model;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Project {
 	final String name;
-	List<Teammate> teammates;
-	List<Task> tasks;
+	ArrayList<Teammate> teammates;
+	ArrayList<Task> tasks;
 	boolean isArchived = false;
 	double progress = 0;
 	
 	
 	public Project (String name) {
 		this.name = name;
+		teammates = new ArrayList<Teammate>();
+		tasks = new ArrayList<Task>();
 
 	}	
 	
@@ -19,16 +21,19 @@ public class Project {
 		this.name = name;
 		this.isArchived = isArchived;
 		this.progress = progress;
+		teammates = new ArrayList<Teammate>();
+		tasks = new ArrayList<Task>();
 	}
 	
 	public String getname() {return name;}
-	public List<Teammate> getTeammates() {return teammates;}
-	public List<Task> getTasks() {return tasks;}
+	public ArrayList<Teammate> getTeammates() {return teammates;}
+	public ArrayList<Task> getTasks() {return tasks;}
 	public boolean getIsArchived() {return isArchived;}
 	public Double getProgress() {return progress;}
 	
 	public void addTeammate(String name) {
 		Teammate t = new Teammate(name);
+		System.out.println(t.name);
 		teammates.add(t);
 	}
 	public void removeTeammate(String name) {
