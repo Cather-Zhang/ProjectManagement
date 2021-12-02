@@ -13,16 +13,12 @@ function createProject() {
         
         if (xhr.readyState == XMLHttpRequest.DONE) {
             console.log ("XHR:" + xhr.responseText);
-            processCreateProjectResponse(xhr.responseText);
-        } else {
-            processCreateProjectResponse("N/A");
+            loadProjectPage(xhr.responseText);
         }
     };
 }
 
-function processCreateProjectResponse(result) {
-    // Can grab any DIV or SPAN HTML element and can then manipulate its
-    // contents dynamically via javascript
+function loadProjectPage(result) {
     console.log("result:" + result);
     var js = JSON.parse(result);
 

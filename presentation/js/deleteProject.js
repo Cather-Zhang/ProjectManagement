@@ -15,8 +15,6 @@ function deleteProject(name) {
             console.log ("XHR:" + xhr.responseText);
             console.log("Deleted project " + name);
             window.location.reload();
-        } else {
-            //DO NOTHING
         }
     };
 }

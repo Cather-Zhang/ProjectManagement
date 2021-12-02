@@ -76,16 +76,6 @@ function addElements(){
     }
 }
 
-function buildElement(type, attributes){
-    var e = document.createElement(type);
-    for(let i = 0; i < attributes.length; i++){
-        var att = attributes[i][0];
-        var val = attributes[i][1];
-        e.setAttribute(att, val);
-    }
-    return e;
-}
-
 /*
 <section class="container" style="padding: 1rem;">
     <div class="row align-items-center mb-3">

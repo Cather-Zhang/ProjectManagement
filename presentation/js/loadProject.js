@@ -1,11 +1,26 @@
 var api_url = "https://28q0071kya.execute-api.us-east-2.amazonaws.com/beta";
 var project = {
     name: null,
-    teammates: null,
-    tasks: null,
+    teammates: [{name:"Jair"},{name:"Brianna"},{name:"Austin"},{name:"Cather"}],
+    tasks: [
+        {taskId:"1", subTasks:[
+            {taskId:"1.1", subTasks:[
+                {taskId:"1.1.1", subTasks:null}
+            ]}, 
+            {taskId:"1.2", subTasks:null}
+        ]},
+        {taskId:"2", subTasks:[
+            {taskId:"2.1", subTasks:null},
+            {taskId:"2.2", subTasks:[
+                {taskId:"2.2.1", subTasks:null},
+                {taskId:"2.2.2", subTasks:null}
+            ]}
+        ]}
+    ],
     archived: false,
     progress: 0
 };
+
 function loadProject(name) {
     console.log("Requested project: " + name);
     var xhr = new XMLHttpRequest();
@@ -15,10 +30,11 @@ function loadProject(name) {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             console.log("Response: " + xhr.response);
             var js = JSON.parse(xhr.responseText);
-            project = js["p"];
+            //TODO CHANGE BACK TO PROJECT = JS["P"]
+            project.name = js["p"]["name"];
             console.log("Found project: " + JSON.stringify(project));
             document.getElementById("nameHeader").innerHTML = project.name;
-            loadTasks();
+            loadTaskView();
             loadTeam();
         }
         else {
@@ -26,102 +42,133 @@ function loadProject(name) {
         }
     };
 }
-function testLoad() {
-    var listDiv = document.getElementById('list-puntate');
-    var ul = document.createElement('ul');
-    listDiv.appendChild(ul);
-    for (var i = 0; i < project.tasks.length; ++i) {
-        var li = document.createElement('li');
-        li.innerHTML = project.tasks[i].name;
-        console.log(project.tasks[i]);
-        ul.appendChild(li);
+
+function loadTaskView(){
+    let depth = 0;
+    //manually traverses through the top level tasks because they are not
+    //a part of a parent task
+    for (let index = 0; index < project.tasks.length; index++) {
+        traverseTasks(project.tasks[index], depth+1);
     }
 }
-/**
- * creates a child task, meaning has decomp button and
- */
-function loadTasks() {
-    var p = { name: project.name, tasks: [] };
-    p.tasks = ["1", "2", "3"];
-    var tasks = [];
-    if (project.tasks == undefined) {
-        console.log("Tasks not found");
-        var noTasks = document.createElement("p");
-        //noTasks.innerHTML = "Tasks not found";
-        var tasksDiv = document.getElementById("tasks");
-        tasksDiv.appendChild(noTasks);
-        return;
+
+function loadTeam(){
+    var teamDiv = document.getElementById("team");
+    var teammateTitle = document.createElement("h2");
+    teammateTitle.innerHTML = "Teammates"; 
+    teamDiv.appendChild(teammateTitle);
+    for(let i = 0; i < project.teammates.length; i++) {
+        createTeammateRow(project.teammates[i].name);
     }
+    var addBtn = document.createElement("button");
+    addBtn.setAttribute("type", "button");
+    addBtn.setAttribute("class", "btn btn-secondary");
+    addBtn.setAttribute("data-bs-toggle", "modal");
+    addBtn.setAttribute("data-bs-target", "#addTeammateModal");
+    addBtn.innerHTML = "Add";
+    document.getElementById("addBtn").appendChild(addBtn);
+}
+
+function createTeammateRow(req){
+    var rowDiv = document.createElement("div");
+    rowDiv.className = "row";
+    var colDiv = document.createElement("div");
+    colDiv.className = "col-md-6";
+    var nameP = document.createElement("p");
+    nameP.innerHTML = req;
+    colDiv.appendChild(nameP);
+    rowDiv.appendChild(colDiv);
+    var btnDiv = document.createElement("div");
+    btnDiv.className = "col-md-auto";
+    var removeBtn = buildButton("Remove", "removeTeammate(\"" + req + "\")")
+    btnDiv.appendChild(removeBtn);
+    rowDiv.appendChild(btnDiv);
+    document.getElementById("team").appendChild(rowDiv);
+    rowDiv.appendChild(document.createElement("hr"));
+}
+
+/**
+ * Helper that physically traverses the task tree of the project, and calls generateTaskRow()
+ * @param {object} parent 
+ * @param {number} depth 
+ * @returns 
+ */
+function traverseTasks(parent, depth){
+    if (parent.subTasks == undefined || parent.subTasks == null) {
+        generateTaskRow(parent, depth, true);
+        return;
+    } else {
+        generateTaskRow(parent, depth, false);
+    }
+    for (let j = 0; j < parent.subTasks.length; j++) {
+        traverseTasks(parent.subTasks[j], depth+1);
+    }
+}
+
+/**
+ * Helper that actually generates the DOM elements, and a row div for the respective task
+ * @param {object} parent 
+ * @param {number} depth 
+ * @param {boolean} leaf 
+ */
+function generateTaskRow(parent, depth, leaf){
+    //new row for a new task
     var rowDiv = document.createElement("div");
     rowDiv.className = "row mb-3";
+    //name div for the task name
     var nameDiv = document.createElement('div');
-    nameDiv.className = "col-md-2";
+    nameDiv.className = "col-md-auto";
+    nameDiv.style = "padding-left:" + (depth*2 - 1)+ "rem;";
+    //paragraph element for the task name
     var nameP = document.createElement('p');
-    nameP.innerHTML = "1. " + project.tasks[0];
+    nameP.innerHTML = parent.taskId;
+    //append nameP to nameDiv and nameDiv to rowDiv
     nameDiv.appendChild(nameP);
     rowDiv.appendChild(nameDiv);
+    //button div thats in line with name div
+    var btnDiv = document.createElement("div");
+    btnDiv.className = "col-md-auto";
+    if (!leaf) { //if the task is decomposed already
+        btnDiv.appendChild(buildButton("+", "addTask()"));
+        btnDiv.appendChild(buildButton("Rename", "renameTask(" + parent.taskId + ")"));
+    }
+    else { // if it is a 'leaf' (has no subtasks)
+        btnDiv.appendChild(buildButton("Decompose", "decompTask(" + parent.taskId + ")"));
+        btnDiv.appendChild(buildButton("Rename", "renameTask(" + parent.taskId + ")"));
+        btnDiv.appendChild(buildButton("Assign", "assignTeammate(" + parent.taskId + ")"));
+        btnDiv.appendChild(buildButton("Mark", "markTask(" + parent.taskId + ")"));
+    }
+    rowDiv.appendChild(btnDiv);
     var tasksDiv = document.getElementById("tasks");
     tasksDiv.appendChild(rowDiv);
 }
-function loadTeam() {
-}
-/*
-function loadTasks(){
-    var section = <section class="container" style="padding: 0;padding-left: 0rem;">
-    <div class="row mb-3">
-        <div class="col-md-2">
-        <p>
-            1. Name of Task
-        </p>
-        </div>
-        <div class="col-md-10">
-            <button type="button" onclick="handleClick()" class="btn btn-outline-primary">+</button>
-            <button type="button" onclick="handleClick()" class="btn btn-outline-primary">Rename</button>
-        </div>
-    </div>
-    </section>
-}
-*/
-/**
-<section class="container" style="padding: 0;">
-    <div class="row mb-3">
-        <div class="col-md-2">
-        <p>
-            1. Name of Task
-        </p>
-        </div>
-        <div class="col-md-10">
-            <button type="button" onclick="handleClick()" class="btn btn-outline-primary">+</button>
-            <button type="button" onclick="handleClick()" class="btn btn-outline-primary">Rename</button>
-        </div>
-    </div>
-</section>
 
+function addTeammate(){
+    var req = document.getElementById("newTeammate").value;
+    for (let index = 0; index < project.teammates.length; index++) {
+        if (project.teammates[index].name == req) {
+            //warning modal
+            return;
+        }
+    }
 
-<section class="container" style="padding: 0rem;padding-left: 3rem;">
-    <div class="row mb-3">
-        <div class="col-md-2">
-        <p>
-            1.1 Name of Task
-        </p>
-        </div>
-        <div class="col-md-10">
-            <button type="button" onclick="handleClick()" class="btn btn-outline-primary">Decompose</button>
-            <button type="button" onclick="handleClick()" class="btn btn-outline-primary">Rename</button>
-        </div>
-    </div>
-</section>
-<section class="container" style="padding: 0rem;padding-left: 6rem;">
-    <div class="row mb-3">
-        <div class="col-md-2">
-        <p>
-            Teammate A
-        </p>
-        </div>
-        <div class="col-md-10">
-            <button type="button" onclick="handleClick()" class="btn btn-outline-primary">+</button>
-            <button type="button" onclick="handleClick()" class="btn btn-outline-primary">-</button>
-        </div>
-    </div>
-</section>
- */ 
+    console.log("Requested project: " + req);
+    project.teammates.push({name:req});
+    createTeammateRow(req);
+    
+    /*
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", api_url + "/project/" + project.name + "/addTeammate", true);
+    xhr.send(JSON.stringify({"name" : req}));
+    xhr.onloadend = function () {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            project.teammates.push({name:req});
+            createTeammateRow(req);
+            console.log("Successfully added teammate: " + req);
+        }
+        else {
+            console.log("invalid teammate");
+        }
+    };
+    */
+}
