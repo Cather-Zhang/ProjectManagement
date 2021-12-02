@@ -1,5 +1,7 @@
-var api_url = "https://28q0071kya.execute-api.us-east-2.amazonaws.com/beta";
-
+/**
+ * Deletes the project with the given name
+ * @param {string} name 
+ */
 function deleteProject(name) {
     console.log("hello");
     console.log("Project Name: " + name);
@@ -12,6 +14,8 @@ function deleteProject(name) {
 
     xhr.onloadend = function () {
         if (xhr.readyState == XMLHttpRequest.DONE) {
+            var js = JSON.parse(xhr.responseText);
+            if (js["statusCode"] != "200") {return;}
             console.log ("XHR:" + xhr.responseText);
             console.log("Deleted project " + name);
             window.location.reload();

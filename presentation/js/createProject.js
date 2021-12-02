@@ -1,5 +1,6 @@
-var api_url = "https://28q0071kya.execute-api.us-east-2.amazonaws.com/beta";
-
+/**
+ * Creates a new project with the given name
+ */
 function createProject() {
     var projectName = document.getElementById("createProjectField").value;
     console.log("Project Name: " + projectName)
@@ -13,12 +14,17 @@ function createProject() {
         
         if (xhr.readyState == XMLHttpRequest.DONE) {
             console.log ("XHR:" + xhr.responseText);
-            loadProjectPage(xhr.responseText);
+            var js = JSON.parse(xhr.responseText);
+            loadNewProject(xhr.responseText);
         }
     };
 }
 
-function loadProjectPage(result) {
+/**
+ * Loads the new project's page
+ * @param {*} result 
+ */
+function loadNewProject(result) {
     console.log("result:" + result);
     var js = JSON.parse(result);
 
@@ -28,7 +34,12 @@ function loadProjectPage(result) {
         var project = js["project"];
         window.location.href = "/presentation/html/project/index.html?name=" + project.name;
     } else {
+        console.log("woauibefoiuaebuiof")
         var msg = js["error"];
-        window.location.href = "/presentation/html/404/index.html";
+        var e = document.createElement("div");
+        e.classList = "alert alert-danger";
+        e.setAttribute("role", "alert");
+        e.innerHTML = msg;
+        document.getElementById("alertDiv").appendChild(e);
     }
 }
