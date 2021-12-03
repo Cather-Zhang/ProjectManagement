@@ -17,3 +17,11 @@ function buildButton(text, handler, type){
     b.style.marginRight = ".3rem"
     return b;
 }
+
+/**
+ * Deletes DOM element by ID name
+ * @param {string} name 
+ */
+function deleteElement(name){
+    document.getElementById(name).remove();
+}
