@@ -1,22 +1,23 @@
 package sophex.http.task;
 
 public class AddTaskRequest {
-	public String projectName;
-	public String taskID;
 	public String taskName;
+	public String projectName;
+	public String parentPrefix;
+
 	
 	public String getProjectName() {return this.projectName;}
 	public void setProjectName(String name) {this.projectName = name;}
 	
-	public String getTaskId() {return this.taskID;}
-	public void setTaskId(String id) {this.taskID = id;}
+	public String getParentPrefix() {return this.parentPrefix;}
+	public void setparentPrefix(String prefix) {this.parentPrefix = prefix;}
 	
-	public String getName() {return this.taskName;}
-	public void setFlag(String name) {this.taskName = name;}
+	public String getTaskName() {return this.taskName;}
+	public void setTaskName(String name) {this.taskName = name;}
 	
-	public AddTaskRequest(String projectName, String id, String taskName) {
+	public AddTaskRequest(String projectName, String taskName, String parentPrefix) {
 		this.projectName = projectName;
-		this.taskID = id;
+		this.parentPrefix = parentPrefix;
 		this.taskName = taskName;
 	}
 	
