@@ -83,6 +83,8 @@ public class TasksDAO {
     		psFinal.setNString(4, projectName);
     		if(parentID != -1) {
     			psFinal.setInt(5, parentID);
+    		} else {
+    			psFinal.setNull(5, java.sql.Types.INTEGER);
     		}
     		
     		psFinal.execute();
