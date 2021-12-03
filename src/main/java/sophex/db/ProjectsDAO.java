@@ -89,7 +89,7 @@ public class ProjectsDAO {
             	ResultSet resultSetTask = ps3.executeQuery();
             	
             	while(resultSetTask.next()) {
-            		Task task = new Task(resultSetTask.getString("prefix"), resultSetTask.getString("name"));
+            		Task task = new Task(resultSetTask.getString("name"), resultSetTask.getString("prefix"));
             		int taskID = resultSetTask.getInt("task_id");
             		
             		try {

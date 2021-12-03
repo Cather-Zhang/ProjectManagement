@@ -45,7 +45,7 @@ public class TasksDAO {
     		
     		resultSetParent.close();
     		
-    		if(parentPrefix==null) {
+    		if(parentPrefix==null || parentPrefix.equals("")) {
     			PreparedStatement ps2 = conn.prepareStatement("SELECT * from task WHERE parent_task IS NULL AND p_name=?;");
     			ps2.setNString(1, projectName);
     			int prefix = 1;

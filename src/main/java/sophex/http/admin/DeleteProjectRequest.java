@@ -4,7 +4,7 @@ public class DeleteProjectRequest {
 	public String projectName;
 
 	public String getProjectName() { return projectName; }
-	public void setName(String projectName) { this.projectName = projectName; }
+	public void setProjectName(String projectName) { this.projectName = projectName; }
 	
 
 	public String toString() {

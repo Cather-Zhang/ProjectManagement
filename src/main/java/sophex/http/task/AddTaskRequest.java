@@ -10,7 +10,7 @@ public class AddTaskRequest {
 	public void setProjectName(String name) {this.projectName = name;}
 	
 	public String getParentPrefix() {return this.parentPrefix;}
-	public void setparentPrefix(String prefix) {this.parentPrefix = prefix;}
+	public void setParentPrefix(String prefix) {this.parentPrefix = prefix;}
 	
 	public String getTaskName() {return this.taskName;}
 	public void setTaskName(String name) {this.taskName = name;}

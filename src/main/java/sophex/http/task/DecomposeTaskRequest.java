@@ -2,21 +2,21 @@ package sophex.http.task;
 
 public class DecomposeTaskRequest {
 	public String projectName;
-	public String taskID;
+	public String parentPrefix;
 	public String[] taskNames;
 	
 	public String getProjectName() {return this.projectName;}
 	public void setProjectName(String name) {this.projectName = name;}
 	
-	public String getTaskId() {return this.taskID;}
-	public void setTaskId(String id) {this.taskID = id;}
+	public String getParentPrefix() {return this.parentPrefix;}
+	public void setParentPrefix(String prefix) {this.parentPrefix = prefix;}
 	
 	public String[] getTasks() {return this.taskNames;}
 	public void setTasks(String[] names) {this.taskNames = names;}
 	
-	public DecomposeTaskRequest(String name, String id, String[] names) {
+	public DecomposeTaskRequest(String name, String prefix, String[] names) {
 		this.projectName = name;
-		this.taskID = id;
+		this.parentPrefix = prefix;
 		this.taskNames = names;
 	}
 	
