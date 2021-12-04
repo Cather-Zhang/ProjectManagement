@@ -104,7 +104,7 @@ public class TasksDAO {
     		// Grabs the parent task's ID for the tasks team mates table
     		int parentTaskID;
     		int prefixAddon = 1;
-    		ArrayList<Integer> teammateIDs;
+    		ArrayList<Integer> teammateIDs = new ArrayList<>();
     		PreparedStatement parent = conn.prepareStatement("SELECT * FROM task WHERE prefix=? AND p_name=?;");
     		parent.setNString(1, parentPrefix);
     		parent.setNString(2, projectName);
@@ -134,13 +134,13 @@ public class TasksDAO {
     		deleteOldRelationship.setInt(1, parentTaskID);
     		deleteOldRelationship.execute();
     		
-    		for(String name : taskNames) {
+    		for(int i = 0; i < taskNames.length; i++) {
     			
     			// Inserts new task into the database
     			PreparedStatement psFinal = conn.prepareStatement("INSERT INTO task (prefix,name,is_completed,p_name,parent_task) values (?,?,?,?,?);");
-        		String newPrefix = parentPrefix + "." + String.valueOf(prefixAddon);
+        		String newPrefix = parentPrefix + "." + String.valueOf(prefixAddon + i);
     			psFinal.setNString(1, newPrefix);
-        		psFinal.setNString(2, name);
+        		psFinal.setNString(2, taskNames[i]);
         		psFinal.setBoolean(3, false);
         		psFinal.setNString(4, projectName);
         		psFinal.setInt(5,parentTaskID);
@@ -174,5 +174,6 @@ public class TasksDAO {
     	} catch (Exception e) {
     		throw new Exception("Failed to decompose task: " + e.getMessage());
     	}
-    
+    }
 }
+    

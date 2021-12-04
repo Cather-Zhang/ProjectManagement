@@ -5,14 +5,12 @@ import sophex.model.Task;
 public class DecomposeTaskResponse {
 	public int statusCode;
 	public String error;
-	public Task task;
 	
 	/**
 	 * success, status = 200
 	 * @param newProjectName
 	 */
-	public DecomposeTaskResponse (Task t) {
-		this.task = t; 
+	public DecomposeTaskResponse () {
 		this.statusCode = 200;
 		this.error = "";
 	}
@@ -29,7 +27,7 @@ public class DecomposeTaskResponse {
 	
 	public String toString() {
 		if (statusCode / 100 == 2) {  // too cute?
-			return "Task(" + task + ")";
+			return "success";
 		} else {
 			return "ErrorResult(" + statusCode + ", err=" + error + ")";
 		}
