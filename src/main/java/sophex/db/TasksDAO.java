@@ -97,5 +97,82 @@ public class TasksDAO {
     	}
     }
     
+    public boolean decomposeTask(String[] taskNames, String projectName, String parentPrefix) throws Exception {
+    	try {
+    		
+    		
+    		// Grabs the parent task's ID for the tasks team mates table
+    		int parentTaskID;
+    		int prefixAddon = 1;
+    		ArrayList<Integer> teammateIDs;
+    		PreparedStatement parent = conn.prepareStatement("SELECT * FROM task WHERE prefix=? AND p_name=?;");
+    		parent.setNString(1, parentPrefix);
+    		parent.setNString(2, projectName);
+    		ResultSet parentTask = parent.executeQuery();
+    		
+    		
+    		// If parent task somehow doesnt exist, return false
+    		if(!parentTask.next()) {
+    			return false;
+    		}
+    		parentTaskID = parentTask.getInt("task_id");
+    		parentTask.close();
+    		
+    		
+    		//Selecting all task tea mmate relationships from this table to add all team mate names to be used later
+    		PreparedStatement teamTasks = conn.prepareStatement("SELECT * from tasks_teammates WHERE task_id=?;");
+    		teamTasks.setInt(1, parentTaskID);
+    		ResultSet teammates = teamTasks.executeQuery();
+    		
+    		while(teammates.next()) {
+    			teammateIDs.add(teammates.getInt("teammate_id"));
+    		}
+    		teammates.close();
+    		
+    		// Removes team mates from the parent Task
+    		PreparedStatement deleteOldRelationship = conn.prepareStatement("DELETE FROM tasks_teammates WHERE task_id=?;");
+    		deleteOldRelationship.setInt(1, parentTaskID);
+    		deleteOldRelationship.execute();
+    		
+    		for(String name : taskNames) {
+    			
+    			// Inserts new task into the database
+    			PreparedStatement psFinal = conn.prepareStatement("INSERT INTO task (prefix,name,is_completed,p_name,parent_task) values (?,?,?,?,?);");
+        		String newPrefix = parentPrefix + "." + String.valueOf(prefixAddon);
+    			psFinal.setNString(1, newPrefix);
+        		psFinal.setNString(2, name);
+        		psFinal.setBoolean(3, false);
+        		psFinal.setNString(4, projectName);
+        		psFinal.setInt(5,parentTaskID);
+        		
+        		psFinal.execute();
+        		
+        		// Immediately grabs new task from database to fetch its ID:
+        		PreparedStatement getNewTask = conn.prepareStatement("SELECT * from task WHERE p_name=? AND prefix=?;");
+        		getNewTask.setNString(1, projectName);
+        		getNewTask.setNString(2, newPrefix);
+        		
+        		ResultSet newTask = getNewTask.executeQuery();
+        		
+        		if(!newTask.next()) {
+        			return false;
+        		}
+        		
+        		int taskID = newTask.getInt("task_id");     
+        		
+        		newTask.close();
+        		
+        		//Adds new team mate task relationship between ALL teammates to EACH task
+        		for(int teammateID : teammateIDs) {
+        			PreparedStatement teamTask = conn.prepareStatement("INSERT INTO tasks_teammates (task_id, teammate_id) values (?,?);");
+        			teamTask.setInt(1, taskID);
+        			teamTask.setInt(2, teammateID);
+        			teamTask.execute();
+        		}
+    		}
+    		return true;
+    	} catch (Exception e) {
+    		throw new Exception("Failed to decompose task: " + e.getMessage());
+    	}
     
 }
