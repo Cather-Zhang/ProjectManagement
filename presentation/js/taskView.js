@@ -79,10 +79,8 @@ function createTaskRow(task, depth, leaf){
 }
 
 function addTask(parentID){
-    console.log(parentID);
     $('#addTaskModal').modal('show');
     if(parentID != null || parentID != undefined || parentID != ""){
-        console.log("set requestedParent to " + parentID);
         requestedParent = parentID;
     }
     var form = document.getElementById("topLevelTaskName")
@@ -94,18 +92,25 @@ function addTask(parentID){
         form.value = "";
         return;
     }
-    console.log(requestedParent);
+
     console.log("Attempting to add task: " + req + " to " + requestedParent);
     var xhr = new XMLHttpRequest();
     xhr.open("POST", api_url + "/project/" + project.name + "/task/add", true);
-    xhr.send(JSON.stringify({"projectName" : project.name,"parentPrefix":null,"taskName":req}));
-    console.log("req" + requestedParent);
+    xhr.send(JSON.stringify({"projectName" : project.name,"parentPrefix":parentID,"taskName":req}));
     xhr.onloadend = function () {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             console.log(xhr.responseText);
             var js = JSON.parse(xhr.responseText);
             if (js["statusCode"] != "200") {return;}
-            var newTask = {ID:project.tasks.length+1 + "",name:req};
+            var newTask;
+            if(parentID == null){
+                newTask = {ID:project.tasks.length+1 + "",name:req};
+            }
+            //TODO make it traverse through the task list from the parentID, then append a task to its subtasks
+            else {
+                var pathArr = parentID.split();
+                newTask = {ID:project.tasks[pathArr[0]] + "",name:req};
+            }
             project.tasks.push(newTask);
             var depth = newTask.ID.split(".").length-1;
             createTaskRow(newTask, depth, true);

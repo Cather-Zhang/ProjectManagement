@@ -6,36 +6,29 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import sophex.db.ProjectsDAO;
 import sophex.http.admin.ArchiveProjectRequest;
 import sophex.http.admin.ArchiveProjectResponse;
+import sophex.http.admin.DeleteProjectRequest;
+import sophex.http.admin.DeleteProjectResponse;
 import sophex.model.Project;
 
 public class ArchiveProjectHandler implements RequestHandler<ArchiveProjectRequest, ArchiveProjectResponse>{
 
 	@Override
 	public ArchiveProjectResponse handleRequest(ArchiveProjectRequest req, Context context) {
-		boolean fail = false;
 		String failMessage = "";
 		ArchiveProjectResponse response;
 		try {
-			Project project = loadProjectUserFromRDS(req.getProjectName());
-			if(project == null) {
-				failMessage = req.getProjectName() + " does not exist.";
-				fail = true;
-			}		
-			if (fail) {
+			ProjectsDAO dao = new ProjectsDAO();
+			boolean success = dao.archiveProject(req.getProjectName());
+			if (!success) {
 				response = new ArchiveProjectResponse(failMessage,400); //fail
 			} else {
 					response = new ArchiveProjectResponse();  // success
 				}
 			} catch (Exception e) {
-				response = new ArchiveProjectResponse("Unable to view project: " + req.getProjectName() + "(" + e.getMessage() + ")",400);
+				System.out.println(e.getMessage());
+				response = new ArchiveProjectResponse("Unable to delete project: " + req.getProjectName() + "(" + e.getMessage() + ")",400);
 			}
 			return response; 
+			}
 		}
-			
-		public Project loadProjectUserFromRDS(String projectName) throws Exception {
-			ProjectsDAO dao = new ProjectsDAO();
-			Project p = dao.getProjectUser(projectName);
-			return p;
-		}
-	}
 

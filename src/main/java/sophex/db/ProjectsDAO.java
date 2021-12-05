@@ -188,6 +188,18 @@ public class ProjectsDAO {
 		Double progress = resultSet.getDouble("progress");
 		return new Project (name,archived,progress);
 	}
+	
+	public boolean archiveProject(String project) throws Exception{
+		try {
+			PreparedStatement ps = conn.prepareStatement("UPDATE " + tblName + " SET is_archived= " + true + " WHERE name=?;");
+			ps.setString(1, project);
+			ps.execute();
+			return true;
+		} catch (Exception e) {
+			throw new Exception("Filed to archive project: " + e.getMessage());
+		}
+	
+	}
 
 	
 	

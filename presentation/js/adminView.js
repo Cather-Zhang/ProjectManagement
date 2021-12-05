@@ -72,5 +72,5 @@ function generateProjectRows(){
 }
 
 function goTo(project){
-    window.location.href = "/presentation/html/project/index.html?name=" + project;
+    window.location.href = "/presentation/html/project.html?name=" + project;
 }
