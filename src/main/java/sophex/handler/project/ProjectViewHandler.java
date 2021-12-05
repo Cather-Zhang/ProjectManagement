@@ -17,10 +17,12 @@ LambdaLogger logger;
 		boolean fail = false;
 		String failMessage = "";
 		ProjectViewResponse response;
+		String name = req.getName().replaceAll("%20", " ");
 		try {
-			Project project = loadProjectUserFromRDS(req.getName(), context);
+			
+			Project project = loadProjectUserFromRDS(name, context);
 			if(project == null) {
-				failMessage = req.getName() + " does not exist.";
+				failMessage = name + " does not exist.";
 				fail = true;
 			}		
 			if (fail) {
@@ -29,7 +31,7 @@ LambdaLogger logger;
 				response = new ProjectViewResponse(project);  // success
 			}
 		} catch (Exception e) {
-			response = new ProjectViewResponse(400, "Unable to view project: " + req.getName() + "(" + e.getMessage() + ")");
+			response = new ProjectViewResponse(400, "Unable to view project: " + name + "(" + e.getMessage() + ")");
 		}
 		return response; 
 	}

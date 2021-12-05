@@ -52,12 +52,13 @@ public class ProjectsDAO {
     }
 	
     public Project getProjectUser(String name) throws Exception {
+    	
         try {
             Project project = null;
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM " + tblName + " WHERE name=?;");
             ps.setString(1,  name);
             ResultSet resultSet = ps.executeQuery();
-            
+             
         	while(resultSet.next()) {
         		project = generateProject(resultSet);
         	}
@@ -82,7 +83,7 @@ public class ProjectsDAO {
             	e.printStackTrace();
             	throw new Exception("Failed in getting project teammates: " + e.getMessage());
             }
-            
+            //TODO: make the tasks ordered into top level and subtasks, right now it generates all tasks and they are all top level
             try {
             	PreparedStatement ps3 = conn.prepareStatement("SELECT * FROM task WHERE p_name=?;");
             	ps3.setNString(1, name);

@@ -3,30 +3,30 @@ package sophex.model;
 import java.util.List;
 
 public class Task {
-	//String projectName;
+
 	String name;
-	String identifier;
+	String prefix;
 	List<Teammate> assignees;
 	List<Task> subtasks;
-	String parentTaskId;
+	String parentPrefix;
 	boolean isComplete = false;
 	
 	
-	public Task(String name, String id) {
+	public Task(String name, String prefix) {
 		this.name = name;
-		this.identifier = id;
+		this.prefix = prefix;
 	}
 	
-	public Task (String name, String id, String parentTaskId) {
+	public Task (String name, String prefix, String parentPrefix) {
 		this.name = name;
-		this.identifier = id;
-		this.parentTaskId = parentTaskId;
+		this.prefix = prefix;
+		this.parentPrefix = parentPrefix;
 	}
 	
 	public String getName() {return this.name;}
 	public void rename(String name) {this.name = name;}
 	
-	public String getID() {return this.identifier;}
+	public String getID() {return this.parentPrefix;}
 	public List<Teammate> getAssignees() {return this.assignees;}
 	
 	public void assignTo(Teammate t) {
@@ -41,7 +41,7 @@ public class Task {
 	
 	public boolean addSubtask(String taskName) { 
 		if (subtasks.size() != 0) {  //only add subtasks if it is decomposed already
-			Task newTask = new Task(taskName, this.identifier + "." + subtasks.size() + 1, this.identifier);
+			Task newTask = new Task(taskName, this.prefix + "." + subtasks.size() + 1, this.prefix);
 			subtasks.add(newTask);
 			return true;
 		}
@@ -56,7 +56,7 @@ public class Task {
 			this.assignees = null;
 			
 			for (int i = 0; i < names.length; i++) {  //add new task with each new string
-				Task newTask = new Task(names[i], this.identifier + "." + i, this.identifier);
+				Task newTask = new Task(names[i], this.prefix + "." + i, this.prefix);
 				if (oldAssignees.get(i) != null) newTask.assignTo(oldAssignees.get(i));
 				this.subtasks.add(newTask);
 			}

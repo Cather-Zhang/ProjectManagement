@@ -43,7 +43,7 @@ public class ProjectViewHandlerTest extends LambdaTest {
         CreateProjectRequest req = new Gson().fromJson(incoming, CreateProjectRequest.class);
         CreateProjectResponse resp = handler.handleRequest(req, createContext("create"));
         
-        ProjectViewRequest pvr = new ProjectViewRequest(var);
+        ProjectViewRequest pvr = new ProjectViewRequest("myProject");
         String incomingView = new Gson().toJson(pvr);  
       
         try {
