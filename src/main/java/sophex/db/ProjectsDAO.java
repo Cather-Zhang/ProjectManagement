@@ -187,6 +187,16 @@ public class ProjectsDAO {
 		Double progress = resultSet.getDouble("progress");
 		return new Project (name,archived,progress);
 	}
+	
+	public boolean archiveProject(String project) throws Exception{
+		try {
+			//DB code
+			return true;
+		} catch (Exception e) {
+			throw new Exception("Filed to archive project: " + e.getMessage());
+		}
+	
+	}
 
 	
 	
