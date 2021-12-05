@@ -1,8 +1,8 @@
 package sophex.http.task;
 
 public class AssignTeammateResponse {
-	int statusCode;
-	String error;
+	public int statusCode;
+	public String error;
 	
 	/**
 	 * success, status = 200

@@ -80,15 +80,15 @@ public class TasksTeammatesDAO {
 		newTask.close();
 		
 		PreparedStatement teammate = conn.prepareStatement("SELECT * FROM teammate WHERE name=? AND project_name=?;");
-    	teammate.setNString(1, projectName);
-		teammate.setNString(2, teammateName);
+    	teammate.setNString(1, teammateName);
+		teammate.setNString(2, projectName);
 		
 		ResultSet newTeammate = teammate.executeQuery();
 		
 		if(!newTeammate.next()) {
 			result[1] = -1;
 		} else {
-			result[1] = newTeammate.getInt("teammate_id");
+			result[1] = newTeammate.getInt("id");
 		}
     	
 		newTeammate.close();
