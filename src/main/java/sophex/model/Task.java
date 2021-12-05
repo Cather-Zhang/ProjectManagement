@@ -4,12 +4,12 @@ import java.util.List;
 
 public class Task {
 
-	String name;
-	String prefix;
-	List<Teammate> assignees;
-	List<Task> subtasks;
-	String parentPrefix;
-	boolean isComplete = false;
+	public String name;
+	public String prefix;
+	public List<Teammate> assignees;
+	public List<Task> subtasks;
+	public String parentPrefix;
+	public boolean isComplete = false;
 	
 	
 	public Task(String name, String prefix) {
@@ -24,9 +24,9 @@ public class Task {
 	}
 	
 	public String getName() {return this.name;}
-	public void rename(String name) {this.name = name;}
-	
-	public String getID() {return this.parentPrefix;}
+	public void setName(String name) {this.name = name;}
+	public String getPrefix() {return this.prefix;}
+	public String getParentPrefix() {return this.parentPrefix;}
 	public List<Teammate> getAssignees() {return this.assignees;}
 	
 	public void assignTo(Teammate t) {
