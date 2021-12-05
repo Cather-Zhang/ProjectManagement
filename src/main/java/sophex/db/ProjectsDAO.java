@@ -190,7 +190,9 @@ public class ProjectsDAO {
 	
 	public boolean archiveProject(String project) throws Exception{
 		try {
-			//DB code
+			PreparedStatement ps = conn.prepareStatement("UPDATE " + tblName + " SET is_archived= " + true + " WHERE name=?;");
+			ps.setString(1, project);
+			ps.execute();
 			return true;
 		} catch (Exception e) {
 			throw new Exception("Filed to archive project: " + e.getMessage());

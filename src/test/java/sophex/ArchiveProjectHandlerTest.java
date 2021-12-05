@@ -7,18 +7,24 @@ import org.junit.Test;
 
 import com.google.gson.Gson;
 
+import sophex.db.ProjectsDAO;
 import sophex.handler.admin.ArchiveProjectHandler;
 import sophex.http.admin.ArchiveProjectRequest;
 import sophex.http.admin.ArchiveProjectResponse;
+import sophex.model.Project;
 
 
 public class ArchiveProjectHandlerTest extends LambdaTest {
 
-    void testSuccessInput(String incoming) throws IOException {
+    void testSuccessInput(String incoming) throws Exception {
     	ArchiveProjectHandler handler = new ArchiveProjectHandler();
     	ArchiveProjectRequest req = new Gson().fromJson(incoming, ArchiveProjectRequest.class);
     	ArchiveProjectResponse resp = handler.handleRequest(req, createContext("create"));
     	
+    	ProjectsDAO dao = new ProjectsDAO();
+    	Project project = dao.getProjectUser("JairsFavProject4rl4rl");
+    	
+    	Assert.assertEquals(true, project.getIsArchived());
     	Assert.assertEquals(200, resp.statusCode);
     }
 	
