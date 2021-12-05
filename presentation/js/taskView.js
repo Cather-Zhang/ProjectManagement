@@ -49,14 +49,14 @@ function createTaskRow(task, depth, leaf){
     //new row for a new task
     var rowDiv = document.createElement("div");
     rowDiv.className = "row mb-3";
-    rowDiv.id = task.ID;
+    rowDiv.id = task.prefix;
     //name div for the task name
     var nameDiv = document.createElement('div');
     nameDiv.className = "col-md-auto";
     nameDiv.style = "padding-left:" + (depth*2 - 1)+ "rem;";
     //paragraph element for the task name
     var nameP = document.createElement('p');
-    nameP.innerHTML = task.ID + " " + task.name;
+    nameP.innerHTML = task.prefix + " " + task.name;
     //append nameP to nameDiv and nameDiv to rowDiv
     nameDiv.appendChild(nameP);
     rowDiv.appendChild(nameDiv);
@@ -64,14 +64,14 @@ function createTaskRow(task, depth, leaf){
     var btnDiv = document.createElement("div");
     btnDiv.className = "col-md-auto";
     if (!leaf) { //if the task is decomposed already
-        btnDiv.appendChild(buildButton("+", "addTask(\"" + task.ID + "\")", "secondary"));
-        btnDiv.appendChild(buildButton("Rename", "renameTask(\"" + task.ID + "\")", "secondary"));
+        btnDiv.appendChild(buildButton("+", "addTask(\"" + task.prefix + "\")", "secondary"));
+        btnDiv.appendChild(buildButton("Rename", "renameTask(\"" + task.prefix + "\")", "secondary"));
     }
     else { // if it is a 'leaf' (has no subtasks)
-        btnDiv.appendChild(buildButton("Decompose", "decompTask(\"" + task.ID + "\")", "secondary"));
-        btnDiv.appendChild(buildButton("Rename", "renameTask(\"" + task.ID + "\")", "secondary"));
-        btnDiv.appendChild(buildButton("Assign", "assignTeammate(\"" + task.ID + "\")", "secondary"));
-        btnDiv.appendChild(buildButton("✔", "markTask(\"" + task.ID + "\")", "secondary"));
+        btnDiv.appendChild(buildButton("Decompose", "decompTask(\"" + task.prefix + "\")", "secondary"));
+        btnDiv.appendChild(buildButton("Rename", "renameTask(\"" + task.prefix + "\")", "secondary"));
+        btnDiv.appendChild(buildButton("Assign", "assignTeammate(\"" + task.prefix + "\")", "secondary"));
+        btnDiv.appendChild(buildButton("✔", "markTask(\"" + task.prefix + "\")", "secondary"));
     }
     rowDiv.appendChild(btnDiv);
     var tasksDiv = document.getElementById("tasks");
@@ -112,7 +112,7 @@ function addTask(parentID){
                 newTask = {ID:project.tasks[pathArr[0]] + "",name:req};
             }
             project.tasks.push(newTask);
-            var depth = newTask.ID.split(".").length-1;
+            var depth = newTask.prefix.split(".").length-1;
             createTaskRow(newTask, depth, true);
             console.log("Successfully added task: " + req + " to " + requestedParent);
 
@@ -123,3 +123,4 @@ function addTask(parentID){
     };
 }
 
+//TODO make function to parse parentID = 3.1.2 as parentID = [3][1][2] then for parentID.length do task.subtask[parentID[i]]
