@@ -58,7 +58,7 @@ public class TasksTeammatesDAO {
 
     		return true;
     	} catch (Exception e) {
-    		throw new Exception("Failed to assign teammate: " + e.getMessage());
+    		throw new Exception("Failed to unassign teammate: " + e.getMessage());
     	}
     }
     
