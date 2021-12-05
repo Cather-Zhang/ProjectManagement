@@ -2,22 +2,22 @@ package sophex.http.task;
 
 public class RenameTaskRequest {
 	public String projectName;
-	public String taskID;
-	public String newName;
+	public String taskPrefix;
+	public String newTaskName;
 	
 	public String getProjectName() {return this.projectName;}
 	public void setProjectName(String name) {this.projectName = name;}
 	
-	public String getTaskId() {return this.taskID;}
-	public void setTaskId(String id) {this.taskID = id;}
+	public String getTaskPrefix() {return this.taskPrefix;}
+	public void setTaskPrefix(String id) {this.taskPrefix = id;}
 	
-	public String getFlag() {return this.newName;}
-	public void setFlag(String newName) {this.newName = newName;}
+	public String getNewTaskName() {return this.newTaskName;}
+	public void setNewTaskName(String newName) {this.newTaskName = newName;}
 	
-	public RenameTaskRequest(String name, String id, String newName) {
-		this.projectName = name;
-		this.taskID = id;
-		this.newName = newName;
+	public RenameTaskRequest(String newTaskName, String projectName, String taskPrefix) {
+		this.projectName = projectName;
+		this.taskPrefix = taskPrefix;
+		this.newTaskName = newTaskName;
 	}
 	
 	public RenameTaskRequest() {}

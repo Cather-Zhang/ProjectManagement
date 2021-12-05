@@ -29,15 +29,16 @@ public class TasksDAO {
     }
     
     
-    public boolean renameTask(String taskName, String projectName, String taskPrefix) throws Exception {
+    public boolean renameTask(String newTaskName, String projectName, String taskPrefix) throws Exception {
     	try {
     		
     		PreparedStatement updateTask = conn.prepareStatement("UPDATE task SET name=? WHERE prefix=? AND p_name=?");
-    		updateTask.setNString(1, taskName);
+    		updateTask.setNString(1, newTaskName);
     		updateTask.setNString(2, taskPrefix);
     		updateTask.setNString(3, projectName);
     		
-    		return updateTask.execute();
+    		updateTask.execute();
+    		return true;
     		
     	} catch (Exception e) {
     		throw new Exception("Failed to rename task: " + e.getMessage());
