@@ -31,10 +31,8 @@ function loadProject(name) {
     xhr.send();
     xhr.onloadend = function () {
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            console.log("Response: " + xhr.response);
             var js = JSON.parse(xhr.responseText);
             if (js["statusCode"] != "200") {errorLoadingProject(js["error"]);return;}
-            //TODO CHANGE BACK TO PROJECT = JS["P"]
             project = js["project"];
             console.log("Found project: " + JSON.stringify(project));
             document.getElementById("nameHeader").innerHTML = project.name;
@@ -42,17 +40,21 @@ function loadProject(name) {
             loadTeamView();
         }
         else {
-            console.log("invalid project");
+            console.log("Error with XHR")
+            errorLoadingProject("There was an error with the API")
         }
     };
 }
 
+/**
+ * Loads the project from the nav search bar
+ */
 function loadProjectNav(){
     var name = document.getElementById("navLoad").value;
     if (!(/[a-zA-Z]/.test(name))) {
         return;
     }
-    window.location.href = "/presentation/html/project/index.html?name=" + name;
+    window.location.href = "/presentation/html/project.html?name=" + name;
 }
 
 /**

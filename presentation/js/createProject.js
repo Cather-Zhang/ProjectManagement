@@ -13,33 +13,21 @@ function createProject() {
         console.log(xhr.request);
         
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            console.log ("XHR:" + xhr.responseText);
+            console.log ("Result:" + xhr.responseText);
             var js = JSON.parse(xhr.responseText);
-            loadNewProject(xhr.responseText);
+        
+            var status = js["statusCode"];
+            
+            if (status == 200) {      
+                window.location.href = "/presentation/html/project.html?name=" + js["projectName"];
+            } else {
+                var msg = js["error"];
+                var e = document.createElement("div");
+                e.classList = "alert alert-danger";
+                e.setAttribute("role", "alert");
+                e.innerHTML = msg;
+                document.getElementById("alertDiv").appendChild(e);
+            }
         }
     };
-}
-
-/**
- * Loads the new project's page
- * @param {*} result 
- */
-function loadNewProject(result) {
-    console.log("result:" + result);
-    var js = JSON.parse(result);
-
-    var status = js["statusCode"];
-    
-    if (status == 200) {      
-        var project = js["project"];
-        window.location.href = "/presentation/html/project/index.html?name=" + project.name;
-    } else {
-        console.log("woauibefoiuaebuiof")
-        var msg = js["error"];
-        var e = document.createElement("div");
-        e.classList = "alert alert-danger";
-        e.setAttribute("role", "alert");
-        e.innerHTML = msg;
-        document.getElementById("alertDiv").appendChild(e);
-    }
 }
