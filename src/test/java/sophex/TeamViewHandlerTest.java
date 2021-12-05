@@ -55,7 +55,7 @@ public class TeamViewHandlerTest extends LambdaTest {
     
     @Test
     public void testInList() throws Exception {
-    	String var = "JairsFavProject4rl4rl";
+    	String var = "myProject";
     	TeamViewRequest pvr = new TeamViewRequest(var);
         String incomingView = new Gson().toJson(pvr);  
         try {
@@ -76,3 +76,4 @@ public class TeamViewHandlerTest extends LambdaTest {
     		Assert.fail("Invalid:" + ioe.getMessage());
     	}
     }
+}

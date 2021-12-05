@@ -51,6 +51,66 @@ public class ProjectsDAO {
         }
     }
 	
+    public ArrayList<Teammate> getTeamView(String projectName) throws Exception {
+    	try {
+    		ArrayList<Teammate> teammates = new ArrayList<>();
+    		PreparedStatement ps = conn.prepareStatement("SELECT * FROM teammate WHERE project_name=?;");
+            ps.setNString(1, projectName);
+        	ResultSet resultSetTeammate = ps.executeQuery();
+        	
+        	while(resultSetTeammate.next()) {
+        		String s = resultSetTeammate.getString("name");
+        		int teammateId = resultSetTeammate.getInt("id");
+        		Teammate t = new Teammate(s);
+        		
+        		try {
+        			
+        			PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM tasks_teammates WHERE teammate_id=?;");
+                    ps2.setInt(1, teammateId);
+                	ResultSet resultSetTasks= ps2.executeQuery();
+                	
+                	while(resultSetTasks.next()) {
+                		int taskId = resultSetTasks.getInt("task_id");
+                		String taskName = null;
+                		try {
+                			
+                			PreparedStatement ps3 = conn.prepareStatement("SELECT * FROM task WHERE task_id=?;");
+                            ps3.setInt(1, taskId);
+                        	ResultSet resultSetTask= ps3.executeQuery();
+                        	
+                        	while(resultSetTask.next()) {
+                        		taskName = resultSetTask.getNString("name");
+                        	}
+                        	t.addTask(taskName);
+                        	
+                        	resultSetTask.close();
+                        	ps3.close();
+                		} catch (Exception e) {
+                        	e.printStackTrace();
+                        	throw new Exception("Failed in getting task of teammates: " + e.getMessage());
+                        }
+                		
+                	}
+                	
+                	resultSetTasks.close();
+                	ps2.close();
+                	
+        			
+        		} catch (Exception e) {
+                	e.printStackTrace();
+                	throw new Exception("Failed in getting tasks of teammates: " + e.getMessage());
+                }
+        		teammates.add(t);
+        	}
+            resultSetTeammate.close();
+            ps.close();
+            return teammates;
+        } catch (Exception e) {
+        	e.printStackTrace();
+        	throw new Exception("Failed in getting project teammates: " + e.getMessage());
+        }
+    }
+    
     public Project getProjectUser(String name) throws Exception {
     	
         try {

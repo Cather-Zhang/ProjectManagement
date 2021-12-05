@@ -1,21 +1,22 @@
 package sophex.model;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Teammate {
 
 	final String name;
-	List<String> tasks;
+	ArrayList<String> tasks;
 	
 	public Teammate(String name) {
 		this.name = name;
+		tasks = new ArrayList<>();
 	}
 	
 	public String getName() {return this.name;}
 	
-	public List<String> getTasks() {return this.tasks;}
+	public ArrayList<String> getTasks() {return this.tasks;}
 	
-	public void addTask(Task t) {this.tasks.add(t.getName());}
+	public void addTask(String taskName) {this.tasks.add(taskName);}
 	public void removeTask(Task t) {this.tasks.remove(t.getName());}
 
 }

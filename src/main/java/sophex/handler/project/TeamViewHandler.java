@@ -6,10 +6,8 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 import sophex.db.ProjectsDAO;
-import sophex.http.project.ProjectViewResponse;
 import sophex.http.project.TeamViewRequest;
 import sophex.http.project.TeamViewResponse;
-import sophex.model.Project;
 import sophex.model.Teammate;
 
 public class TeamViewHandler implements RequestHandler<TeamViewRequest, TeamViewResponse>{

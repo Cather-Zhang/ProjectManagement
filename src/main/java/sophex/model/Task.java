@@ -31,7 +31,7 @@ public class Task {
 	
 	public void assignTo(Teammate t) {
 		this.assignees.add(t);
-		t.addTask(this);
+		t.addTask(this.name);
 	}
 	
 	public void unssign(Teammate t) {
