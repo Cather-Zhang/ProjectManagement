@@ -1,10 +1,9 @@
 package sophex.http.task;
 
-import sophex.model.Project;
 
 public class UnassignTeammateResponse {
-	int statusCode;
-	String error;
+	public int statusCode;
+	public String error;
 	
 	/**
 	 * success, status = 200

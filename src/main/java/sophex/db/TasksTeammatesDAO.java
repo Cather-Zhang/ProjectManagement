@@ -32,11 +32,22 @@ public class TasksTeammatesDAO {
     			return false;
     		}
     		
-    		PreparedStatement ps = conn.prepareStatement("INSERT INTO tasks_teammates (task_id, teammate_id) values (?,?);");
-			ps.setInt(1, ids[0]);
-			ps.setInt(2, ids[1]);
-			ps.execute();
+    		//Cather: check if the teammate is already assigned to the task 
+    		PreparedStatement exist = conn.prepareStatement("SELECT * FROM tasks_teammates WHERE task_id=? AND teammate_id=?;");
+    		exist.setInt(1, ids[0]);
+    		exist.setInt(2, ids[1]);
     		
+    		ResultSet rs = exist.executeQuery();
+    		
+    		if(rs.next()) {
+    			return false;
+    		} else {
+        		PreparedStatement ps = conn.prepareStatement("INSERT INTO tasks_teammates (task_id, teammate_id) values (?,?);");
+    			ps.setInt(1, ids[0]);
+    			ps.setInt(2, ids[1]);
+    			ps.execute();
+    		}      	
+    		rs.close();
     		return true;
     	} catch (Exception e) {
     		throw new Exception("Failed to assign teammate: " + e.getMessage());
@@ -55,8 +66,9 @@ public class TasksTeammatesDAO {
         	ps.setInt(1,  ids[0]);
         	ps.setInt(2,  ids[1]);
         	ps.execute();
-
+	
     		return true;
+
     	} catch (Exception e) {
     		throw new Exception("Failed to unassign teammate: " + e.getMessage());
     	}

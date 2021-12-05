@@ -37,7 +37,7 @@ public class AssignTeammateHandlerTest extends LambdaTest {
     @Test
     public void testShouldBeOk() {
 
-    	AssignTeammateRequest atr = new AssignTeammateRequest("wad", "myProject", "1.1");
+    	AssignTeammateRequest atr = new AssignTeammateRequest("ewa", "myProject", "1.1");
         String SAMPLE_INPUT_STRING = new Gson().toJson(atr);  
         
         try {
@@ -51,6 +51,19 @@ public class AssignTeammateHandlerTest extends LambdaTest {
     public void testTeammateNotOnProject() {
 
     	AssignTeammateRequest atr = new AssignTeammateRequest("cather", "myProject", "1.1");
+        String SAMPLE_INPUT_STRING = new Gson().toJson(atr);  
+        
+        try {
+        	testFailInput(SAMPLE_INPUT_STRING, 422);
+        } catch (IOException ioe) {
+        	Assert.fail("Invalid:" + ioe.getMessage());
+        }
+    }
+    
+    @Test
+    public void testTeammateAlreadyAssigned() {
+
+    	AssignTeammateRequest atr = new AssignTeammateRequest("wad", "myProject", "1.1");
         String SAMPLE_INPUT_STRING = new Gson().toJson(atr);  
         
         try {

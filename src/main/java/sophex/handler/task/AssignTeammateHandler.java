@@ -13,7 +13,7 @@ import sophex.http.task.AssignTeammateResponse;
 public class AssignTeammateHandler implements RequestHandler<AssignTeammateRequest, AssignTeammateResponse> {
 
 	LambdaLogger logger;
-	//TODO need teammate-task DAO
+
 	public boolean assignTeammate(String teammateName, String projectName, String taskPrefix) throws Exception { 
 		if (logger != null) {logger.log("in assign teammate");}
 		TasksTeammatesDAO dao = new TasksTeammatesDAO();

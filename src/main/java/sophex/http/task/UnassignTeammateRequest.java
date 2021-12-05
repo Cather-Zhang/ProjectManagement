@@ -2,21 +2,21 @@ package sophex.http.task;
 
 public class UnassignTeammateRequest {
 	public String projectName;
-	public String taskID;
+	public String taskPrefix;
 	public String teammateName;
 	
 	public String getProjectName() {return this.projectName;}
 	public void setProjectName(String name) {this.projectName = name;}
 	
-	public String getTaskId() {return this.taskID;}
-	public void setTaskId(String id) {this.taskID = id;}
+	public String getTaskPrefix() {return this.taskPrefix;}
+	public void setTaskPrefix(String id) {this.taskPrefix = id;}
 	
-	public String getTeammate() {return this.teammateName;}
-	public void setTeammate(String name) {this.teammateName = name;}
+	public String getTeammateName() {return this.teammateName;}
+	public void setTeammateName(String name) {this.teammateName = name;}
 	
-	public UnassignTeammateRequest(String name, String id, String teammateName) {
-		this.projectName = name;
-		this.taskID = id;
+	public UnassignTeammateRequest(String teammateName, String projectName, String taskPrefix) {
+		this.projectName = projectName;
+		this.taskPrefix = taskPrefix;
 		this.teammateName = teammateName;
 	}
 	
