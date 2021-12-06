@@ -1,5 +1,6 @@
 package sophex.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Task {
@@ -7,7 +8,7 @@ public class Task {
 	public String name;
 	public String prefix;
 	public List<Teammate> assignees;
-	public List<Task> subtasks;
+	public ArrayList<Task> subtasks;
 	public String parentPrefix;
 	public boolean isComplete = false;
 	
@@ -39,13 +40,12 @@ public class Task {
 		t.removeTask(this);
 	}
 	
-	public boolean addSubtask(String taskName) { 
-		if (subtasks.size() != 0) {  //only add subtasks if it is decomposed already
-			Task newTask = new Task(taskName, this.prefix + "." + subtasks.size() + 1, this.prefix);
-			subtasks.add(newTask);
-			return true;
-		}
-		else return false;
+	public void addSubtask(Task task) { 
+		subtasks.add(task);
+	}
+	
+	public ArrayList<Task> getSubtasks(){
+		return subtasks;
 	}
 	
 	public boolean decompose(String[] names) {

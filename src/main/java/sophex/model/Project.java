@@ -46,6 +46,10 @@ public class Project {
 		//TODO
 	}
 	
+	public void wipeTasks() {
+		tasks = new ArrayList<Task>();
+	}
+	
 	public void addTask(Task t) {
 		tasks.add(t);
 	}
