@@ -188,11 +188,11 @@ public class ProjectsDAO {
             			if(prefix.length()==1){
             				tasks.add(task);
             			} else {
-            				while(prefix.length()>1) {
-            					prefix = prefix.substring(2);
+            				while(prefix.length()>=1) {
             					if(prefix.length()==1) {
             						currentTask.addSubtask(task);
             					} else {
+            						prefix = prefix.substring(2);
             						currentIndex = Integer.valueOf(prefix.substring(0, 1));
             						currentTask = currentTask.getSubtasks().get(currentIndex-1);
             					}
