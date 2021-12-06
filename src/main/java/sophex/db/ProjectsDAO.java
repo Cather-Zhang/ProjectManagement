@@ -145,7 +145,7 @@ public class ProjectsDAO {
             }
             //TODO: make the tasks ordered into top level and subtasks, right now it generates all tasks and they are all top level
             try {
-            	PreparedStatement ps3 = conn.prepareStatement("SELECT * FROM task WHERE p_name=?;");
+            	PreparedStatement ps3 = conn.prepareStatement("SELECT * FROM task WHERE p_name=? ORDER BY prefix ASC;");
             	ps3.setNString(1, name);
             	ResultSet resultSetTask = ps3.executeQuery();
             	
