@@ -180,7 +180,9 @@ public class ProjectsDAO {
             	            }
             			}
             			
-            			ArrayList<Task> tasks = project.getTasks();
+            			
+            			
+            			/*ArrayList<Task> tasks = project.getTasks();
             			String prefix = task.getPrefix();
             			int currentIndex =  Integer.valueOf(prefix.substring(0, 1));
             			Task currentTask = tasks.get(currentIndex-1);
@@ -203,10 +205,12 @@ public class ProjectsDAO {
             			
             			for( Task builtTask : tasks) {
             				project.addTask(builtTask);
-            			}
+            			} */
             			
                         resultSetTaskTeammate.close();
                         ps4.close();
+                        
+                        project.addTask(task);
             		} catch (Exception e) {
                     	e.printStackTrace();
                     	throw new Exception("Failed in getting teammate/task relationships: " + e.getMessage());
@@ -215,6 +219,10 @@ public class ProjectsDAO {
                 resultSetTask.close();
                 ps3.close();
             	
+                
+                
+                
+                
             } catch (Exception e) {
             	e.printStackTrace();
             	throw new Exception("Failed in getting project tasks: " + e.getMessage());
