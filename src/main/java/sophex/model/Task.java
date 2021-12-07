@@ -13,9 +13,10 @@ public class Task {
 	public boolean isComplete = false;
 	
 	
-	public Task(String name, String prefix) {
+	public Task(String name, String prefix, boolean isCompleted) {
 		this.name = name;
 		this.prefix = prefix;
+		this.isComplete = isCompleted;
 	}
 	
 	public Task (String name, String prefix, String parentPrefix) {
