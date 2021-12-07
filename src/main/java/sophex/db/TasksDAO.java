@@ -86,7 +86,7 @@ public class TasksDAO {
     				prefix++;
     			}
     			
-    			if(prefix>1) {
+    			if(prefix == 1) {
     				return false;
     			}
     			

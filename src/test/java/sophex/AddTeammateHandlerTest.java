@@ -7,6 +7,8 @@ import org.junit.Test;
 
 import com.google.gson.Gson;
 
+import sophex.db.ProjectsDAO;
+import sophex.db.TeammatesDAO;
 import sophex.handler.project.AddTeammateHandler;
 import sophex.http.project.AddTeammateRequest;
 import sophex.http.project.AddTeammateResponse;
@@ -33,14 +35,15 @@ public class AddTeammateHandlerTest extends LambdaTest {
     
     @Test
     public void addToKnownProject() throws Exception {
-    	int rndNum = (int)(990*(Math.random()));
-    	String str = "throwAway" + rndNum;
+    	TeammatesDAO dao = new TeammatesDAO();
+    	String str = "Space Invader";
    
     	String var = "TestA";
-    	AddTeammateRequest apr = new AddTeammateRequest(str, var);
-        String toAdd = new Gson().toJson(apr); 
+    	AddTeammateRequest atr = new AddTeammateRequest(var, str);
+        String toAdd = new Gson().toJson(atr); 
         try {
         	testSuccessInput(toAdd);
+        	dao.removeTeammate(var, str);
         } catch (IOException ioe) {
         	Assert.fail("Invalid:" + ioe.getMessage());
         }

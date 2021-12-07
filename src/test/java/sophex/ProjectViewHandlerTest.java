@@ -7,6 +7,9 @@ import org.junit.Test;
 
 import com.google.gson.Gson;
 
+import sophex.db.ProjectsDAO;
+import sophex.db.TasksDAO;
+import sophex.db.TeammatesDAO;
 import sophex.handler.project.CreateProjectHandler;
 import sophex.handler.project.ProjectViewHandler;
 import sophex.http.project.CreateProjectRequest;
@@ -34,20 +37,22 @@ public class ProjectViewHandlerTest extends LambdaTest {
     
     @Test
     public void testShouldBeOk() throws Exception {
-    	int rndNum = (int)(990*(Math.random()));
-    	String var = "throwAway" + rndNum;
-    	
-    	CreateProjectRequest ccr = new CreateProjectRequest(var);
-        String incoming = new Gson().toJson(ccr);  
-        CreateProjectHandler handler = new CreateProjectHandler();
-        CreateProjectRequest req = new Gson().fromJson(incoming, CreateProjectRequest.class);
-        CreateProjectResponse resp = handler.handleRequest(req, createContext("create"));
+    	ProjectsDAO dao = new ProjectsDAO();
+        String var = "Test assign task";
+        dao.addProject(var);
         
-        ProjectViewRequest pvr = new ProjectViewRequest("myProject");
+    	TasksDAO daoT = new TasksDAO();
+    	daoT.addTask("Top level task", var, null);
+    	
+    	TeammatesDAO daoTe = new TeammatesDAO();
+    	daoTe.addTeammate("Test A", var);
+        
+        ProjectViewRequest pvr = new ProjectViewRequest(var);
         String incomingView = new Gson().toJson(pvr);  
       
         try {
         	testSuccessInput(incomingView);
+        	dao.deleteProject(var);
         } catch (IOException ioe) {
         	Assert.fail("Invalid:" + ioe.getMessage());
         }
@@ -55,7 +60,7 @@ public class ProjectViewHandlerTest extends LambdaTest {
     
     @Test
     public void testInList() throws Exception {
-    	String var = "wackyIssuesHaha";
+    	String var = "Space Invader";
     	ProjectViewRequest pvr = new ProjectViewRequest(var);
         String incomingView = new Gson().toJson(pvr);  
         try {

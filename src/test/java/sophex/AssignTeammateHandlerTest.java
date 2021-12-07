@@ -7,6 +7,10 @@ import org.junit.Test;
 
 import com.google.gson.Gson;
 
+import sophex.db.ProjectsDAO;
+import sophex.db.TasksDAO;
+import sophex.db.TasksTeammatesDAO;
+import sophex.db.TeammatesDAO;
 import sophex.handler.task.AssignTeammateHandler;
 import sophex.http.task.AssignTeammateRequest;
 import sophex.http.task.AssignTeammateResponse;
@@ -35,13 +39,23 @@ public class AssignTeammateHandlerTest extends LambdaTest {
    
     // NOTE: this proliferates large number of constants! Be mindful
     @Test
-    public void testShouldBeOk() {
-
-    	AssignTeammateRequest atr = new AssignTeammateRequest("ewa", "myProject", "3");
+    public void testShouldBeOk() throws Exception {
+    	ProjectsDAO dao = new ProjectsDAO();
+        String var = "Test assign task";
+        dao.addProject(var);
+        
+    	TasksDAO daoT = new TasksDAO();
+    	daoT.addTask("Top level task", var, null);
+    	
+    	TeammatesDAO daoTe = new TeammatesDAO();
+    	daoTe.addTeammate("Test A", var);
+    	
+    	AssignTeammateRequest atr = new AssignTeammateRequest("Test A", var, "1");
         String SAMPLE_INPUT_STRING = new Gson().toJson(atr);  
         
         try {
         	testSuccessInput(SAMPLE_INPUT_STRING);
+        	dao.deleteProject(var);
         } catch (IOException ioe) {
         	Assert.fail("Invalid:" + ioe.getMessage());
         }
@@ -60,32 +74,58 @@ public class AssignTeammateHandlerTest extends LambdaTest {
         }
     }
     
-    /*
+    
     @Test
-    public void testTeammateAlreadyAssigned() {
+    public void testTeammateAlreadyAssigned() throws Exception {
+    	ProjectsDAO dao = new ProjectsDAO();
+        String var = "Test assign task";
+        dao.addProject(var);
+        
+    	TasksDAO daoT = new TasksDAO();
+    	daoT.addTask("Top level task", var, null);
+    	
+    	TeammatesDAO daoTe = new TeammatesDAO();
+    	daoTe.addTeammate("Test A", var);
+    	
+    	TasksTeammatesDAO daoTT = new TasksTeammatesDAO();
+    	daoTT.assignTeammate("Test A", var, "1");
+    	
+    	AssignTeammateRequest atr = new AssignTeammateRequest("Test A", var, "1");
 
-    	AssignTeammateRequest atr = new AssignTeammateRequest("wad", "myProject", "1");
         String SAMPLE_INPUT_STRING = new Gson().toJson(atr);  
         
+        try {
+        	testFailInput(SAMPLE_INPUT_STRING, 422);
+        	dao.deleteProject(var);
+        } catch (IOException ioe) {
+        	Assert.fail("Invalid:" + ioe.getMessage());
+        }
+    }
+    
+    @Test
+    public void testTaskDoesNotExist() throws Exception {
+
+    	ProjectsDAO dao = new ProjectsDAO();
+        String var = "Test assign task";
+        dao.addProject(var);
+        
+    	TasksDAO daoT = new TasksDAO();
+    	daoT.addTask("Top level task", var, null);
+    	
+    	TeammatesDAO daoTe = new TeammatesDAO();
+    	daoTe.addTeammate("Test A", var);
+
+    	
+    	AssignTeammateRequest atr = new AssignTeammateRequest("Test A", var, "9");
+
+        String SAMPLE_INPUT_STRING = new Gson().toJson(atr);  
         try {
         	testFailInput(SAMPLE_INPUT_STRING, 422);
         } catch (IOException ioe) {
         	Assert.fail("Invalid:" + ioe.getMessage());
         }
     }
-    */
-    @Test
-    public void testTaskDoesNotExist() {
-
-    	AssignTeammateRequest atr = new AssignTeammateRequest("wad", "myProject", "10");
-        String SAMPLE_INPUT_STRING = new Gson().toJson(atr);  
-        
-        try {
-        	testFailInput(SAMPLE_INPUT_STRING, 422);
-        } catch (IOException ioe) {
-        	Assert.fail("Invalid:" + ioe.getMessage());
-        }
-    }
+    
     
 
 }

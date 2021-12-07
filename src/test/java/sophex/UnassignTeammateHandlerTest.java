@@ -7,6 +7,9 @@ import org.junit.Test;
 
 import com.google.gson.Gson;
 
+import sophex.db.ProjectsDAO;
+import sophex.db.TasksDAO;
+import sophex.db.TeammatesDAO;
 import sophex.handler.task.AssignTeammateHandler;
 import sophex.handler.task.UnassignTeammateHandler;
 import sophex.http.task.AssignTeammateRequest;
@@ -17,7 +20,7 @@ import sophex.http.task.UnassignTeammateResponse;
 /**
  * A simple test harness for locally invoking your Lambda function handler.
  */
-public class UnsssignTeammateHandlerTest extends LambdaTest {
+public class UnassignTeammateHandlerTest extends LambdaTest {
 
     void testSuccessInput(String incoming) throws IOException {
     	UnassignTeammateHandler handler = new UnassignTeammateHandler();
@@ -37,13 +40,23 @@ public class UnsssignTeammateHandlerTest extends LambdaTest {
 
    
     @Test
-    public void testShouldBeOk() {
-
-    	UnassignTeammateRequest atr = new UnassignTeammateRequest("ewa", "myProject", "1.1");
+    public void testShouldBeOk() throws Exception {
+    	ProjectsDAO dao = new ProjectsDAO();
+        String var = "Test unassign task";
+        dao.addProject(var);
+        
+    	TasksDAO daoT = new TasksDAO();
+    	daoT.addTask("Top level task", var, null);
+    	
+    	TeammatesDAO daoTe = new TeammatesDAO();
+    	daoTe.addTeammate("Test A", var);
+    	
+    	UnassignTeammateRequest atr = new UnassignTeammateRequest("Test A", var, "1");
         String SAMPLE_INPUT_STRING = new Gson().toJson(atr);  
         
         try {
         	testSuccessInput(SAMPLE_INPUT_STRING);
+        	dao.deleteProject(var);
         } catch (IOException ioe) {
         	Assert.fail("Invalid:" + ioe.getMessage());
         }

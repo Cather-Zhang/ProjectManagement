@@ -43,9 +43,10 @@ public class TasksTeammatesDAO {
     		if(rs.next()) {
     			return false;
     		} else {
-        		PreparedStatement ps = conn.prepareStatement("INSERT INTO tasks_teammates (task_id, teammate_id) values (?,?);");
+        		PreparedStatement ps = conn.prepareStatement("INSERT INTO tasks_teammates (task_id, teammate_id, project_name) values (?,?,?);");
     			ps.setInt(1, ids[0]);
     			ps.setInt(2, ids[1]);
+    			ps.setNString(3, projectName);
     			ps.execute();
     		}      	
     		rs.close();

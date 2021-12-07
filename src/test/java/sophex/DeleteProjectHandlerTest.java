@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import com.google.gson.Gson;
 
+import sophex.db.ProjectsDAO;
 import sophex.handler.admin.DeleteProjectHandler;
 import sophex.http.admin.DeleteProjectRequest;
 import sophex.http.admin.DeleteProjectResponse;
@@ -33,7 +34,10 @@ public class DeleteProjectHandlerTest extends LambdaTest {
     
     @Test
     public void delete() throws Exception{
-    	String var = "Calc 4";
+    	String var = "Test delete project";
+    	ProjectsDAO dao = new ProjectsDAO();
+        dao.addProject(var);
+        
     	DeleteProjectRequest apr = new DeleteProjectRequest(var);
     	String toDelete = new Gson().toJson(apr);
     	try {

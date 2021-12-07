@@ -232,14 +232,28 @@ public class ProjectsDAO {
     
     public boolean deleteProject(String project) throws Exception {
     	try {
-        	PreparedStatement ps = conn.prepareStatement("DELETE FROM " + tblName + " WHERE name = ?;");
-        	ps.setString(1, project);
-        	ps.execute();
+    		PreparedStatement ps0 = conn.prepareStatement("DELETE FROM " + "tasks_teammates" + " WHERE project_name = ?;");
+        	ps0.setString(1, project);
+        	ps0.execute();
+        	
+        	PreparedStatement ps1 = conn.prepareStatement("DELETE FROM " + "teammate" + " WHERE project_name = ?;");
+        	ps1.setString(1, project);
+        	ps1.execute();
+        	
+        	PreparedStatement ps2 = conn.prepareStatement("DELETE FROM " + "task" + " WHERE p_name = ?;");
+        	ps2.setString(1, project);
+        	ps2.execute();
+        	
+        	PreparedStatement ps3 = conn.prepareStatement("DELETE FROM " + "project" + " WHERE name = ?;");
+        	ps3.setString(1, project);
+        	ps3.execute();
         	return true;
 
     	} catch (Exception e) {
         	throw new Exception("Failed to delete project project: " + e.getMessage());
     	}
+    
+    	
     }
 	
 	private Project generateProject(ResultSet resultSet) throws Exception {

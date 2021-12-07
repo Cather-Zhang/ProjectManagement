@@ -7,6 +7,8 @@ import org.junit.Test;
 
 import com.google.gson.Gson;
 
+import sophex.db.ProjectsDAO;
+import sophex.db.TasksDAO;
 import sophex.handler.task.AddTaskHandler;
 import sophex.handler.task.DecomposeTaskHandler;
 import sophex.http.task.AddTaskRequest;
@@ -38,11 +40,18 @@ public class DecomposeTaskHandlerTest extends LambdaTest {
    
     // NOTE: this proliferates large number of constants! Be mindful
     @Test
-    public void testShouldBeOk() {
-    	int rndNum = (int)(990*(Math.random()));
-    	String[] var = {"Task" + rndNum, "Some other task"};
+    public void testShouldBeOk() throws Exception {
     	
-    	DecomposeTaskRequest dtr = new DecomposeTaskRequest(var, "JairsFavProject4rl4rl", "1.1");
+    	String var = "TestDecomposeTaskProject";
+    	
+    	ProjectsDAO dao = new ProjectsDAO();
+    	dao.addProject(var);
+    	TasksDAO daoT = new TasksDAO();
+    	daoT.addTask("Top level task", var, null);
+    	
+    	String[] tasks = {"t1.1", "t1.2"};
+    	
+    	DecomposeTaskRequest dtr = new DecomposeTaskRequest(tasks, var, "1");
         String SAMPLE_INPUT_STRING = new Gson().toJson(dtr);  
         
         try {
@@ -54,15 +63,18 @@ public class DecomposeTaskHandlerTest extends LambdaTest {
     
     
     @Test
-    public void testShouldFail() {
+    public void testShouldFail() throws Exception {
+    	ProjectsDAO dao = new ProjectsDAO();
+    	String var = "TestDecomposeTaskProject";
     	int rndNum = (int)(990*(Math.random()));
-    	String[] var = {"Task" + rndNum, "Some other task"};
+    	String[] tasks = {"Task" + rndNum, "Some other task"};
     	
-    	DecomposeTaskRequest dtr = new DecomposeTaskRequest(var, "myProject", "2");
+    	DecomposeTaskRequest dtr = new DecomposeTaskRequest(tasks, var, "2");
         String SAMPLE_INPUT_STRING = new Gson().toJson(dtr);  
         
         try {
         	testFailInput(SAMPLE_INPUT_STRING, 422);
+        	dao.deleteProject(var);
         } catch (IOException ioe) {
         	Assert.fail("Invalid:" + ioe.getMessage());
         }

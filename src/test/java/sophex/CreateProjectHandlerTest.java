@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import com.google.gson.Gson;
 
+import sophex.db.ProjectsDAO;
 import sophex.handler.project.CreateProjectHandler;
 import sophex.http.project.CreateProjectRequest;
 import sophex.http.project.CreateProjectResponse;
@@ -35,7 +36,8 @@ public class CreateProjectHandlerTest extends LambdaTest {
    
     // NOTE: this proliferates large number of constants! Be mindful
     @Test
-    public void testShouldBeOk() {
+    public void testShouldBeOk() throws Exception {
+    	ProjectsDAO dao = new ProjectsDAO();
     	int rndNum = (int)(990*(Math.random()));
     	String var = "throwAway" + rndNum;
     	
@@ -44,6 +46,7 @@ public class CreateProjectHandlerTest extends LambdaTest {
         
         try {
         	testSuccessInput(SAMPLE_INPUT_STRING);
+        	dao.deleteProject(var);
         } catch (IOException ioe) {
         	Assert.fail("Invalid:" + ioe.getMessage());
         }
@@ -51,7 +54,8 @@ public class CreateProjectHandlerTest extends LambdaTest {
     
     
     @Test
-    public void testDuplicateInput() {
+    public void testDuplicateInput() throws Exception {
+    	ProjectsDAO dao = new ProjectsDAO();
     	int rndNum = (int)(990*(Math.random()));
     	String var = "throwAway" + rndNum;
     	
@@ -63,12 +67,13 @@ public class CreateProjectHandlerTest extends LambdaTest {
         } catch (IOException ioe) {
         	Assert.fail("Invalid:" + ioe.getMessage());
         }
-        String var2 = var;
+        
     	
-    	CreateProjectRequest cpr2 = new CreateProjectRequest(var2);
+    	CreateProjectRequest cpr2 = new CreateProjectRequest(var);
         String SAMPLE_INPUT_STRING2 = new Gson().toJson(cpr2);  
         try {
         	testFailInput(SAMPLE_INPUT_STRING2, 422);
+        	dao.deleteProject(var);
         } catch (IOException ioe) {
         	Assert.fail("Invalid:" + ioe.getMessage());
         }
