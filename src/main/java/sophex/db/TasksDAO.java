@@ -45,6 +45,40 @@ public class TasksDAO {
     	}
     }
     
+    public boolean markTask(String projectName, String taskPrefix) throws Exception {
+    	try {
+    		PreparedStatement ps = conn.prepareStatement("SELECT * from task WHERE p_name=? AND prefix=?;");
+    		ps.setNString(1, projectName);
+    		ps.setNString(2, taskPrefix);
+    		
+    		ResultSet resultSetTask = ps.executeQuery();
+    		
+    		if(resultSetTask.next()) {
+    			int isComplete = resultSetTask.getInt("is_completed");
+    			int flag = (isComplete + 1) % 2;
+    			
+    			try {
+    	    		
+    	    		PreparedStatement updateTask = conn.prepareStatement("UPDATE task SET is_completed=? WHERE prefix=? AND p_name=?");
+    	    		updateTask.setInt(1, flag);
+    	    		updateTask.setNString(2, taskPrefix);
+    	    		updateTask.setNString(3, projectName);
+    	    		
+    	    		updateTask.execute();
+    	    		return true;
+    	    		
+    	    	} catch (Exception e) {
+    	    		throw new Exception("Failed to rename task: " + e.getMessage());
+    	    	}
+    		}
+    		else return false;
+    		
+    	} catch (Exception e) {
+    		throw new Exception("Failed to mark task: " + e.getMessage());
+    		
+    	}
+    	
+    }
     
     public boolean addTask(String taskName, String projectName, String parentPrefix) throws Exception {
     	try {
