@@ -3,6 +3,7 @@ package sophex.db;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 
@@ -194,16 +195,8 @@ public class ProjectsDAO {
                 resultSetTask.close();
                 ps3.close();
             	
-                
-                ArrayList<Task> projectTasks = new ArrayList<Task>();
-                for(Task topLevel : allTasks) {
-                	if(topLevel.getPrefix().length()==1) {
-                		projectTasks.add(topLevel);
-                	}
-                }
-                
-                
-                for(Task task : projectTasks) {
+              
+                for(Task task : allTasks) {
                 	project.addTask(task);
                 }
                 
@@ -295,6 +288,7 @@ public class ProjectsDAO {
 		}
 	
 	}
+	
 
 	
 	
