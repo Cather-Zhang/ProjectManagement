@@ -39,10 +39,12 @@ public class ProjectsDAO {
 
             while (resultSet.next()) {
                 project = generateProject(resultSet);
+                project.setProgress(calculateProgress(project.getname()));
                 projects.add(project);
             }
             resultSet.close();
             ps.close();
+            
             
             return projects;
 
@@ -51,6 +53,24 @@ public class ProjectsDAO {
             throw new Exception("Failed in getting project: " + e.getMessage());
         }
     }
+	
+	
+	private double calculateProgress(String projectName) throws SQLException {
+		int leaf = 0;
+		int completed = 0;
+		PreparedStatement tasks = conn.prepareStatement("SELECT * FROM task WHERE p_name=? AND is_leaf=true;");
+		tasks.setNString(1, projectName);
+		ResultSet leaves = tasks.executeQuery();
+		
+		while(leaves.next()) {
+			leaf++;
+			if(leaves.getBoolean("is_completed")) {
+				completed++;
+			}
+		}
+		leaves.close();
+		return completed/leaf;
+	}
 	
     public ArrayList<Teammate> getTeamView(String projectName) throws Exception {
     	try {

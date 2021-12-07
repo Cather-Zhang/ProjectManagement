@@ -170,8 +170,15 @@ public class TasksDAO {
     		parentTaskID = parentTask.getInt("task_id");
     		parentTask.close();
     		
+    		//Sets parent task isLeaf to false
+    		PreparedStatement isLeaf = conn.prepareStatement("UPDATE task SET is_leaf=? WHERE task_id=?");
+    		isLeaf.setBoolean(1, false);
+    		isLeaf.setInt(2, parentTaskID);
+    		isLeaf.execute();
+    		isLeaf.close();
     		
-    		//Selecting all task tea mmate relationships from this table to add all team mate names to be used later
+    		
+    		//Selecting all task team mate relationships from this table to add all team mate names to be used later
     		PreparedStatement teamTasks = conn.prepareStatement("SELECT * from tasks_teammates WHERE task_id=?;");
     		teamTasks.setInt(1, parentTaskID);
     		ResultSet teammates = teamTasks.executeQuery();

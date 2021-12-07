@@ -43,8 +43,8 @@ public class Project {
 		}
 	}
 	public void archive() {isArchived = true;}
-	public void calculateProgress() {
-		//TODO
+	public void setProgress(double progress) {
+		this.progress = progress;
 	}
 	
 	public void wipeTasks() {
