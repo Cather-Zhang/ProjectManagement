@@ -17,6 +17,6 @@ public class Teammate {
 	public ArrayList<String> getTasks() {return this.tasks;}
 	
 	public void addTask(String taskName) {this.tasks.add(taskName);}
-	public void removeTask(Task t) {this.tasks.remove(t.getName());}
+	public void removeTask(String taskName) {this.tasks.remove(taskName);}
 
 }

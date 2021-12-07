@@ -37,7 +37,7 @@ public class Task {
 	
 	public void unssign(Teammate t) {
 		this.assignees.remove(t);
-		t.removeTask(this);
+		t.removeTask(this.name);
 	}
 	
 	public void addSubtask(Task task) { 
