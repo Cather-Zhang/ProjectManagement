@@ -144,6 +144,7 @@ public class ProjectsDAO {
             	e.printStackTrace();
             	throw new Exception("Failed in getting project teammates: " + e.getMessage());
             }
+            /*
             //TODO: make the tasks ordered into top level and subtasks, right now it generates all tasks and they are all top level
             try {
             	PreparedStatement ps3 = conn.prepareStatement("SELECT * FROM task WHERE p_name=? ORDER BY prefix ASC;");
@@ -180,9 +181,7 @@ public class ProjectsDAO {
             	            	throw new Exception("Failed in getting teammates from Tasks: " + e.getMessage());
             	            }
             			}
-            			
-            			
-            			
+  			
                         resultSetTaskTeammate.close();
                         ps4.close();
                         
@@ -199,13 +198,15 @@ public class ProjectsDAO {
                 for(Task task : allTasks) {
                 	project.addTask(task);
                 }
-                
-                
-                
+
             } catch (Exception e) {
             	e.printStackTrace();
             	throw new Exception("Failed in getting project tasks: " + e.getMessage());
             }
+            */
+            
+            ArrayList<Task> tasks = generateTasks(name);
+            project.setTasks(tasks);
             
             return project;
 
@@ -213,6 +214,127 @@ public class ProjectsDAO {
         	e.printStackTrace();
             throw new Exception("Failed in getting project: " + e.getMessage());
         }
+    }
+    
+    
+    /**
+     * Cather
+     * @param projectName
+     * @return
+     * @throws Exception 
+     */
+    private ArrayList<Task> generateTasks(String projectName) throws Exception {
+    	ArrayList<Task> tasks = new ArrayList<>();
+    	ArrayList<Teammate> assignees = new ArrayList<>();
+    	
+    	try {
+			PreparedStatement ps = conn.prepareStatement("SELECT * from task WHERE parent_task IS NULL AND p_name=? ORDER BY prefix ASC;");
+			ps.setNString(1, projectName);
+			ResultSet resultSetTopLevel = ps.executeQuery();
+			
+			while(resultSetTopLevel.next()) {
+				String taskName = resultSetTopLevel.getNString("name");
+				String prefix = resultSetTopLevel.getNString("prefix");
+				int taskID = resultSetTopLevel.getInt("task_id");
+				Task toplevel = new Task(taskName, prefix);
+				
+				ArrayList<Task> subtasks = new ArrayList<>();
+				
+				subtasks = generateSubtasks(projectName, taskID);
+				assignees = generateAssignees(taskID);
+				toplevel.setSubtasks(subtasks);
+				toplevel.setAssignees(assignees);
+				
+				tasks.add(toplevel);
+			}
+			resultSetTopLevel.close();
+			ps.close();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			throw new Exception("Failed in getting project: " + e.getMessage());
+		}
+    	
+    	return tasks;
+    }
+    
+    /**
+     * 
+     * @param projectName
+     * @param parentTask
+     * @return
+     * @throws Exception
+     */
+    
+    private ArrayList<Task> generateSubtasks(String projectName, int parentTask) throws Exception {
+    	ArrayList<Task> subTasks = new ArrayList<>();
+    	ArrayList<Teammate> assignees = new ArrayList<>();
+    	
+    	try {
+			PreparedStatement ps2 = conn.prepareStatement("SELECT * from task WHERE parent_task=?;");
+			ps2.setInt(1, parentTask);
+			ResultSet resultSetLowerLevel = ps2.executeQuery();
+			
+			while(resultSetLowerLevel.next()) {
+				String taskName = resultSetLowerLevel.getNString("name");
+				String prefix = resultSetLowerLevel.getNString("prefix");
+				int taskID = resultSetLowerLevel.getInt("task_id");
+				Task subTask = new Task(taskName, prefix);
+				
+				ArrayList<Task> subsubtasks = new ArrayList<>();
+				subsubtasks = generateSubtasks(projectName, taskID);
+				assignees = generateAssignees(taskID);
+				subTask.setSubtasks(subsubtasks);
+				subTask.setAssignees(assignees);
+				subTasks.add(subTask);
+			}
+				
+			
+			resultSetLowerLevel.close();
+			ps2.close();
+			
+    	} catch (Exception e) {
+    		e.printStackTrace();
+            throw new Exception("Failed in getting project: " + e.getMessage());
+    	}
+    	return subTasks;
+    }
+    
+    private ArrayList<Teammate> generateAssignees(int taskID) throws Exception {
+    	ArrayList<Teammate> assignees = new ArrayList<>();
+    	
+    	try {
+			PreparedStatement ps4 = conn.prepareStatement("SELECT * FROM tasks_teammates WHERE task_id=?;");
+			ps4.setInt(1,taskID);
+			ResultSet resultSetTaskTeammate = ps4.executeQuery();
+			
+			while(resultSetTaskTeammate.next()) {
+				int teammateID = resultSetTaskTeammate.getInt("teammate_id");
+				try { 
+					PreparedStatement ps5 = conn.prepareStatement("SELECT * FROM teammate WHERE id=?;");
+					ps5.setInt(1, teammateID);
+					ResultSet resultSetTeammate = ps5.executeQuery();
+					while(resultSetTeammate.next()) {	
+						Teammate onTask = new Teammate(resultSetTeammate.getNString("name"));
+						assignees.add(onTask);
+					} 
+                    resultSetTeammate.close();
+                    ps5.close();
+				} catch (Exception e) {
+	            	e.printStackTrace();
+	            	throw new Exception("Failed in getting teammates from Tasks: " + e.getMessage());
+	            }
+			}
+	
+            resultSetTaskTeammate.close();
+            ps4.close();
+			
+    	} catch (Exception e) {
+        	e.printStackTrace();
+            throw new Exception("Failed in assignees: " + e.getMessage());
+        }
+    	
+    	return assignees;
     }
     
     public boolean addProject(String project) throws Exception {

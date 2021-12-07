@@ -121,6 +121,7 @@ public class AssignTeammateHandlerTest extends LambdaTest {
         String SAMPLE_INPUT_STRING = new Gson().toJson(atr);  
         try {
         	testFailInput(SAMPLE_INPUT_STRING, 422);
+        	dao.deleteProject(var);
         } catch (IOException ioe) {
         	Assert.fail("Invalid:" + ioe.getMessage());
         }

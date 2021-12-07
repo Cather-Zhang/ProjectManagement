@@ -7,7 +7,7 @@ public class Task {
 
 	public String name;
 	public String prefix;
-	public List<Teammate> assignees;
+	public ArrayList<Teammate> assignees;
 	public ArrayList<Task> subtasks;
 	public String parentPrefix;
 	public boolean isComplete = false;
@@ -28,7 +28,8 @@ public class Task {
 	public void setName(String name) {this.name = name;}
 	public String getPrefix() {return this.prefix;}
 	public String getParentPrefix() {return this.parentPrefix;}
-	public List<Teammate> getAssignees() {return this.assignees;}
+	public ArrayList<Teammate> getAssignees() {return this.assignees;}
+	public void setAssignees(ArrayList<Teammate> assignees) {this.assignees = assignees;}
 	
 	public void assignTo(Teammate t) {
 		this.assignees.add(t);
@@ -40,8 +41,8 @@ public class Task {
 		t.removeTask(this.name);
 	}
 	
-	public void addSubtask(Task task) { 
-		subtasks.add(task);
+	public void setSubtasks(ArrayList<Task> subtasks) { 
+		this.subtasks = subtasks;
 	}
 	
 	public ArrayList<Task> getSubtasks(){
