@@ -171,9 +171,10 @@ public class TasksDAO {
     		parentTask.close();
     		
     		//Sets parent task isLeaf to false
-    		PreparedStatement isLeaf = conn.prepareStatement("UPDATE task SET is_leaf=? WHERE task_id=?");
-    		isLeaf.setBoolean(1, false);
-    		isLeaf.setInt(2, parentTaskID);
+    		PreparedStatement isLeaf = conn.prepareStatement("UPDATE task SET is_leaf=? AND is_completed=? WHERE task_id=?");
+    		isLeaf.setInt(1, 0);
+    		isLeaf.setInt(2, 0);
+    		isLeaf.setInt(3, parentTaskID);
     		isLeaf.execute();
     		isLeaf.close();
     		
