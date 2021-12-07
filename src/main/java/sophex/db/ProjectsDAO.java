@@ -182,31 +182,6 @@ public class ProjectsDAO {
             			
             			
             			
-            			/*ArrayList<Task> tasks = project.getTasks();
-            			String prefix = task.getPrefix();
-            			int currentIndex =  Integer.valueOf(prefix.substring(0, 1));
-            			Task currentTask = tasks.get(currentIndex-1);
-            			
-            			if(prefix.length()==1){
-            				tasks.add(task);
-            			} else {
-            				while(prefix.length()>=1) {
-            					if(prefix.length()==1) {
-            						currentTask.addSubtask(task);
-            					} else {
-            						prefix = prefix.substring(2);
-            						currentIndex = Integer.valueOf(prefix.substring(0, 1));
-            						currentTask = currentTask.getSubtasks().get(currentIndex-1);
-            					}
-                    		}
-            			}
-            			
-            			project.wipeTasks();
-            			
-            			for( Task builtTask : tasks) {
-            				project.addTask(builtTask);
-            			} */
-            			
                         resultSetTaskTeammate.close();
                         ps4.close();
                         
@@ -227,12 +202,6 @@ public class ProjectsDAO {
                 	}
                 }
                 
-                for(Task midLevel : allTasks) {
-                	if(midLevel.getPrefix().length()==3) {
-                		int parentIndex = Integer.valueOf(midLevel.getPrefix().substring(0,1))-1;
-                		projectTasks.get(parentIndex).addSubtask(midLevel);
-                	}
-                }
                 
                 for(Task task : projectTasks) {
                 	project.addTask(task);
