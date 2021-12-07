@@ -30,6 +30,7 @@ public class Project {
 	public ArrayList<Task> getTasks() {return tasks;}
 	public boolean getIsArchived() {return isArchived;}
 	public Double getProgress() {return progress;}
+
 	public void setTasks(ArrayList<Task> tasks) {this.tasks = tasks;}
 	
 	public void addTeammate(String name) {

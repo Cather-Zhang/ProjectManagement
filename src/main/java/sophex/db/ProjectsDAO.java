@@ -258,9 +258,8 @@ public class ProjectsDAO {
 				String taskName = resultSetTopLevel.getNString("name");
 				String prefix = resultSetTopLevel.getNString("prefix");
 				int taskID = resultSetTopLevel.getInt("task_id");
-				boolean isComplete;
-				if (resultSetTopLevel.getInt("is_completed") == 0)  isComplete = false;
-				else isComplete = true;
+				boolean isComplete = false;
+				if (resultSetTopLevel.getInt("is_completed") == 1)  isComplete = true;
 				Task toplevel = new Task(taskName, prefix, isComplete);
 				
 				ArrayList<Task> subtasks = new ArrayList<>();
@@ -304,9 +303,8 @@ public class ProjectsDAO {
 				String taskName = resultSetLowerLevel.getNString("name");
 				String prefix = resultSetLowerLevel.getNString("prefix");
 				int taskID = resultSetLowerLevel.getInt("task_id");
-				boolean isComplete;
-				if (resultSetLowerLevel.getInt("is_completed") == 0)  isComplete = false;
-				else isComplete = true;
+				boolean isComplete = false;
+				if (resultSetLowerLevel.getInt("is_completed") == 1)  isComplete = true;
 				Task subTask = new Task(taskName, prefix, isComplete);
 				
 				ArrayList<Task> subsubtasks = new ArrayList<>();
