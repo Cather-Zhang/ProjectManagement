@@ -131,7 +131,7 @@ public class TasksDAO {
     		PreparedStatement psFinal = conn.prepareStatement("INSERT INTO task (prefix,name,is_completed,p_name,parent_task) values (?,?,?,?,?);");
     		psFinal.setNString(1, setPrefix);
     		psFinal.setNString(2, taskName);
-    		psFinal.setBoolean(3, false);
+    		psFinal.setInt(3, 0);
     		psFinal.setNString(4, projectName);
     		if(parentID != -1) {
     			psFinal.setInt(5, parentID);
@@ -171,12 +171,17 @@ public class TasksDAO {
     		parentTask.close();
     		
     		//Sets parent task isLeaf to false
-    		PreparedStatement isLeaf = conn.prepareStatement("UPDATE task SET is_leaf=? AND is_completed=? WHERE task_id=?");
+    		PreparedStatement isLeaf = conn.prepareStatement("UPDATE task SET is_completed=? WHERE task_id=?");
     		isLeaf.setInt(1, 0);
-    		isLeaf.setInt(2, 0);
-    		isLeaf.setInt(3, parentTaskID);
+    		isLeaf.setInt(2, parentTaskID);
     		isLeaf.execute();
     		isLeaf.close();
+    		
+    		PreparedStatement updateTask = conn.prepareStatement("UPDATE task SET is_completed=? WHERE task_id=?");
+    		updateTask.setInt(1, 0);
+    		updateTask.setInt(2, parentTaskID);
+    		updateTask.execute();
+    		updateTask.close();
     		
     		
     		//Selecting all task team mate relationships from this table to add all team mate names to be used later
