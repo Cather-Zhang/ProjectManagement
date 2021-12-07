@@ -148,9 +148,11 @@ public class ProjectsDAO {
             	PreparedStatement ps3 = conn.prepareStatement("SELECT * FROM task WHERE p_name=? ORDER BY prefix ASC;");
             	ps3.setNString(1, name);
             	ResultSet resultSetTask = ps3.executeQuery();
+            	ArrayList<Task> allTasks = new ArrayList<Task>();
             	
             	while(resultSetTask.next()) {
             		Task task = new Task(resultSetTask.getString("name"), resultSetTask.getString("prefix"));
+            		
             		int taskID = resultSetTask.getInt("task_id");
             		
             		try {
@@ -177,7 +179,32 @@ public class ProjectsDAO {
             	            	throw new Exception("Failed in getting teammates from Tasks: " + e.getMessage());
             	            }
             			}
-            			project.addTask(task);
+            			
+            			ArrayList<Task> tasks = project.getTasks();
+            			String prefix = task.getPrefix();
+            			int currentIndex =  Integer.valueOf(prefix.substring(0, 1));
+            			Task currentTask = tasks.get(currentIndex-1);
+            			
+            			if(prefix.length()==1){
+            				tasks.add(task);
+            			} else {
+            				while(prefix.length()>=1) {
+            					if(prefix.length()==1) {
+            						currentTask.addSubtask(task);
+            					} else {
+            						prefix = prefix.substring(2);
+            						currentIndex = Integer.valueOf(prefix.substring(0, 1));
+            						currentTask = currentTask.getSubtasks().get(currentIndex-1);
+            					}
+                    		}
+            			}
+            			
+            			project.wipeTasks();
+            			
+            			for( Task builtTask : tasks) {
+            				project.addTask(builtTask);
+            			}
+            			
                         resultSetTaskTeammate.close();
                         ps4.close();
             		} catch (Exception e) {
