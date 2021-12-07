@@ -56,8 +56,8 @@ public class ProjectsDAO {
 	
 	
 	private double calculateProgress(String projectName) throws SQLException {
-		int leaf = 0;
-		int completed = 0;
+		double leaf = 0;
+		double completed = 0;
 		PreparedStatement tasks = conn.prepareStatement("SELECT * FROM task WHERE p_name=? AND is_leaf=true;");
 		tasks.setNString(1, projectName);
 		ResultSet leaves = tasks.executeQuery();
