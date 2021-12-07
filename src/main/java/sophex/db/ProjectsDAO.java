@@ -210,7 +210,7 @@ public class ProjectsDAO {
                         resultSetTaskTeammate.close();
                         ps4.close();
                         
-                        project.addTask(task);
+                        allTasks.add(task);
             		} catch (Exception e) {
                     	e.printStackTrace();
                     	throw new Exception("Failed in getting teammate/task relationships: " + e.getMessage());
@@ -220,6 +220,12 @@ public class ProjectsDAO {
                 ps3.close();
             	
                 
+                ArrayList<Task> projectTasks = new ArrayList<Task>();
+                for(Task topLevel : allTasks) {
+                	if(topLevel.getPrefix().length()==1) {
+                		project.addTask(topLevel);
+                	}
+                }
                 
                 
                 
