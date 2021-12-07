@@ -223,8 +223,19 @@ public class ProjectsDAO {
                 ArrayList<Task> projectTasks = new ArrayList<Task>();
                 for(Task topLevel : allTasks) {
                 	if(topLevel.getPrefix().length()==1) {
-                		project.addTask(topLevel);
+                		projectTasks.add(topLevel);
                 	}
+                }
+                
+                for(Task midLevel : allTasks) {
+                	if(midLevel.getPrefix().length()==3) {
+                		int parentIndex = Integer.valueOf(midLevel.getPrefix().substring(0,1))-1;
+                		projectTasks.get(parentIndex).addSubtask(midLevel);
+                	}
+                }
+                
+                for(Task task : projectTasks) {
+                	project.addTask(task);
                 }
                 
                 
