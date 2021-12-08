@@ -427,8 +427,9 @@ public class ProjectsDAO {
 	
 	public boolean archiveProject(String project) throws Exception{
 		try {
-			PreparedStatement ps = conn.prepareStatement("UPDATE " + tblName + " SET is_archived= " + true + " WHERE name=?;");
+			PreparedStatement ps = conn.prepareStatement("UPDATE project SET is_archived=? WHERE name=?;");
 			ps.setString(1, project);
+			ps.setInt(2, 1);
 			ps.execute();
 			return true;
 		} catch (Exception e) {
