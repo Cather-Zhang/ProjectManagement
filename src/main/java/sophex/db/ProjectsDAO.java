@@ -430,9 +430,9 @@ public class ProjectsDAO {
 	
 	public boolean archiveProject(String project) throws Exception{
 		try {
-			PreparedStatement ps = conn.prepareStatement("UPDATE project SET is_archived=? WHERE name=?;");
-			ps.setString(1, project);
-			ps.setInt(2, 1);
+			PreparedStatement ps = conn.prepareStatement("UPDATE project SET is_archived=? WHERE name=?;");			
+			ps.setInt(1, 1);
+			ps.setString(2, project);
 			ps.execute();
 			return true;
 		} catch (Exception e) {
