@@ -71,6 +71,9 @@ public class ProjectsDAO {
 			}
 		}
 		leaves.close();
+		if(leaf==0.0) {
+			return leaf;
+		}
 		return completed/leaf;
 	}
 	
