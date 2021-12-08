@@ -9,12 +9,15 @@ import com.google.gson.Gson;
 
 import sophex.db.ProjectsDAO;
 import sophex.db.TasksDAO;
+import sophex.db.TasksTeammatesDAO;
+import sophex.db.TeammatesDAO;
 import sophex.handler.task.AddTaskHandler;
 import sophex.handler.task.DecomposeTaskHandler;
 import sophex.http.task.AddTaskRequest;
 import sophex.http.task.AddTaskResponse;
 import sophex.http.task.DecomposeTaskRequest;
 import sophex.http.task.DecomposeTaskResponse;
+import sophex.model.Project;
 
 /**
  * A simple test harness for locally invoking your Lambda function handler.
@@ -49,6 +52,12 @@ public class DecomposeTaskHandlerTest extends LambdaTest {
     	TasksDAO daoT = new TasksDAO();
     	daoT.addTask("Top level task", var, null);
     	
+    	TeammatesDAO daoTe = new TeammatesDAO();
+    	daoTe.addTeammate("Person A", var);
+    	
+    	TasksTeammatesDAO daoTT = new TasksTeammatesDAO();
+    	daoTT.assignTeammate("Person A", var, "1");
+    	
     	String[] tasks = {"t1.1", "t1.2"};
     	
     	DecomposeTaskRequest dtr = new DecomposeTaskRequest(tasks, var, "1");
@@ -56,6 +65,8 @@ public class DecomposeTaskHandlerTest extends LambdaTest {
         
         try {
         	testSuccessInput(SAMPLE_INPUT_STRING);
+        	Project p = dao.getProjectUser(var);
+        	dao.deleteProject(var);
         } catch (IOException ioe) {
         	Assert.fail("Invalid:" + ioe.getMessage());
         }

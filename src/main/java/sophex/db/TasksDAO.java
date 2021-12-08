@@ -171,7 +171,7 @@ public class TasksDAO {
     		parentTask.close();
     		
     		//Sets parent task isLeaf to false
-    		PreparedStatement isLeaf = conn.prepareStatement("UPDATE task SET is_completed=? WHERE task_id=?");
+    		PreparedStatement isLeaf = conn.prepareStatement("UPDATE task SET is_leaf=? WHERE task_id=?");
     		isLeaf.setInt(1, 0);
     		isLeaf.setInt(2, parentTaskID);
     		isLeaf.execute();
@@ -229,9 +229,10 @@ public class TasksDAO {
         		
         		//Adds new team mate task relationship between ALL teammates to EACH task
         		for(int teammateID : teammateIDs) {
-        			PreparedStatement teamTask = conn.prepareStatement("INSERT INTO tasks_teammates (task_id, teammate_id) values (?,?);");
+        			PreparedStatement teamTask = conn.prepareStatement("INSERT INTO tasks_teammates (task_id, teammate_id, project_name) values (?,?,?);");
         			teamTask.setInt(1, taskID);
         			teamTask.setInt(2, teammateID);
+        			teamTask.setNString(3, projectName);
         			teamTask.execute();
         		}
     		}

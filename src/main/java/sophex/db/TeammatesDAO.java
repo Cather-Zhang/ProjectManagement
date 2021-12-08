@@ -82,10 +82,27 @@ public class TeammatesDAO {
     
     public boolean removeTeammate(String teammateName, String projectName) throws Exception {
     	try {
-        	PreparedStatement ps = conn.prepareStatement("DELETE FROM teammate WHERE name=? AND project_name =?;");
-        	ps.setString(1,  teammateName);
-        	ps.setString(2,  projectName);
-        	ps.execute();
+
+    		PreparedStatement ps0 = conn.prepareStatement("SELECT * FROM teammate WHERE name=? AND project_name =?;");
+    		ps0.setNString(1,  teammateName);
+    		ps0.setNString(2, projectName);
+    		ResultSet resultSet = ps0.executeQuery();
+    		
+    		if (resultSet.next()) {
+    			int teammateID = resultSet.getInt("id");
+    			PreparedStatement ps = conn.prepareStatement("DELETE FROM tasks_teammates WHERE teammate_id=?;");
+	        	ps.setInt(1,  teammateID);
+	        	ps.execute();
+    		}
+    		else return false;
+        	
+    		PreparedStatement ps2 = conn.prepareStatement("DELETE FROM teammate WHERE name=? AND project_name =?;");
+    		ps2.setNString(1,  teammateName);
+    		ps2.setNString(2, projectName);
+    		ps2.execute();
+    		
+    		resultSet.close();
+    		ps0.close();
         	return true;
 
     	} catch (Exception e) {
