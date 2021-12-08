@@ -25,3 +25,48 @@ function buildButton(text, handler, type){
 function deleteElement(name){
     document.getElementById(name).remove();
 }
+
+/**
+ * Posts from the base URL of the API, on the specified path, with a body
+ * Very basic, at some point, make async and promise and on fail and on success functions
+ * @param {string} path 
+ * @param {JSON} js 
+ */
+function post(path, js) {
+    console.log("Posting on : " + path)
+    console.log("Body : " + JSON.stringify(js));
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", api_url + path, true);
+    xhr.send(JSON.stringify(js));
+    xhr.onloadend = function () {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            var response = JSON.parse(xhr.responseText);
+            if (response["statusCode"] == "200") {
+                console.log("Post successful")
+                window.location.reload();                
+            }
+            else {
+                console.log("Post unsuccessful: " + response["error"])
+            }
+        }
+        else {
+            console.log("An error has occured with XHR");
+        }
+    };
+}
+
+/**
+ * Opens the specified modal with the task prefix attatched
+ * @param {string} prefix 
+ * @param {string} modal 
+ */
+function openModal(prefix, modal){
+    $('#' + modal).modal('show');
+    console.log(modal + " opened from " + prefix);
+    if(prefix == ""){
+        requestedParent = null;
+    }
+    else {
+        requestedParent = prefix;
+    }
+}

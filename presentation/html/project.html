@@ -84,7 +84,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="addTask(requestedParent)">Add</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="addTask()">Add</button>
         </div>
       </div>
     </div>
@@ -111,6 +111,77 @@
         </div>
       </div>
     </div>
+</div>
+
+<!-- Decomp Task -->
+<div class="modal fade" id="decomposeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color: aliceblue;">
+  <div class="modal-dialog modal-dialog">
+    <div class="modal-content" style="background-color: rgb(108, 117, 125);">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">Decompose Task</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    <div class="modal-body">
+        <p>Please enter the names of each new task you wish to decompose into. Seperate each name by a comma without a space.</p>
+        <p>I.E. "TaskA,TaskB"</p>
+        <form>
+          <div class="mb-3">
+                      <input type="text" class="form-control" id="decompTasks">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="decompTask()">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Assign Teammate -->
+<div class="modal fade" id="assignModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color: aliceblue;">
+    <div class="modal-dialog modal-dialog">
+      <div class="modal-content" style="background-color: rgb(108, 117, 125);">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLabel">Assign Teammate to a Task</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+      <div class="modal-body">
+          <form>
+            <div class="mb-3">
+                        <input type="text" class="form-control" id="assignee">
+                      </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="assignTeammate()">Add</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+<!-- Assign Teammate -->
+<div class="modal fade" id="renameModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color: aliceblue;">
+    <div class="modal-dialog modal-dialog">
+      <div class="modal-content" style="background-color: rgb(108, 117, 125);">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLabel">Rename this task</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+      <div class="modal-body">
+          <form>
+            <div class="mb-3">
+                        <input type="text" class="form-control" id="rename">
+                      </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="renameTask()">Add</button>
+              </div>
+          </div>
+      </div>
 </div>
 
 <script type="module">

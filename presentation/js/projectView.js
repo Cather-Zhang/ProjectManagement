@@ -2,17 +2,17 @@ var project = {
     name: null,
     teammates: [{name:"Jair"},{name:"Brianna"},{name:"Austin"},{name:"Cather"}],
     tasks: [
-        {prefix:"1", name:"Top Level", subTasks:[
-            {prefix:"1.1", name:"Child", subTasks:[
-                {prefix:"1.1.1", name:"Leaf", subTasks:null}
+        {prefix:"1", name:"Top Level", subtasks:[
+            {prefix:"1.1", name:"Child", subtasks:[
+                {prefix:"1.1.1", name:"Leaf", subtasks:null}
             ]}, 
-            {prefix:"1.2", name:"Leaf", subTasks:null}
+            {prefix:"1.2", name:"Leaf", subtasks:null}
         ]},
-        {prefix:"2", name:"Top Level", subTasks:[
-            {prefix:"2.1", name:"Child", subTasks:null},
-            {prefix:"2.2", name:"Child", subTasks:[
-                {prefix:"2.2.1", name:"Leaf", subTasks:null},
-                {prefix:"2.2.2", name:"Leaf", subTasks:null}
+        {prefix:"2", name:"Top Level", subtasks:[
+            {prefix:"2.1", name:"Child", subtasks:null},
+            {prefix:"2.2", name:"Child", subtasks:[
+                {prefix:"2.2.1", name:"Leaf", subtasks:null},
+                {prefix:"2.2.2", name:"Leaf", subtasks:null}
             ]}
         ]}
     ],
