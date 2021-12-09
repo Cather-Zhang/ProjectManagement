@@ -105,7 +105,7 @@ public class ProjectsDAO {
                         	ResultSet resultSetTask= ps3.executeQuery();
                         	
                         	while(resultSetTask.next()) {
-                        		taskName = resultSetTask.getNString("name");
+                        		taskName = resultSetTask.getNString("prefix") + " " + resultSetTask.getNString("name");
                         	}
                         	t.addTask(taskName);
                         	

@@ -209,7 +209,6 @@ public class TasksDAO {
         		psFinal.setBoolean(3, false);
         		psFinal.setNString(4, projectName);
         		psFinal.setInt(5,parentTaskID);
-        		
         		psFinal.execute();
         		
         		// Immediately grabs new task from database to fetch its ID:
@@ -228,7 +227,11 @@ public class TasksDAO {
         		newTask.close();
         		
         		//Adds new team mate task relationship between ALL teammates to EACH task
-        		for(int teammateID : teammateIDs) {
+        		int roundNum = (teammateIDs.size() - taskNames.length) / taskNames.length + 2;
+        		for(int j = 0; j < roundNum; j++) {
+        			int index = i + taskNames.length * j;
+        			if (index > teammateIDs.size() - 1) break;
+        			int teammateID = teammateIDs.get(index);
         			PreparedStatement teamTask = conn.prepareStatement("INSERT INTO tasks_teammates (task_id, teammate_id, project_name) values (?,?,?);");
         			teamTask.setInt(1, taskID);
         			teamTask.setInt(2, teammateID);
