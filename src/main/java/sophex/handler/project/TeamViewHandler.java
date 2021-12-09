@@ -17,7 +17,13 @@ public class TeamViewHandler implements RequestHandler<TeamViewRequest, TeamView
 		boolean fail = false;
 		String failMessage = "";
 		TeamViewResponse response;
-		String name = req.getName().replaceAll("%20", " ");
+		String name = "";
+		if (req.getName().contains(" ")) {
+			name = req.getName().replaceAll("%20", " ");
+		}else {
+			name = req.getName();
+		}
+		
 		try {
 			ArrayList<Teammate> teammates = loadTeammateListFromRDS(req.projectName, context);
 			if(teammates == null) {
