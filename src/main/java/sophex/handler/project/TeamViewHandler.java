@@ -17,15 +17,10 @@ public class TeamViewHandler implements RequestHandler<TeamViewRequest, TeamView
 		boolean fail = false;
 		String failMessage = "";
 		TeamViewResponse response;
-		String name = "";
-		if (req.getName().contains(" ")) {
-			name = req.getName().replaceAll("%20", " ");
-		}else {
-			name = req.getName();
-		}
+		String name = req.getName().replaceAll("%20", " ");
 		
 		try {
-			ArrayList<Teammate> teammates = loadTeammateListFromRDS(req.projectName, context);
+			ArrayList<Teammate> teammates = loadTeammateListFromRDS(name, context);
 			if(teammates == null) {
 				failMessage = name + " does not exist.";
 				fail = true;
