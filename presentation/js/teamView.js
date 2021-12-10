@@ -16,6 +16,9 @@
     addBtn.setAttribute("data-bs-toggle", "modal");
     addBtn.setAttribute("data-bs-target", "#addTeammateModal");
     addBtn.innerHTML = "Add";
+    if (project.isArchived) {
+        addBtn.setAttribute("disabled", null);
+    }
     document.getElementById("addBtn").appendChild(addBtn);
 }
 
@@ -31,33 +34,21 @@
     //if the requested teammate name does not contain any characters
     if (!(/[a-zA-Z]/.test(req))) {
         //warning modal
-        return;
+        return; 
     }
     //check if the teammate already exists within the project
     for (let index = 0; index < project.teammates.length; index++) {
         if (project.teammates[index].name == req) {
-            //warning modal
+            error("Teammate already exists");
             return;
         }
     }
 
     console.log("Requested teammate: " + req);
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", api_url + "/project/" + project.name + "/addTeammate", true);
-    xhr.send(JSON.stringify({"projectName" : project.name,"teammateName":req}));
-    xhr.onloadend = function () {
-        if (xhr.readyState == XMLHttpRequest.DONE) {
-            console.log(xhr.responseText);
-            var js = JSON.parse(xhr.responseText);
-            if (js["statusCode"] != "200") {return;}
-            project.teammates.push({name:req});
-            createTeammateRow(req);
-            console.log("Successfully added teammate: " + req);
-        }
-        else {
-            console.log("invalid teammate");
-        }
-    };
+
+    var path = "/project/" + project.name + "/addTeammate";
+    var js = {"projectName" : project.name,"teammateName":req};
+    post(path, js);
 }
 
 /**
@@ -76,7 +67,10 @@
     rowDiv.appendChild(colDiv);
     var btnDiv = document.createElement("div");
     btnDiv.className = "col-md-auto";
-    var removeBtn = buildButton("Remove", "removeTeammate(\"" + req + "\")", "danger")
+    var removeBtn = buildButton("Remove", "removeTeammate(\"" + req + "\")", "danger");
+    if(project.isArchived){
+        removeBtn.setAttribute("disabled", null);
+    }
     btnDiv.appendChild(removeBtn);
     rowDiv.appendChild(btnDiv);
     document.getElementById("team").appendChild(rowDiv);
@@ -85,21 +79,8 @@
 
 function removeTeammate(name){
     console.log("Attempting to delete: " + name);
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", api_url + "/project/" + project.name + "/removeTeammate", true);
-    xhr.send(JSON.stringify({"projectName" : project.name,"teammateName":name}));
-    xhr.onloadend = function () {
-        if (xhr.readyState == XMLHttpRequest.DONE) {
-            console.log(xhr.responseText);
-            var js = JSON.parse(xhr.responseText);
-            if (js["statusCode"] != "200") {return;}
-            let index = project.teammates.indexOf(name);
-            project.teammates.splice(index, 1);
-            deleteElement(name);
-            console.log("Successfully deleted teammate: " + name);
-        }
-        else {
-            console.log("invalid teammate");
-        }
-    };
+
+    var path = "/project/" + project.name + "/removeTeammate";
+    var js = {"projectName" : project.name,"teammateName":name};
+    post(path,js);
 }

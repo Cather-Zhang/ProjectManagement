@@ -5,3 +5,11 @@
 function deleteProject(name) {
     post("/admin/delete", {"projectName" : name});
 }
+
+/**
+ * Archives the project
+ * @param {string} name 
+ */
+function archiveProject(name){
+    post("/admin/archive", {"projectName" : name});
+}

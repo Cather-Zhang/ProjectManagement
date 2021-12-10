@@ -32,16 +32,17 @@ function loadProject(name) {
     xhr.onloadend = function () {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             var js = JSON.parse(xhr.responseText);
-            if (js["statusCode"] != "200") {errorLoadingProject(js["error"]);return;}
-            project = js["project"];
-            console.log("Found project: " + JSON.stringify(project));
-            document.getElementById("nameHeader").innerHTML = project.name;
-            loadTaskView();
-            loadTeamView();
-        }
-        else {
-            console.log("Error with XHR")
-            errorLoadingProject("There was an error with the API")
+            if (js["statusCode"] == "200") {
+                project = js["project"];
+                console.log("Found project: " + JSON.stringify(project));
+                document.getElementById("nameHeader").innerHTML = project.name;
+                loadTaskView();
+                loadTeamView();
+            }
+            else {
+                error(js["error"]);
+                document.getElementById("nameHeader").innerHTML = "Error loading project"
+            }
         }
     };
 }
@@ -58,14 +59,13 @@ function loadProjectNav(){
 }
 
 /**
- * Helper that displays the error in the body
- * @param {*} err 
+ * Loads the project from the nav search bar
  */
-function errorLoadingProject(err){
-    var e = document.createElement("div");
-    e.classList = "alert alert-danger";
-    e.setAttribute("role", "alert");
-    e.innerHTML = err;
-    document.getElementById("alertDiv").appendChild(e);
-    document.getElementById("nameHeader").innerHTML = "Error loading project"
+ function loadProjectNav2(){
+    var name = new URL(window.location).searchParams.get("name");
+    window.location.href = "/presentation/html/project.html?name=" + name;
+}
+
+function loadCreateProjectNav(){
+    window.location.href = "/presentation/html/create.html";
 }

@@ -10,11 +10,9 @@ function createProject() {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", api_url + "/project", true);
     xhr.send(JSON.stringify({"name" : projectName}));
+    loading();
 
-    xhr.onloadend = function () {
-        //console.log(xhr);
-        //console.log(xhr.request);
-        
+    xhr.onloadend = function () {        
         if (xhr.readyState == XMLHttpRequest.DONE) {
             //console.log ("Result:" + xhr.responseText);
             var js = JSON.parse(xhr.responseText);
@@ -25,12 +23,7 @@ function createProject() {
                 console.log("Post successful");
                 window.location.href = "/presentation/html/project.html?name=" + js["projectName"];
             } else {
-                var msg = js["error"];
-                var e = document.createElement("div");
-                e.classList = "alert alert-danger";
-                e.setAttribute("role", "alert");
-                e.innerHTML = msg;
-                document.getElementById("alertDiv").appendChild(e);
+                error(js["error"]);
                 console.log("Post unsuccessful: " + msg);
             }
         }

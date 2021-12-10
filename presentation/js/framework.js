@@ -38,6 +38,7 @@ function post(path, js) {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", api_url + path, true);
     xhr.send(JSON.stringify(js));
+    loading();
     xhr.onloadend = function () {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             var response = JSON.parse(xhr.responseText);
@@ -46,6 +47,7 @@ function post(path, js) {
                 window.location.reload();                
             }
             else {
+                error(response["error"]);
                 console.log("Post unsuccessful: " + response["error"])
             }
         }
@@ -69,4 +71,20 @@ function openModal(prefix, modal){
     else {
         requestedParent = prefix;
     }
+}
+
+function loading(){
+    var e = document.createElement("div");
+    e.classList = "alert alert-info text-center";
+    e.setAttribute("role", "alert");
+    e.innerHTML = "Loading...";
+    document.getElementById("loadingDiv").appendChild(e);
+}
+
+function error(msg){
+    var e = document.createElement("div");
+    e.classList = "alert alert-danger text-center";
+    e.setAttribute("role", "alert");
+    e.innerHTML = msg;
+    document.getElementById("loadingDiv").appendChild(e);
 }

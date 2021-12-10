@@ -9,6 +9,9 @@ function loadTaskView(){
     var col = document.createElement("div");
     col.classList = "col-md-2";
     topLevelBtn.style.marginBottom = "1rem";
+    if (project.isArchived) {
+        topLevelBtn.setAttribute("disabled", null);
+    }
     col.appendChild(topLevelBtn);
     t.appendChild(col);
     //manually traverses through the top level tasks because they are not
@@ -70,27 +73,46 @@ function createTaskRow(task, leaf){
     teammatesDiv.className = "row mb-3";
     teammatesDiv.id = "team" + task.prefix;
     for (let i = 0; i < task.assignees.length; i++){
+        teammatesDiv.style = "margin-top:1.5rem;padding-left:" + ((task.prefix.match(/./g) || []).length * 1.5 + 1)+ "rem;";
+
         var t = document.createElement("div");
         t.className = "col-md-auto";
-        t.style = "padding-left:" + ((task.prefix.match(/./g) || []).length * 1.5 + 1)+ "rem;";
         t.innerHTML = task.assignees[i].name;
         var buttonsT = buildButton("Unassign", "unassignTeammate(\"" + task.assignees[i].name + "\", \"" + task.prefix + "\")", "secondary");
+        if (project.isArchived) {
+            buttonsT.setAttribute("disabled", null);
+        }
         var btnTDiv = document.createElement("div");
         btnTDiv.className = "col-md-auto";
         btnTDiv.appendChild(buttonsT);
         teammatesDiv.appendChild(t);
         teammatesDiv.append(btnTDiv);
     }
-
     if (!leaf) { //if the task is decomposed already
-        btnDiv.appendChild(buildButton("+", "openModal(\"" + task.prefix + "\", \"addTaskModal\")", "secondary"));
-        btnDiv.appendChild(buildButton("Rename", "openModal(\"" + task.prefix + "\", \"renameModal\")", "secondary"));
+        var addBtn = buildButton("+", "openModal(\"" + task.prefix + "\", \"addTaskModal\")", "secondary");
+        var renameBtn = buildButton("Rename", "openModal(\"" + task.prefix + "\", \"renameModal\")", "secondary")
+        if(project.isArchived){
+            addBtn.setAttribute("disabled",null);
+            renameBtn.setAttribute("disabled",null);
+        }
+        btnDiv.appendChild(addBtn);
+        btnDiv.appendChild(renameBtn);
     }
     else { // if it is a 'leaf' (has no subtasks)
-        btnDiv.appendChild(buildButton("Decompose", "openModal(\"" + task.prefix + "\", \"decomposeModal\")", "secondary"));
-        btnDiv.appendChild(buildButton("Rename", "openModal(\"" + task.prefix + "\", \"renameModal\")", "secondary"));
-        btnDiv.appendChild(buildButton("Assign", "openModal(\"" + task.prefix + "\", \"assignModal\")", "secondary"));
-        btnDiv.appendChild(buildButton("✔", "markTask(\"" + task.prefix + "\")", "secondary"));
+        var decBtn = buildButton("Decompose", "openModal(\"" + task.prefix + "\", \"decomposeModal\")", "secondary");
+        var renameBtn = buildButton("Rename", "openModal(\"" + task.prefix + "\", \"renameModal\")", "secondary");
+        var assignBtn = buildButton("Assign", "openModal(\"" + task.prefix + "\", \"assignModal\")", "secondary");
+        var markBtn = buildButton("✔", "markTask(\"" + task.prefix + "\")", "secondary");
+        if(project.isArchived){
+            decBtn.setAttribute("disabled",null);
+            renameBtn.setAttribute("disabled",null);
+            assignBtn.setAttribute("disabled", null);
+            markBtn.setAttribute("disabled", null);
+        }
+        btnDiv.appendChild(decBtn);
+        btnDiv.appendChild(renameBtn);
+        btnDiv.appendChild(assignBtn);
+        btnDiv.appendChild(markBtn);
     }
     rowDiv.appendChild(btnDiv);
     rowDiv.appendChild(teammatesDiv);
