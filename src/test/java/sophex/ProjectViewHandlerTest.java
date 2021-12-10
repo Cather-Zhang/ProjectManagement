@@ -35,7 +35,7 @@ public class ProjectViewHandlerTest extends LambdaTest {
     
         Assert.assertEquals(failureCode, resp.statusCode);
     }
-    /*
+    
     @Test
     public void testShouldBeOk() throws Exception {
     	ProjectsDAO dao = new ProjectsDAO();
@@ -68,24 +68,14 @@ public class ProjectViewHandlerTest extends LambdaTest {
       
         try {
         	testSuccessInput(incomingView);
+        	dao.deleteProject(var);
 
         } catch (IOException ioe) {
         	Assert.fail("Invalid:" + ioe.getMessage());
         }
     }
-    */
     
-    @Test
-    public void testInList() throws Exception {
-    	String var = "Test Project View";
-    	ProjectViewRequest pvr = new ProjectViewRequest(var);
-        String incomingView = new Gson().toJson(pvr);  
-        try {
-        	testSuccessInput(incomingView);
-        } catch (IOException ioe) {
-        	Assert.fail("Invalid:" + ioe.getMessage());
-        }
-    }
+    
     
     @Test
     public void testNotInList() throws Exception{

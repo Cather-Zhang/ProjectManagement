@@ -29,15 +29,6 @@ public class MarkTaskHandlerTest extends LambdaTest {
     	MarkTaskResponse resp = handler.handleRequest(req, createContext("create"));
         Assert.assertEquals(200, resp.statusCode);
     }
-	
-    void testFailInput(String incoming, int failureCode) throws IOException {
-    	MarkTaskHandler handler = new MarkTaskHandler();
-    	MarkTaskRequest req = new Gson().fromJson(incoming, MarkTaskRequest.class);
-
-    	MarkTaskResponse resp = handler.handleRequest(req, createContext("create"));
-        Assert.assertEquals(failureCode, resp.statusCode);
-    }
-
    
     // NOTE: this proliferates large number of constants! Be mindful
     @Test

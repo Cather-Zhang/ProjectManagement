@@ -54,9 +54,13 @@ public class DecomposeTaskHandlerTest extends LambdaTest {
     	
     	TeammatesDAO daoTe = new TeammatesDAO();
     	daoTe.addTeammate("Person A", var);
+    	daoTe.addTeammate("Person B", var);
+    	daoTe.addTeammate("Person C", var);
     	
     	TasksTeammatesDAO daoTT = new TasksTeammatesDAO();
     	daoTT.assignTeammate("Person A", var, "1");
+    	daoTT.assignTeammate("Person B", var, "1");
+    	daoTT.assignTeammate("Person C", var, "1");
     	
     	String[] tasks = {"t1.1", "t1.2"};
     	

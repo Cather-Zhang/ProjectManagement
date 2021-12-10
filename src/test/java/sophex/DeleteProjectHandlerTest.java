@@ -46,16 +46,5 @@ public class DeleteProjectHandlerTest extends LambdaTest {
     		Assert.fail("Invalid: " + ioe.getMessage());
     	}
     }
-   
-    @Test
-    public void deleteNonExistent() throws Exception{
-    	String var = "salkj;oeihtpwaoie";
-    	DeleteProjectRequest apr = new DeleteProjectRequest(var);
-        String toDelete = new Gson().toJson(apr); 
-    	try {
-    		testSuccessInput(toDelete);
-    	} catch (IOException ioe) {
-    		Assert.fail("Invalid:" + ioe.getMessage());
-    	}
-    } 
+  
 }

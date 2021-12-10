@@ -18,6 +18,7 @@ public class AddTeammateHandler implements RequestHandler<AddTeammateRequest, Ad
 			TeammatesDAO tdao = new TeammatesDAO();
 			boolean success = tdao.addTeammate(req.getTeammateName(), req.getProjectName());	
 			if (!success) {
+				failMessage = "Teammate already exists";
 				response = new AddTeammateResponse(failMessage,400); //fail
 			} else {
                 response = new AddTeammateResponse();  // success

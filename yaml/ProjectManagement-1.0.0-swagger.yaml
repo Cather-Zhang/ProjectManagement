@@ -37,7 +37,7 @@ paths:
         "400":
           description: "400 response"
           schema:
-            $ref: '#/definitions/GeneralErrorResponse'
+            $ref: '#/definitions/CreateProjectResponse'
 
   /project/{projectName}:
     get:
@@ -62,7 +62,7 @@ paths:
         "400":
           description: "400 response"
           schema:
-            $ref: '#/definitions/GeneralErrorResponse'
+            $ref: '#/definitions/DisplayProjectViewResponse'
   
   /project/{projectName}/teammates:
     get:
@@ -85,7 +85,7 @@ paths:
         "400":
           description: "400 response"
           schema:
-            $ref: '#/definitions/GeneralErrorResponse'
+            $ref: '#/definitions/DisplayTeamViewResponse'
   
   /project/{projectName}/addTeammate:
     post:
@@ -118,7 +118,7 @@ paths:
         "400":
           description: "400 response"
           schema:
-            $ref: '#/definitions/GeneralErrorResponse'
+            $ref: '#/definitions/AddTeammateResponse'
   
   /project/{projectName}/removeTeammate:
     post:
@@ -149,7 +149,7 @@ paths:
         "400":
           description: "400 response"
           schema:
-            $ref: '#/definitions/GeneralErrorResponse'
+            $ref: '#/definitions/RemoveTeammateResponse'
             
 
   #task
@@ -181,7 +181,7 @@ paths:
         "400":
           description: "400 response"
           schema:
-            $ref: '#/definitions/GeneralErrorResponse'
+            $ref: '#/definitions/AddTaskResponse'
   
   /project/{projectName}/task/{taskId}/assign:
     post:
@@ -216,7 +216,7 @@ paths:
         "400":
           description: "400 response"
           schema:
-            $ref: '#/definitions/GeneralErrorResponse'
+            $ref: '#/definitions/AssignTeammateToTaskResponse'
   
   /project/{projectName}/task/{taskId}/unassign:
     post:
@@ -251,7 +251,7 @@ paths:
         "400":
           description: "400 response"
           schema:
-            $ref: '#/definitions/GeneralErrorResponse'
+            $ref: '#/definitions/UnassignTeammateFromTaskResponse'
             
   /project/{projectName}/task/{taskId}/decomposeTask:
     post:
@@ -286,7 +286,7 @@ paths:
         "400":
           description: "400 response"
           schema:
-            $ref: '#/definitions/GeneralErrorResponse'
+            $ref: '#/definitions/DecomposeTaskResponse'
             
   /project/{projectName}/task/{taskId}/markTask:
     post:
@@ -321,7 +321,7 @@ paths:
         "400":
           description: "400 response"
           schema:
-            $ref: '#/definitions/GeneralErrorResponse'
+            $ref: '#/definitions/MarkTaskResponse'
             
 
   /project/{projectName}/task/{taskId}/rename:
@@ -357,7 +357,7 @@ paths:
         "400":
           description: "400 response"
           schema:
-            $ref: '#/definitions/GeneralErrorResponse'
+            $ref: '#/definitions/RenameTaskResponse'
   
   
   #admin level
@@ -371,11 +371,11 @@ paths:
         "200":
           description: "200 response"
           schema:
-            $ref: "#/definitions/ShowAllProjectsResponse"
+            $ref: "#/definitions/ListAllProjectsResponse"
         "400":
           description: "400 response"
           schema:
-            $ref: '#/definitions/GeneralErrorResponse'
+            $ref: '#/definitions/ListAllProjectsResponse'
   
   /admin/archive:
     post:
@@ -400,7 +400,7 @@ paths:
         "400":
           description: "400 response"
           schema:
-            $ref: '#/definitions/GeneralErrorResponse'
+            $ref: '#/definitions/ArchiveProjectResponse'
         
   /admin/delete:
     post:
@@ -425,7 +425,7 @@ paths:
         "400":
           description: "400 response"
           schema:
-            $ref: '#/definitions/GeneralErrorResponse'
+            $ref: '#/definitions/DeleteProjectResponse'
             
             
             
@@ -466,11 +466,11 @@ definitions:
       projects:
         type: "array"
         items: {
-          $ref: "#/definitions/Project"
+          "$ref": "#/definitions/Project"
         }
  
  
-  ShowAllProjectsResponse:
+  ListAllProjectsResponse:
     type: "object"
     required:
     - "error"
@@ -483,7 +483,7 @@ definitions:
         type: "integer"
       projects:
         type: "object"
-        $ref: "#/definitions/ListOfProject"
+        "$ref": "#/definitions/ListOfProject"
 
 
   DisplayProjectViewResponse:
@@ -499,7 +499,7 @@ definitions:
         type: "string" 
       project:
         type: "object"
-        $ref: "#/definitions/Project"
+        "$ref": "#/definitions/Project"
 
   DisplayTeamViewResponse:
     type: "object"
@@ -519,9 +519,12 @@ definitions:
   AddTeammateRequest:
     type: "object"
     required:
-    - "name"
+    - "projectName"
+    - "teammateName"
     properties:
-      name:
+      projectName:
+        type: "string"
+      teammateName:
         type: "string"
 
   AddTeammateResponse:
@@ -529,22 +532,22 @@ definitions:
     required:
     - "error"
     - "statusCode"
-    - "project"
     properties:
       statusCode:
         type: "integer"
       error:
         type: "string" 
-      project:
-        type: "object"
-        $ref: "#/definitions/Project"
+
         
   RemoveTeammateRequest:
     type: "object"
     required:
-    - "name"
+    - "projectName"
+    - "teammateName"
     properties:
-      name:
+      projectName:
+        type: "string"
+      teammateName:
         type: "string"
   
   
@@ -553,23 +556,20 @@ definitions:
     required:
     - "error"
     - "statusCode"
-    - "project"
     properties:
       statusCode:
         type: "integer"
       error:
         type: "string" 
-      project:
-        type: "object"
-        $ref: "#/definitions/Project"
+
 
         
   CreateProjectRequest:
     type: "object"
     required:
-    - "name"
+    - "projectName"
     properties:
-      name:
+      projectName:
         type: "string"
         
         
@@ -578,11 +578,10 @@ definitions:
     required:
     - "error"
     - "statusCode"
-    - "project"
+    - "projectName"
     properties:
-      project:
-        type: "object"
-        $ref: "#/definitions/Project"
+      projectName:
+        type: "string"
       statusCode:
         type: "integer"
       error:
@@ -592,9 +591,9 @@ definitions:
   ArchiveProjectRequest:
     type: "object"
     required:
-    - "name"
+    - "projectName"
     properties:
-      name:
+      projectName:
         type: "string"
         
   ArchiveProjectResponse:
@@ -602,23 +601,19 @@ definitions:
     required:
     - "error"
     - "statusCode"
-    - "projects"
     properties:
       statusCode:
         type: "integer"
       error:
         type: "string" 
-      projects:
-        type: "object"
-        $ref: "#/definitions/ListOfProject"
 
 
   DeleteProjectRequest:
     type: "object"
     required:
-    - "name"
+    - "projectName"
     properties:
-      name:
+      projectName:
         type: "string"
 
   DeleteProjectResponse:
@@ -626,15 +621,12 @@ definitions:
     required:
     - "error"
     - "statusCode"
-    - "projects"
     properties:
       statusCode:
         type: "integer"
       error:
         type: "string" 
-      projects:
-        type: "object"
-        $ref: "#/definitions/ListOfProject"
+
  
   #Task requests, responses
   Task:
@@ -670,9 +662,15 @@ definitions:
   DecomposeTaskRequest:
     type: "object"
     required:
-    - "names"
+    - "projectName"
+    - "parentPrefix"
+    - "taskNames"
     properties:
-      names:
+      projectName:
+        type: "string"
+      parentPrefix:
+        type: "string"
+      taskNames:
         type: "array"
         items: {
           type: "string"
@@ -683,45 +681,50 @@ definitions:
     required:
     - "error"
     - "statusCode"
-    - "project"
     properties:
       statusCode:
         type: "integer"
       error:
         type: "string"
-      project:
-        type: "object"
-        $ref: "#/definitions/Project"
 
   RenameTaskRequest:
     type: "object"
     required:
-    - "name"
+    - "projectName"
+    - "taskPrefix"
+    - "newTaskName"
     properties:
-        name:
-          type: "string"
+      projectName:
+        type: "string"
+      taskPrefix:
+        type: "string"
+      newTaskName:
+        type: "string"
 
   RenameTaskResponse:
     type: "object"
     required:
     - "error"
     - "statusCode"
-    - "project"
     properties:
       statusCode:
         type: "integer"
       error:
         type: "string"
-      project:
-        type: "object"
-        $ref: "#/definitions/Project"
+
         
   AssignTeammateToTaskRequest:
     type: "object"
     required:
-    - "name"
+    - "projectName"
+    - "taskPrefix"
+    - "teammateName"
     properties:
-      name: 
+      projectName:
+        type: "string"
+      taskPrefix:
+        type: "string"
+      teammateName: 
         type: "string"
 
 
@@ -730,23 +733,25 @@ definitions:
     required:
     - "error"
     - "statusCode"
-    - "project"
     properties:
       statusCode:
         type: "integer"
       error:
         type: "string"
-      project:
-        type: "object"
-        $ref: "#/definitions/Project"
 
 
   UnassignTeammateFromTaskRequest:
     type: "object"
     required:
-    - "name"
+    - "projectName"
+    - "taskPrefix"
+    - "teammateName"
     properties:
-      name:
+      projectName:
+        type: "string"
+      taskPrefix:
+        type: "string"
+      teammateName:
         type: "string"
 
   UnassignTeammateFromTaskResponse:
@@ -754,48 +759,49 @@ definitions:
     required:
     - "error"
     - "statusCode"
-    - "project"
     properties:
       statusCode:
         type: "integer"
       error:
         type: "string"
-      project:
-        type: "object"
-        $ref: "#/definitions/Project"
+
         
   MarkTaskRequest:
     type: "object"
     required:
-    - "isComplete"
+    - "projectName"
+    - "taskPrefix"
+
     properties:
-      isComplete:
-        type: "boolean"
+      projectName:
+        type: "string"
+      taskPrefix:
+        type: "string"
+
 
   MarkTaskResponse:
     type: "object"
     required:
     - "error"
     - "statusCode"
-    - "project"
     properties:
       statusCode:
         type: "integer"
       error:
         type: "string"        
-      project:
-        type: "object"
-        $ref: "#/definitions/Project"
         
   AddTaskRequest:
     type: "object"
     required:
-    - "identifier"
-    - "name"
+    - "projectName"
+    - "parentPrefix"
+    - "taskName"
     properties:
-      identifier:
+      projectName:
         type: "string"
-      name:
+      parentPrefix:
+        type: "string"
+      taskName:
         type: "string"
     
   AddTaskResponse:
@@ -803,15 +809,11 @@ definitions:
     required:
     - "error"
     - "statusCode"
-    - "project"
     properties:
       statusCode:
         type: "integer"
       error:
         type: "string"
-      project:
-        type: "object"
-        $ref: "#/definitions/Project"
           
   #Teammate        
   Teammate:
@@ -837,16 +839,9 @@ definitions:
       teammates:
         type: "array"
         items: {
-          $ref: "#/definitions/Teammate"
+          "$ref": "#/definitions/Teammate"
         }
  
-  GeneralErrorResponse:
-    type: "object"
-    required:
-    - "message"
-    properties:
-      message:
-        type: "string"
 
 
 # Added by API Auto Mocking Plugin

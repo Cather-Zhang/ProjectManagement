@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import com.google.gson.Gson;
 
+import sophex.db.ProjectsDAO;
 import sophex.db.TeammatesDAO;
 import sophex.handler.project.RemoveTeammateHandler;
 import sophex.http.project.RemoveTeammateRequest;
@@ -26,14 +27,18 @@ public class RemoveTeammateHandlerTest extends LambdaTest {
 	
     
     @Test
-    public void addToKnownProject() throws Exception {
-    	TeammatesDAO dao = new TeammatesDAO();
-    	String var = "Space Invader";
-    	dao.addTeammate("Test A", var);
+    public void testShouldPass() throws Exception {
+    	String var = "Test remove teammate";
+    	ProjectsDAO dao = new ProjectsDAO();
+        dao.addProject(var);
+        
+    	TeammatesDAO daoT = new TeammatesDAO();
+    	daoT.addTeammate("Test A", var);
     	RemoveTeammateRequest apr = new RemoveTeammateRequest("Test A", var);
         String toRemove = new Gson().toJson(apr);  
         try {
         	testSuccessInput(toRemove);
+        	dao.deleteProject(var);
         } catch (IOException ioe) {
         	Assert.fail("Invalid:" + ioe.getMessage());
         }
