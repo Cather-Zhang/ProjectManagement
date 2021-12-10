@@ -1,0 +1,1203 @@
+commit d83f8f573adae17aa2274aa7fcbe5ed9ebd18178
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Thu Dec 9 20:38:44 2021 -0500
+
+    Final Front End
+    
+    Finalized all front end aspects of the project.
+
+commit 7908754c9def5232262462ed5cea57539de5ff76
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Thu Dec 9 18:19:51 2021 -0500
+
+    updated teamView
+
+commit 88319b9a32929d64aed961a2a06a0b7dca6764ec
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Thu Dec 9 18:18:46 2021 -0500
+
+    updated decomose
+
+commit a296fb36f5ea2f37adab5ad8876482b8e35b1cb0
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Thu Dec 9 16:08:32 2021 -0500
+
+    updateTeamView
+
+commit 8fda96eadd2f07634f3ffe093ee4e1fff6747534
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Tue Dec 7 22:39:52 2021 -0500
+
+    fixed archive
+
+commit 846a7148f579e39ebf96f49d07ebcb1271f18f31
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Tue Dec 7 22:39:12 2021 -0500
+
+    fixed remove teammate
+
+commit bf44ffd0457960d972385fd78a25fa27115070dc
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Tue Dec 7 21:39:24 2021 -0500
+
+    Update ProjectsDAO.java
+    
+    fixed dividing by zero
+
+commit c2621053089107319d9270877e21de2027430cdf
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Tue Dec 7 21:24:38 2021 -0500
+
+    Fix archive project
+    
+    Attempted fix on archive project
+
+commit 28e80ee1ddf94cbf76626c0a2bf6029656cea803
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Tue Dec 7 21:05:11 2021 -0500
+
+    Button Functionality
+    
+    Functionality for all project view buttons implemented. Not dependent on API responses as they just reload the page.
+
+commit adf886634071ba5b9907b8cba3ebf77117854933
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Tue Dec 7 18:53:31 2021 -0500
+
+    update is_completed
+
+commit 89adb3c387d4eae2919043fa3c63a8d5454ab749
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Tue Dec 7 18:33:28 2021 -0500
+
+    upload
+
+commit 7dfd10a108ab71df71ac629df1e2fb244ff209d8
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Tue Dec 7 18:18:11 2021 -0500
+
+    update decompose
+
+commit c1ae23b36303bad17f1ff96bc88df0d935a26326
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Tue Dec 7 18:04:37 2021 -0500
+
+    quick update in projectsDAO
+
+commit 81d35c9ed8f132bfe2780f9005429489e53cc177
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Tue Dec 7 16:16:01 2021 -0500
+
+    Update ProjectsDAO.java
+    
+    Testing more calculateProgress
+
+commit 006a59b2149ea23efa43b5e3e7ee50ddaca51b0d
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Tue Dec 7 16:12:12 2021 -0500
+
+    Update ProjectsDAO.java
+    
+    Testing calculateProgress
+
+commit cc8e693880e854cbdd37ed1daf94ae187fe56f40
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Tue Dec 7 16:07:16 2021 -0500
+
+    Update ProjectsDAO.java
+    
+    fixed double issue
+
+commit f1088cf68d99f9e1521052e733de2d45ba085188
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Tue Dec 7 15:59:57 2021 -0500
+
+    GetProgress
+    
+    The Progress of a Project will now be returned accurately in the admin view.
+
+commit 02c4599aac6366b326d90037b257cdeb24b5ea5c
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Tue Dec 7 10:24:03 2021 -0500
+
+    uploaded lambda
+
+commit 09dbec99a06dede0566ca67f0a29a38428a66f09
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Tue Dec 7 10:22:52 2021 -0500
+
+    markTask completed and passes
+
+commit 0e128988f60007331efbf0fcf64208fb53238f2e
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Tue Dec 7 10:09:48 2021 -0500
+
+    added isComplete
+
+commit 756de7434cd27d338fe9a1d634413d5b7ad74a98
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Tue Dec 7 09:48:39 2021 -0500
+
+    ProjectView Test passes
+
+commit e3ac327b36a3af69770cb8eb438a484ab8ffa7cc
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Tue Dec 7 07:45:57 2021 -0500
+
+    updated model
+
+commit 210bf8514a6985915d28e9f387598fc4d5ff98fc
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Tue Dec 7 02:21:57 2021 -0500
+
+    Update ProjectsDAO.java
+    
+    Removed all testing to basic working form
+
+commit d053c8ad2993f430e51753591a9ec3a1cbf8493d
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Tue Dec 7 01:53:24 2021 -0500
+
+    Update ProjectsDAO.java
+    
+    Removed Test
+
+commit c5d73c1c36a19cc5376a7f3f23b3b92e027df9e3
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Tue Dec 7 01:47:59 2021 -0500
+
+    Update ProjectsDAO.java
+    
+    More testing
+
+commit 6ef908ead42a975382d2231e0930d4fe306337cc
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Tue Dec 7 01:36:36 2021 -0500
+
+    Update ProjectsDAO.java
+    
+    More Testing
+
+commit 88f157126a93b942fa9fa32ba75b5a52e4e4c4f4
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Tue Dec 7 01:21:01 2021 -0500
+
+    Update ProjectsDAO.java
+    
+    Testing subtask subdivisions
+
+commit 69e88d517cb6b88d4057eebd15e9c3b898f8ddec
+Merge: d6c828c c2f6151
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Tue Dec 7 00:01:09 2021 -0500
+
+    Merge branch 'main' of https://github.com/Cather-Zhang/ProjectManagement
+
+commit d6c828c2227bfc7d0fc5ffc5971c00a8e8a56393
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Tue Dec 7 00:01:07 2021 -0500
+
+    updated tests + DAO
+
+commit c2f61516436475ba08c28090028322137324e227
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Mon Dec 6 14:47:27 2021 -0500
+
+    Update ProjectsDAO.java
+
+commit 6bdb0d35eb7b21ad9c1a1fc56b7640aa3787cc9b
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Mon Dec 6 14:40:45 2021 -0500
+
+    Hopefully fixes task heirarchy
+    
+    Added a system that should hopefully filter the tasks into the appropriate subtasks, edited a couple files to add methods to assist me
+
+commit d12d52e11bd71451646ee68161c01111e5afa3b9
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Mon Dec 6 12:41:51 2021 -0500
+
+    Update ProjectsDAO.java
+    
+    Testing to see if order by prefix works
+
+commit d366288fa4e757b02f74e84d24430162ed5bd055
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Sun Dec 5 16:42:23 2021 -0500
+
+    TeamView Handler passes and work
+
+commit 0fc00e99e47769fb579c046a8b323231ce53ea59
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Sun Dec 5 16:25:20 2021 -0500
+
+    TeamViewTest
+
+commit f76a8d23771f870d02c2cc33ce60b15b3327145b
+Merge: 16cd5fc 97aee82
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Sun Dec 5 16:13:48 2021 -0500
+
+    Merge branch 'main' of https://github.com/Cather-Zhang/ProjectManagement
+
+commit 16cd5fcfb1052fd9570024a2a5c57d3896f1de9c
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Sun Dec 5 16:13:41 2021 -0500
+
+    Team View Handler/Response/Request
+
+commit 97aee8282671f9cb986f25be797536fbe54bbf4d
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Sun Dec 5 15:51:14 2021 -0500
+
+    G.3 Finished
+
+commit 93161d404fd047b18b11826227ce5320ebd68b6f
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Sun Dec 5 15:40:40 2021 -0500
+
+    getter and setter
+
+commit a765e03f042a3eac23dd04b336136362a6b7eab8
+Merge: 0aedb52 795cd6d
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Sun Dec 5 15:36:02 2021 -0500
+
+    update
+
+commit 0aedb527b7bff05484926d0d77d9d35aab286781
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Sun Dec 5 15:35:23 2021 -0500
+
+    update
+
+commit 795cd6d14344d1a60b96d940e6a9583d32f2355e
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Sun Dec 5 02:18:51 2021 -0500
+
+    ArchiveComplete
+
+commit 9f3307e4f68b78aec82018bc01004ed88cc236b4
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Sun Dec 5 01:32:26 2021 -0500
+
+    Finished front end for G.3
+
+commit d0556ea5b22bca8135d62ac5a31143e947777627
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Sat Dec 4 23:32:19 2021 -0500
+
+    ArchiveProjectUpdates
+
+commit 471a3de38c054168c2e7596f29a0df6db0ef6f87
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Sat Dec 4 23:10:49 2021 -0500
+
+    Assign and unassign test pass
+
+commit 031d73e012acbc8037710caff1b0d78ff82db6a9
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Sat Dec 4 22:47:11 2021 -0500
+
+    AssignTeammate test pass
+
+commit 8fe3dccbabecc2687eb0b5fca9f9e832c82d4be4
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Sat Dec 4 21:41:53 2021 -0500
+
+    Working renameTask Handler and test
+
+commit bac537ca4d0b5d345c000a097308b968d755381a
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Sat Dec 4 21:11:43 2021 -0500
+
+    Updated TasksDAO
+    
+    Added the renameTask function and edited the output log of unassign teammate to remove copy pasted line
+
+commit a042be542ec18801c4299f4d6cdcf00f19e33a1b
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Sat Dec 4 21:06:40 2021 -0500
+
+    Create TasksTeammatesDAO
+    
+    Creates the TasksTeammatesDAO file that now houses the assign and unassign teammate functions with the associated helper method
+
+commit e920ad046eea1c48877373586c72a79628df7487
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Sat Dec 4 00:11:11 2021 -0500
+
+    success Decompose test
+
+commit 387e14c48e724f4ee8d48f882d913ffcc52c67a4
+Merge: 1dff878 08d1f81
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Fri Dec 3 23:28:42 2021 -0500
+
+    Merge branch 'main' of https://github.com/Cather-Zhang/ProjectManagement
+
+commit 1dff87868a0f25981d9572072050b749c1f0a1db
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Fri Dec 3 23:28:40 2021 -0500
+
+    AWS stufff update
+
+commit 08d1f81654388bfeb9dc026bb1e8459abbbc4aa9
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Fri Dec 3 22:38:45 2021 -0500
+
+    TasksDAO DecomposeTask
+    
+    added the decompose task functionality in the TasksDAO file for testing and debugging
+
+commit d8a8d0115a20ced717ea3c31f40de088abe06151
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Thu Dec 2 23:49:32 2021 -0500
+
+    started work on addTask
+    
+    Got top level add task functional, cannot currently debug without a project that has subtasks.
+
+commit d1fab1a7e3cf0eab9d3d11b349e9a61c2b8c5f1a
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Thu Dec 2 21:46:01 2021 -0500
+
+    changed naming convention
+
+commit 75d27c5e9f0fb8edc8b46404703865075756c415
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Thu Dec 2 19:58:50 2021 -0500
+
+    AddTaskDoneAndTested
+
+commit 4f55fed9e33589148e432404b532f0e973b65072
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Thu Dec 2 19:49:38 2021 -0500
+
+    Update TasksDAO.java
+    
+    Fixed bug with parameter 5
+
+commit 9196e6648e0afffbdad2d2d56e93a4483c25a5cb
+Merge: a5d0022 aedfc0d
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Thu Dec 2 18:47:51 2021 -0500
+
+    Merge branch 'main' of https://github.com/Cather-Zhang/ProjectManagement
+
+commit a5d00225c98ac252098310991eef3e5d1cd590c0
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Thu Dec 2 18:47:47 2021 -0500
+
+    Create TasksDAO.java
+    
+    Add task now implemented on the DAO level
+
+commit aedfc0d6f4a9ebe25c70bcd17a9c8d1432a6ed34
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Thu Dec 2 17:53:50 2021 -0500
+
+    Lots o' Frontend 2.0
+    
+    Added dark mode on all attributes, improved code readability and comments, added navbar and prepared for G.3
+
+commit 43743aacc76fc2590a0edc3950bd64d3bc71404d
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Thu Dec 2 00:50:28 2021 -0500
+
+    Lots o' Frontend
+    
+    Added task viewing, with recursion. Also added add teammate and teammate view in project view.
+
+commit 37af093ce41dbb49dc33fa68c3672d7070c5017c
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Wed Dec 1 01:04:56 2021 -0500
+
+    ViewProjectModelUpdate
+
+commit 550c14016677f2af64ea7728112d2ea491694719
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Wed Dec 1 00:53:27 2021 -0500
+
+    Update ProjectsDAO.java
+
+commit f9acc86f4bd98d3148dd9475aa4955b96ba32ab3
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Wed Dec 1 00:50:46 2021 -0500
+
+    changed "name" to name
+
+commit f7cd706e9d4e3c6518827093c7812d7986035e38
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Wed Dec 1 00:42:01 2021 -0500
+
+    fixed Projects DAO Teammate ResultSet
+    
+    ResultSet was used, when ResultSetTeammate was required
+
+commit 746efd7364a69296c761b147dc6317f985e11fe4
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Wed Dec 1 00:35:06 2021 -0500
+
+    added loggers in project view
+
+commit 99a2d4fa71b5781b83ebd21994a1dfe2429aac76
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Wed Dec 1 00:24:12 2021 -0500
+
+    Fixed Project DAO
+    
+    project dao didnt close ps stuff, fixed it
+
+commit 43425891986dc3867685c9da5412c27ca41e16d2
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Tue Nov 30 16:29:51 2021 -0500
+
+    quick test change so it passes
+
+commit d829baa59944f43029e7177348c9c816396a6a7a
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Tue Nov 30 15:25:27 2021 -0500
+
+    Create/ViewUpdates
+
+commit 7b1d8314a37142b637f8391abe5ab8ff8acc58be
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Tue Nov 30 15:06:56 2021 -0500
+
+    UpdatedTests
+
+commit abf68be5698fd9dcc5b0501dcd2447a726aa7ca0
+Merge: 5bce207 29d1f81
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Tue Nov 30 15:00:07 2021 -0500
+
+    Merge branch 'main' of https://github.com/Cather-Zhang/ProjectManagement
+
+commit 5bce207ba1c8b542afce3dc57edb12947abac718
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Tue Nov 30 14:56:03 2021 -0500
+
+    AllWorkingTestsG3
+
+commit 29d1f819bd8a07649ac30f216c64259913c20a95
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Tue Nov 30 14:53:08 2021 -0500
+
+    test update
+
+commit f209158fe962961304cffb96db3765f4db52c758
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Tue Nov 30 14:44:34 2021 -0500
+
+    Add/Remove/DeleteTestSuccess
+
+commit 81eff4ea2d69b016f1f79a8bc3a22ef3db1e2ae0
+Merge: ab87b2d 54b0af9
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Tue Nov 30 14:18:51 2021 -0500
+
+    Merge branch 'main' of https://github.com/Cather-Zhang/ProjectManagement
+
+commit ab87b2dfb446a71b38c852a68e3805435dfbdc01
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Tue Nov 30 14:18:48 2021 -0500
+
+    AddTeammateTest
+
+commit 54b0af9c0f6fafdee067a27865a1bd348a23bc25
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Tue Nov 30 14:18:18 2021 -0500
+
+    path change
+
+commit d52a6140c68f8dff827d561c4009472e38f1a48b
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Tue Nov 30 14:01:18 2021 -0500
+
+    some change
+
+commit 6f478c885c8168f03751f16f79b41f3d107470ae
+Merge: 3031ea4 a4953d1
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Tue Nov 30 13:38:06 2021 -0500
+
+    Merge branch 'main' of https://github.com/Cather-Zhang/ProjectManagement
+
+commit 3031ea4773271a74d7c4d9417c00f9d04c26fa17
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Tue Nov 30 13:37:55 2021 -0500
+
+    Update TeammatesDAO.java
+
+commit a4953d11af3db291ad6f60eb8b26de429d5c4025
+Merge: 6375bb4 32296f8
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Tue Nov 30 13:36:49 2021 -0500
+
+    Merge branch 'main' of https://github.com/Cather-Zhang/ProjectManagement
+
+commit 6375bb484572e01260477d5fa4c742d78e4a2ced
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Tue Nov 30 13:36:35 2021 -0500
+
+    addTeammateResponseError
+
+commit 32296f8cc27ed735cd7c668fa5e74e49000ba352
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Tue Nov 30 13:31:43 2021 -0500
+
+    UpdateTestHandlers
+
+commit c29f67917caba92c071ff048d9d9d90378c8e662
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Tue Nov 30 13:30:27 2021 -0500
+
+    LambdaFunctionTests
+
+commit 21ddd2e3985a45cd2739da5b593d7121c87e8503
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Mon Nov 29 23:22:46 2021 -0500
+
+    DeleteProject/AddTeammate/RemoveTeammate
+
+commit fde062a5b2f68c5e799d5c56c6a2316d9c6857d3
+Merge: 7e8f8f7 fbc94b8
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Mon Nov 29 21:38:20 2021 -0500
+
+    Merge branch 'main' of https://github.com/Cather-Zhang/ProjectManagement into main
+
+commit 7e8f8f71d5f4ad17b8f80603d2aff59b47bb708d
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Mon Nov 29 21:38:16 2021 -0500
+
+    Changes to G.2
+
+commit fbc94b87aeecf23d10718b1552c7851759bc8ecc
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Mon Nov 29 17:03:46 2021 -0500
+
+    ResponseUpdatesNoProject
+
+commit 83f4df13f2d1d968a873e21d430601e068136093
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Mon Nov 29 16:35:37 2021 -0500
+
+    Update TeammatesDAO.java
+
+commit 17c57e47cfb14ce840454935408dd91feb523e89
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Mon Nov 29 16:31:27 2021 -0500
+
+    Updated CreateProjectHandler
+    
+    removed the check if a project was already created since that is already handled in the database and will return false if true
+
+commit e32c4d704d6b01908cc998b6cc8cb24e5819f6d5
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Mon Nov 29 16:29:34 2021 -0500
+
+    Fixed ProjectsDAO
+
+commit 60dde8ee8e20693e833fd18e59446a2717bff76c
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Mon Nov 29 16:28:20 2021 -0500
+
+    createProjectFix
+
+commit 9fde1103a60cb17a8fd4e2b88582d9775bcf3aed
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Mon Nov 29 16:22:28 2021 -0500
+
+    HandlerUpdatesForDAOFns
+
+commit b290585cc92ed18bf7b02aff920c09876a11fc07
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Mon Nov 29 15:54:28 2021 -0500
+
+    Updated ProjectDAO and TeammateDAO
+    
+    Added deleting project functionality
+    Added adding and removing teammate from project functionality
+    Updated the DAO files to handle the correct information passed to it
+
+commit 1872f8bf788b099d3476c3b40b3c006dd191ef61
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Sun Nov 28 17:07:38 2021 -0500
+
+    SuccessArchive&DraftDelete/Add
+
+commit b2eea5593456cf808403f5d7a059c3e2ceb0b8d2
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Sun Nov 28 15:40:38 2021 -0500
+
+    Finished for G.2 #1
+
+commit 467c8fc7f90238c7ef9bdfed2eed6e37b2afcd20
+Merge: a38b0a1 2038e71
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Sun Nov 28 12:02:11 2021 -0500
+
+    Merge branch 'main' of https://github.com/Cather-Zhang/ProjectManagement into main
+
+commit a38b0a1695c191e40069718247819b587f8d4131
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Sun Nov 28 12:02:05 2021 -0500
+
+    updates for g.1
+
+commit 2038e715b395a93e242beb3c8e622eb54aef9572
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Fri Nov 26 20:36:19 2021 -0500
+
+    reducedDBcallsinhandler
+
+commit bb777d55c8e1f216d5d728df40b41a71ea07174c
+Merge: e4744ca 08fb21a
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Fri Nov 26 20:31:19 2021 -0500
+
+    Merge branch 'main' of https://github.com/Cather-Zhang/ProjectManagement
+
+commit e4744caef8067d9a9e8d810444ce711ae6e912d9
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Fri Nov 26 20:31:16 2021 -0500
+
+    FewerDBCalls
+
+commit 08fb21aaed356f1fbb0560c3cedc106fbb736f9d
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Fri Nov 26 17:13:58 2021 -0500
+
+    Resolved issues stemming from ProjectsDAO
+    
+    Added functionality that pulls all tasks, teammates AND task teammate relationships out of the database when in the user view.... please dont look at the file its absolutely disgusting but its the simplest way to achieve this
+
+commit 0d232ae584e8dccad6e740d6f1813d8e0638d8c7
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Fri Nov 26 13:19:51 2021 -0500
+
+    ProjectViewResponseVariableRename
+
+commit d5cf8c2d5e24564bd0d73723da7cb8f7d48b7e0d
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Fri Nov 26 13:16:36 2021 -0500
+
+    Remove Teammate Handlers
+
+commit c4cd9aec61eeb2e2fc9835bf60aa362829a57789
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Fri Nov 26 13:09:03 2021 -0500
+
+    AddTeammateHandler
+
+commit 5129c466fcbd6ef42db23a463a43b31005963662
+Merge: 4541aa6 553ad1d
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Fri Nov 26 12:48:39 2021 -0500
+
+    Merge branch 'main' of https://github.com/Cather-Zhang/ProjectManagement
+
+commit 4541aa6da8d72586ba771e9b25be3d899d24a537
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Fri Nov 26 12:48:31 2021 -0500
+
+    DeleteProjectUpdate
+
+commit 553ad1dc4d565d0561ec8cee530805624722b0e9
+Merge: 060791c 92eac46
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Fri Nov 26 12:37:14 2021 -0500
+
+    Merge branch 'main' of https://github.com/Cather-Zhang/ProjectManagement
+
+commit 060791c5048bcc26eab4a9d506ba91e8ec6ee063
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Fri Nov 26 12:37:13 2021 -0500
+
+    p to project
+
+commit 92eac46aeaebbfa1be1986d95da89556517632fc
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Fri Nov 26 12:36:26 2021 -0500
+
+    Delete Project Handlers
+
+commit a4ee5d47cff6cd7749ac9ddebb70ca9cc4d0f93c
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Fri Nov 26 12:27:37 2021 -0500
+
+    ArchiveProjectHandler
+
+commit 33db9e4da199fdfcd83dd5142dcdb51e55914581
+Merge: a7035b6 f998794
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Thu Nov 25 17:21:18 2021 -0500
+
+    Merge branch 'main' of https://github.com/Cather-Zhang/ProjectManagement
+
+commit a7035b6a61771c76a9db848a875cdf8e562ab011
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Thu Nov 25 17:21:12 2021 -0500
+
+    Put html and js into /presentation
+
+commit f998794b7f9785bc807ed7e74910fbb497e59ac0
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Thu Nov 25 17:20:31 2021 -0500
+
+    changed all fields in request public
+
+commit cb7123cb1adaeb5783fbae8a1154e2d711c3fc0f
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Thu Nov 25 16:24:00 2021 -0500
+
+    trying to fix createprojectrequest
+
+commit 2828b1662c951aa06640f66522a14f8c2a0a0ed1
+Merge: a2164d3 6e08e6f
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Thu Nov 25 13:50:14 2021 -0500
+
+    Merge pull request #1 from Cather-Zhang/Front-End
+    
+    Front end
+
+commit 6e08e6f805a3ce198ab7da70f1b13e20832718e9
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Thu Nov 25 13:50:04 2021 -0500
+
+    Initial Test
+
+commit a2164d3823f0f94d932a0346a0782dfa43206643
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Thu Nov 25 13:49:45 2021 -0500
+
+    updated handlers
+
+commit 80a223b639012b729d8d8f446fa667139b589345
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Wed Nov 24 11:30:50 2021 -0500
+
+    assignTeammate handler + edit a little TeammateDAO for not return error
+
+commit a153e7d6b8c995d105dec6598f9b2b6b2ca8fc5d
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Wed Nov 24 11:12:04 2021 -0500
+
+    updated lambda function
+
+commit 1e921893e28007bed448bec8f5660b0658a4a762
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Tue Nov 23 22:56:14 2021 -0500
+
+    added parent task div
+
+commit c82381a2f1c4872a7449122aeaab04175e9dca07
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Tue Nov 23 15:23:47 2021 -0500
+
+    unique url handling
+
+commit fd1e5dced3ede64f9bf34bd49fa00bd7630157d2
+Merge: 73b5cc5 73f1c43
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Tue Nov 23 15:00:08 2021 -0500
+
+    Merge branch 'main' of https://github.com/Cather-Zhang/ProjectManagement
+
+commit 73b5cc53749da700b32581553c8fea9b1c89d79a
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Tue Nov 23 15:00:05 2021 -0500
+
+    updated requests
+
+commit b00d20a46613207b1bfbc74d75c69dbab04e25d3
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Tue Nov 23 14:04:27 2021 -0500
+
+    Started to work on JS
+
+commit 73f1c431f50f34ae8f4e2c14104d52014a5d91ca
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Tue Nov 23 13:50:03 2021 -0500
+
+    Create TeammatesDAO.java
+    
+    Half finished TeammatesDAO file, will complete later
+
+commit a0391d7b126a553fb4e4fe1bffd891a911309750
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Tue Nov 23 13:29:05 2021 -0500
+
+    EVEN MORE UPDATE AHHHHHH
+
+commit 419a115f4faaafb47a6b6509d7a17c006ecc8516
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Tue Nov 23 13:27:14 2021 -0500
+
+    MORE UPDATES AHHHH
+
+commit 7f5fa2e6c503c1ea901d35c76577b9bb51c55de8
+Merge: 38b8935 17ff184
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Tue Nov 23 13:24:17 2021 -0500
+
+    Merge branch 'main' of https://github.com/Cather-Zhang/ProjectManagement
+
+commit 38b8935966de58813c250879bd48c9015a9a73fe
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Tue Nov 23 13:24:10 2021 -0500
+
+    Uptaed response to return project object
+
+commit 17ff184642f876f4bb9e77c7f11f00c2c2294c85
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Tue Nov 23 13:20:37 2021 -0500
+
+    ViewProjectUpdateReturnType
+
+commit 483545cd42c961003d0e0f96c3b3a3536a3df8a2
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Tue Nov 23 11:57:57 2021 -0500
+
+    AddedRequest for projectView
+
+commit 3da89b3d11f5bfef3ca55a0d0ed1b688259a9570
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Tue Nov 23 09:41:54 2021 -0500
+
+    updated renameTask
+
+commit 7b1be6de93327deb0d1e582710db51fff326364e
+Merge: d4f2adf d1d8d46
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Mon Nov 22 23:49:09 2021 -0500
+
+    Merge branch 'main' of https://github.com/Cather-Zhang/ProjectManagement
+
+commit d4f2adff48493f5055d6706f26797059786e6044
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Mon Nov 22 23:49:08 2021 -0500
+
+    requests and responses
+
+commit d1d8d461b6e2b604912c1cb7a556f359aeb84347
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Mon Nov 22 14:16:30 2021 -0500
+
+    HTML stuff
+
+commit 3f8b6535f969334ac27743618c3f534bc50b4e91
+Merge: 078fc06 910c42a
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Mon Nov 22 13:37:31 2021 -0500
+
+    Merge branch 'main' of https://github.com/Cather-Zhang/ProjectManagement
+
+commit 078fc0621e3eb958937bf4a5fa255b8a958c577a
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Mon Nov 22 13:37:22 2021 -0500
+
+    updated packages again, separated into task, project, and admin
+
+commit 910c42ab2ed8a1c04f7456b92e2c0f0bb254cb3c
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Mon Nov 22 13:35:34 2021 -0500
+
+    updated git ignore
+
+commit 2fd7de51e924a941020194031d211189f17214de
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Mon Nov 22 13:30:39 2021 -0500
+
+    Update .gitignore
+
+commit 9a30313dc7a96581d6a82720a46cb6727e78f465
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Mon Nov 22 13:30:04 2021 -0500
+
+    updated package
+
+commit c87434d17d2bd2013c74438c3001e415a5e11d6a
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Sat Nov 20 16:37:28 2021 -0500
+
+    Updated packages, Task and Teammate class
+
+commit 0853730811fbffa3796b1683e5689cf0147b70f3
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Sat Nov 20 14:57:10 2021 -0500
+
+    BriannasHandlers/Requests/Responses
+
+commit 7aadc50ee596b6912f166478d4cde510885ec579
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Sat Nov 20 14:37:35 2021 -0500
+
+    completed Task and Teammate model class
+
+commit 87af9d0e031e91ba9810d8c773475882673a4852
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Fri Nov 19 21:58:04 2021 -0500
+
+    NewTestsView
+
+commit cadebac6c33318c1a4f96c7fcb116f053bd7bbc8
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Fri Nov 19 21:52:03 2021 -0500
+
+    edited ViewProjectHandlerTest
+
+commit a0b9318f611743331c57fba23bc7f35cccaed6ff
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Fri Nov 19 21:45:21 2021 -0500
+
+    ProjectViewHandlerTest
+
+commit a62852671ccefe38aa98f0d6d5b04543ddf42e50
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Fri Nov 19 21:42:11 2021 -0500
+
+    ListAllProjectsHandler + test working
+
+commit c9f6dc8d3de894b80221a8752dc596ba3aa23821
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Fri Nov 19 21:12:18 2021 -0500
+
+    CreateProjectHandler completed + tests
+
+commit 0f0bcb37745f294b096bf2f53ed758c67cd79ba5
+Merge: 2423c70 1e4268a
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Fri Nov 19 20:14:50 2021 -0500
+
+    Merge branch 'main' of https://github.com/Cather-Zhang/ProjectManagement
+
+commit 2423c7093ad6aa8193be168826ce2d82890a7b51
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Fri Nov 19 20:14:48 2021 -0500
+
+    Test
+
+commit 1e4268a4e9532420b8248b98e0fd756a01c00113
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Fri Nov 19 19:30:40 2021 -0500
+
+    ViewProjectUpdate
+
+commit 0c416027f6033487417b350518d7255f299d3c25
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Fri Nov 19 19:14:18 2021 -0500
+
+    createProjectHandlertest
+
+commit ae710b6f35a158cdde3d77b7ca6f5b9d57bd81ea
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Fri Nov 19 17:37:26 2021 -0500
+
+    changed projectDAO
+
+commit e1c87e147c8e5dcf21db838927066aaa61802ba1
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Fri Nov 19 16:58:22 2021 -0500
+
+    updated create project handler, changed package name for DB
+
+commit a1dfffe84dee1cbede32ecd7fc31c1ee64b307cc
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Fri Nov 19 15:02:02 2021 -0500
+
+    ProjectViewResponseCaseDraft
+
+commit e426be66196867579dc3455b7e96df313d40fd81
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Fri Nov 19 14:28:37 2021 -0500
+
+    Fixed getProjectAdmin in ProjectsDAO
+    
+    Updated it to return a list of projects instead of one project
+
+commit f74a256932775208853949d5fc7f246f492b22cd
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Fri Nov 19 14:09:13 2021 -0500
+
+    ProjectsDAO file + ProjectJava changes
+    
+    Updated Project.java to include a constructor i can use in the ProjectsDAO file and a getter for progress.
+    Created ProjectsDAO file that has functionality to grab projects if you are either an admin or a user, as well as add projects through the relevant 3 methods
+
+commit 858685298f443d1d505ced3d1913d93698a89aab
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Fri Nov 19 13:24:16 2021 -0500
+
+    Update DatabaseUtil
+    
+     Update DatabaseUtil to say sys and not calc
+
+commit cb128154420fa17f748d16dd5e0b79a42b429310
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Fri Nov 19 12:33:53 2021 -0500
+
+    Updated Create project handler
+
+commit 710018a0db35df0d85bee15406b6e90e8a6c35b8
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Thu Nov 18 21:36:06 2021 -0500
+
+    Website stuff
+
+commit 988c49ce9f0771f9aad0cb5ec99de1141bb0bd52
+Author: Austin Rebello <55983501+AustinRebello@users.noreply.github.com>
+Date:   Thu Nov 18 20:23:05 2021 -0500
+
+    I added a comment
+
+commit aeeb67d3cbdd0d05e282502bda6a94588ea4e70d
+Merge: ebcad98 59357be
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Thu Nov 18 20:06:20 2021 -0500
+
+    Merge branch 'main' of https://github.com/Cather-Zhang/ProjectManagement
+
+commit ebcad98fc578926442dc647853cc2be3a88f885a
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Thu Nov 18 20:06:10 2021 -0500
+
+    add DB
+
+commit 59357be29d9e3fbee70e48a94a434f7798c1d36f
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Thu Nov 18 20:03:47 2021 -0500
+
+    UpdateProjectViewResponse
+
+commit eb2ab4172aa10003d2c293457d0700313ee72028
+Merge: cd92737 0390ffd
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Thu Nov 18 20:01:23 2021 -0500
+
+    Merge branch 'main' of https://github.com/Cather-Zhang/ProjectManagement
+
+commit cd92737f43abdf642c6b33baa12f707d542c5940
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Thu Nov 18 20:01:17 2021 -0500
+
+    Class Names changed
+
+commit 0390ffd5c1632fff5862416992e50b254c38cfc1
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Thu Nov 18 20:01:02 2021 -0500
+
+    ProjectViewInitialized
+
+commit 7f8f25d7038c3730669c94c1a10f29dfcabd3fb1
+Merge: 481912d 24e8bcf
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Thu Nov 18 19:53:14 2021 -0500
+
+    Merge branch 'main' of https://github.com/Cather-Zhang/ProjectManagement
+
+commit 481912dcd22bc845b5ffbbf4b6186723a22d6631
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Thu Nov 18 19:53:03 2021 -0500
+
+    brianna test2
+
+commit 24e8bcfeb324cd891f2816e38ee91febbe224ab1
+Merge: 116d14d 0419558
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Thu Nov 18 19:52:36 2021 -0500
+
+    Merge branch 'main' of https://github.com/Cather-Zhang/ProjectManagement
+
+commit 116d14d21669a416811577f30b2cadd94b69f176
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Thu Nov 18 19:51:55 2021 -0500
+
+    minor change
+
+commit 04195586d1393111d187d357a1775c64d1ebee91
+Author: brsahagian <44908953+brsahagian@users.noreply.github.com>
+Date:   Thu Nov 18 19:51:22 2021 -0500
+
+    brianna test
+
+commit 58641630edc92f9c3c751a5ce57e6e223e4c659d
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Thu Nov 18 19:42:53 2021 -0500
+
+    quick edit
+
+commit a6283af3ba11e668f4582d170b9cf03b0a27053d
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Thu Nov 18 18:45:29 2021 -0500
+
+    Create README.md
+
+commit 363b2fd6e6ad9af5cbbb200a7070fcb3ac80657a
+Merge: 496e604 9ee33af
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Thu Nov 18 18:38:01 2021 -0500
+
+    Merge branch 'main' of https://github.com/Cather-Zhang/ProjectManagement
+
+commit 496e6049556fdd815dcc0c9497a5a411c42ec016
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Thu Nov 18 18:37:49 2021 -0500
+
+    updated gitignore and deleted random txt
+
+commit 9ee33af4c9175f23682f2aa3922002dbaca0a3bd
+Merge: 7383050 8fd2fad
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Thu Nov 18 18:13:47 2021 -0500
+
+    Merge branch 'main' of https://github.com/Cather-Zhang/ProjectManagement
+
+commit 8fd2fadec8f60334eef0eee30a112d9d25739b13
+Author: JaiiR320 <jair3202@gmail.com>
+Date:   Thu Nov 18 18:12:50 2021 -0500
+
+    Create .gitignore
+    
+    Added a git ignore file so that we can ignore the target folder and .settings folder since it clutters
+
+commit 73830507f005c60fbc65aa9bdca948c3b4328e42
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Thu Nov 18 18:12:34 2021 -0500
+
+    delete comments
+
+commit 9b7eef9c92e97839c17a15bb75c2a265accf27e8
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Thu Nov 18 17:42:57 2021 -0500
+
+    Revert "b"
+    
+    This reverts commit 2a1740547b6d44a2b3cd000530fb85a65fc82986.
+
+commit 2a1740547b6d44a2b3cd000530fb85a65fc82986
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Thu Nov 18 17:42:08 2021 -0500
+
+    b
+
+commit 11c4b616c7695cccb7a231a2da9b547f6c14cd1c
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Thu Nov 18 17:41:59 2021 -0500
+
+    a
+
+commit bbb91ad7a5abe2c15b95bbb2f07615b076aa3e79
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Thu Nov 18 17:41:31 2021 -0500
+
+    New comment
+
+commit 696c801d44c4d65c5ba65b9e7ff9c66d07855474
+Author: Cather-Zhang <cather0215@gmail.com>
+Date:   Thu Nov 18 17:39:34 2021 -0500
+
+    Initial commit
