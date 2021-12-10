@@ -61,4 +61,48 @@ public class UnassignTeammateHandlerTest extends LambdaTest {
         	Assert.fail("Invalid:" + ioe.getMessage());
         }
     }
+    
+    @Test
+    public void testTeammateNotExist() throws Exception {
+    	ProjectsDAO dao = new ProjectsDAO();
+        String var = "Test unassign task";
+        dao.addProject(var);
+        
+    	TasksDAO daoT = new TasksDAO();
+    	daoT.addTask("Top level task", var, null);
+    	
+    	UnassignTeammateRequest atr = new UnassignTeammateRequest("Test A", var, "1");
+        String SAMPLE_INPUT_STRING = new Gson().toJson(atr);  
+        
+        try {
+        	testFailInput(SAMPLE_INPUT_STRING, 422);
+        	dao.deleteProject(var);
+        } catch (IOException ioe) {
+        	Assert.fail("Invalid:" + ioe.getMessage());
+        }
+    }
+    
+    @Test
+    public void testTaskNotExist() throws Exception {
+    	ProjectsDAO dao = new ProjectsDAO();
+        String var = "Test unassign task";
+        dao.addProject(var);
+        
+    	TasksDAO daoT = new TasksDAO();
+    	daoT.addTask("Top level task", var, null);
+    	
+    	TeammatesDAO daoTe = new TeammatesDAO();
+    	daoTe.addTeammate("Test A", var);
+    	
+    	UnassignTeammateRequest atr = new UnassignTeammateRequest("Test A", var, "2");
+        String SAMPLE_INPUT_STRING = new Gson().toJson(atr);  
+        
+        try {
+        	testFailInput(SAMPLE_INPUT_STRING, 422);
+        	dao.deleteProject(var);
+        } catch (IOException ioe) {
+        	Assert.fail("Invalid:" + ioe.getMessage());
+        }
+    }
+    
 }

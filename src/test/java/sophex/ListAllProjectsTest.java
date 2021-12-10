@@ -21,7 +21,6 @@ public class ListAllProjectsTest extends LambdaTest{
         dao.addProject(var);
         boolean hasCather = false;
         for (Project p : resp.list) {
-        	System.out.println("found project " + p.getname());
         	if (p.getname().equals(var)) { hasCather = true; }
         }
         Assert.assertTrue("Project" + var + "needs to exist in the Projects table (from tutorial) for this test case to work.", hasCather);

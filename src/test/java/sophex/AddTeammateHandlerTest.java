@@ -35,19 +35,40 @@ public class AddTeammateHandlerTest extends LambdaTest {
     
     @Test
     public void addToKnownProject() throws Exception {
-    	TeammatesDAO dao = new TeammatesDAO();
-    	String str = "Space Invader";
+    	String str = "TestAddTeammate";
+    	ProjectsDAO daoP = new ProjectsDAO();
+    	daoP.addProject(str);
    
     	String var = "TestA";
     	AddTeammateRequest atr = new AddTeammateRequest(var, str);
         String toAdd = new Gson().toJson(atr); 
         try {
         	testSuccessInput(toAdd);
-        	dao.removeTeammate(var, str);
+        	daoP.deleteProject(str);
         } catch (IOException ioe) {
         	Assert.fail("Invalid:" + ioe.getMessage());
         }
     }
+    
+    @Test
+    public void addDuplicateTeammate() throws Exception {
+    	String str = "TestAddTeammate";
+    	ProjectsDAO daoP = new ProjectsDAO();
+    	daoP.addProject(str);
+   
+    	String var = "TestA";
+    	TeammatesDAO daoT = new TeammatesDAO();
+    	daoT.addTeammate(var, str);
+    	AddTeammateRequest atr = new AddTeammateRequest(var, str);
+        String toAdd = new Gson().toJson(atr); 
+        try {
+        	testFailInput(toAdd, 400);
+        	daoP.deleteProject(str);
+        } catch (IOException ioe) {
+        	Assert.fail("Invalid:" + ioe.getMessage());
+        }
+    }
+    
     
     @Test
     public void addToNonExistent() throws Exception{
