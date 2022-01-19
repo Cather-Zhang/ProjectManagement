@@ -54,6 +54,19 @@ public class TeammatesDAO {
     public boolean addTeammate(String teammateName, String projectName) throws Exception {
         
 		try {
+			PreparedStatement archived = conn.prepareStatement("SELECT * FROM project WHERE name = ?;");
+			archived.setString(1, projectName);
+        	ResultSet A = archived.executeQuery();
+        
+        	// already present?
+        	while (A.next()) {
+            	int isArchived = A.getInt("is_archived");
+            	if(isArchived == 1) {
+            		A.close();
+            		return false;
+            	}
+        	}
+        	
         	PreparedStatement ps = conn.prepareStatement("SELECT * FROM teammate WHERE name=? AND project_name =?;");
         	ps.setString(1, teammateName);
         	ps.setString(2, projectName);
@@ -82,7 +95,19 @@ public class TeammatesDAO {
     
     public boolean removeTeammate(String teammateName, String projectName) throws Exception {
     	try {
-
+			PreparedStatement archived = conn.prepareStatement("SELECT * FROM project WHERE name = ?;");
+			archived.setString(1, projectName);
+        	ResultSet A = archived.executeQuery();
+        
+        	// already present?
+        	while (A.next()) {
+            	int isArchived = A.getInt("is_archived");
+            	if(isArchived == 1) {
+            		A.close();
+            		return false;
+            	}
+        	}
+        	
     		PreparedStatement ps0 = conn.prepareStatement("SELECT * FROM teammate WHERE name=? AND project_name =?;");
     		ps0.setNString(1,  teammateName);
     		ps0.setNString(2, projectName);

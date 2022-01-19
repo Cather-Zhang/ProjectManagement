@@ -27,6 +27,19 @@ public class TasksTeammatesDAO {
 
     public boolean assignTeammate(String teammateName, String projectName, String taskPrefix) throws Exception {
     	try {
+			PreparedStatement archived = conn.prepareStatement("SELECT * FROM project WHERE name = ?;");
+			archived.setString(1, projectName);
+        	ResultSet A = archived.executeQuery();
+        
+        	// already present?
+        	while (A.next()) {
+            	int isArchived = A.getInt("is_archived");
+            	if(isArchived == 1) {
+            		A.close();
+            		return false;
+            	}
+        	}
+        	
     		int[] ids = getTaskTeammateIDs(teammateName, projectName, taskPrefix);
     		
     		if(ids[0]==-1||ids[1]==-1) {
@@ -58,6 +71,20 @@ public class TasksTeammatesDAO {
     
     public boolean unassignTeammate(String teammateName, String projectName, String taskPrefix) throws Exception {
     	try {
+    		
+			PreparedStatement archived = conn.prepareStatement("SELECT * FROM project WHERE name = ?;");
+			archived.setString(1, projectName);
+        	ResultSet A = archived.executeQuery();
+        
+        	// already present?
+        	while (A.next()) {
+            	int isArchived = A.getInt("is_archived");
+            	if(isArchived == 1) {
+            		A.close();
+            		return false;
+            	}
+        	}
+        	
     		int[] ids = getTaskTeammateIDs(teammateName, projectName, taskPrefix);
     		
     		if(ids[0]==-1||ids[1]==-1) {
@@ -110,15 +137,6 @@ public class TasksTeammatesDAO {
     	return result;
     }
     
-
-
-    
-    
-
-
-
-
-
 
 
 }

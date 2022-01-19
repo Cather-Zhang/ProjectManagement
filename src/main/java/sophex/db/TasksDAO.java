@@ -32,6 +32,19 @@ public class TasksDAO {
     public boolean renameTask(String newTaskName, String projectName, String taskPrefix) throws Exception {
     	try {
     		
+			PreparedStatement archived = conn.prepareStatement("SELECT * FROM project WHERE name = ?;");
+			archived.setString(1, projectName);
+        	ResultSet A = archived.executeQuery();
+        
+        	// already present?
+        	while (A.next()) {
+            	int isArchived = A.getInt("is_archived");
+            	if(isArchived == 1) {
+            		A.close();
+            		return false;
+            	}
+        	}
+        	
     		PreparedStatement updateTask = conn.prepareStatement("UPDATE task SET name=? WHERE prefix=? AND p_name=?");
     		updateTask.setNString(1, newTaskName);
     		updateTask.setNString(2, taskPrefix);
@@ -47,6 +60,19 @@ public class TasksDAO {
     
     public boolean markTask(String projectName, String taskPrefix) throws Exception {
     	try {
+			PreparedStatement archived = conn.prepareStatement("SELECT * FROM project WHERE name = ?;");
+			archived.setString(1, projectName);
+        	ResultSet A = archived.executeQuery();
+        
+        	// already present?
+        	while (A.next()) {
+            	int isArchived = A.getInt("is_archived");
+            	if(isArchived == 1) {
+            		A.close();
+            		return false;
+            	}
+        	}
+        	
     		PreparedStatement ps = conn.prepareStatement("SELECT * from task WHERE p_name=? AND prefix=?;");
     		ps.setNString(1, projectName);
     		ps.setNString(2, taskPrefix);
@@ -82,6 +108,19 @@ public class TasksDAO {
     
     public boolean addTask(String taskName, String projectName, String parentPrefix) throws Exception {
     	try {
+			PreparedStatement archived = conn.prepareStatement("SELECT * FROM project WHERE name = ?;");
+			archived.setString(1, projectName);
+        	ResultSet A = archived.executeQuery();
+        
+        	// already present?
+        	while (A.next()) {
+            	int isArchived = A.getInt("is_archived");
+            	if(isArchived == 1) {
+            		A.close();
+            		return false;
+            	}
+        	}
+        	
     		int parentID = -1;
     		String setPrefix;
     		String basePrefix = "";
@@ -152,7 +191,19 @@ public class TasksDAO {
     public boolean decomposeTask(String[] taskNames, String projectName, String parentPrefix) throws Exception {
     	try {
     		
-    		
+			PreparedStatement archived = conn.prepareStatement("SELECT * FROM project WHERE name = ?;");
+			archived.setString(1, projectName);
+        	ResultSet A = archived.executeQuery();
+        
+        	// already present?
+        	while (A.next()) {
+            	int isArchived = A.getInt("is_archived");
+            	if(isArchived == 1) {
+            		A.close();
+            		return false;
+            	}
+        	}
+        	
     		// Grabs the parent task's ID for the tasks team mates table
     		int parentTaskID;
     		int prefixAddon = 1;

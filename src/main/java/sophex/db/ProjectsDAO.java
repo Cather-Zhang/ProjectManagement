@@ -430,6 +430,8 @@ public class ProjectsDAO {
 	
 	public boolean archiveProject(String project) throws Exception{
 		try {
+
+            	
 			PreparedStatement ps = conn.prepareStatement("UPDATE project SET is_archived=? WHERE name=?;");			
 			ps.setInt(1, 1);
 			ps.setString(2, project);
@@ -439,6 +441,25 @@ public class ProjectsDAO {
 			throw new Exception("Filed to archive project: " + e.getMessage());
 		}
 	
+	}
+	
+	public boolean isArchived(String projectName) throws Exception {
+	 try {
+		 PreparedStatement archived = conn.prepareStatement("SELECT * FROM project WHERE name = ?;");
+		 archived.setString(1, projectName);
+     	 ResultSet A = archived.executeQuery();
+     
+     	// already present?
+     	if (A.next()) {
+         	int isArchived = A.getInt("is_archived");
+         	if (isArchived == 1) return true;
+         	else return false;
+         }
+     	
+     	else return false;
+	 } catch (Exception e) {
+		 throw new Exception("Failed to check archive status: " + e.getMessage());
+	 	}
 	}
 	
 
